@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OEHP.NET", "OEHP.NET\OEHP.NET.csproj", "{0494D172-669E-4A8E-8D89-D91D9E5B503B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OEHP.NET.Test", "OEHP.NET.Test\OEHP.NET.Test.csproj", "{9E145AFE-19CE-4990-A91D-2C199DF0B2AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OEHP Tester", "OEHP Tester\OEHP Tester.csproj", "{F9A02FF4-6ECA-4951-9423-F17888DCF1CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0494D172-669E-4A8E-8D89-D91D9E5B503B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0494D172-669E-4A8E-8D89-D91D9E5B503B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0494D172-669E-4A8E-8D89-D91D9E5B503B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0494D172-669E-4A8E-8D89-D91D9E5B503B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E145AFE-19CE-4990-A91D-2C199DF0B2AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E145AFE-19CE-4990-A91D-2C199DF0B2AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E145AFE-19CE-4990-A91D-2C199DF0B2AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E145AFE-19CE-4990-A91D-2C199DF0B2AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A02FF4-6ECA-4951-9423-F17888DCF1CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A02FF4-6ECA-4951-9423-F17888DCF1CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A02FF4-6ECA-4951-9423-F17888DCF1CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A02FF4-6ECA-4951-9423-F17888DCF1CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
