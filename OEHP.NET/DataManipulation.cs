@@ -36,7 +36,7 @@ namespace OEHP.NET
 
             }
         }
-        //Query Result into object.
+        //Query Result into object. Result must be changed into JSON before serializing.
         public QueryResultJson QueryResultObject(string json)
         {
 

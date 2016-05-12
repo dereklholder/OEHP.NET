@@ -42,7 +42,7 @@
         <Label x:Name="AccountTypeLabel" Content="Account Type:" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="-1.258,-0.688" Height="26" Width="85" Visibility="Hidden"/>
         <ComboBox x:Name="AccountTypeBox" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="3" Width="130" Height="22" VerticalAlignment="Top" Visibility="Hidden"/>
         <Label x:Name="CreditTypeLabel" Content="Credit Type:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="-0.329,-0.074" Height="26" Width="73" Visibility="Hidden"/>
-        <ComboBox x:Name="CreditTypeBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="3" Width="130" Height="22" VerticalAlignment="Top" Visibility="Hidden"/>
+        <ComboBox x:Name="CreditTypeBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="3" Width="130" Height="22" VerticalAlignment="Top" Visibility="Hidden" SelectionChanged="CreditTypeBox_SelectionChanged"/>
         <TextBox x:Name="AmountBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="10,25,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
         <TextBox x:Name="OrderIDBox" Grid.Column="4" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" IsReadOnly="True"/>
         <Label x:Name="TCCLabel" Content="Transaction Condition Code:" Grid.Column="2" Margin="10,0,138,61" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="26" VerticalAlignment="Bottom" Visibility="Hidden"/>
@@ -53,14 +53,16 @@
         <TextBox x:Name="PostParameterBox" Grid.Column="5" Margin="10,22,10,14" Grid.Row="1" TextWrapping="Wrap" Grid.RowSpan="2"/>
         <Label x:Name="QueryParametersLabel" Content="Query Parameters:" Grid.Column="5" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="0.6,0.319"/>
         <Label x:Name="CustomParametersLabel" Content="Custom Parameters:" Grid.Column="3" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="CustomParametersBox" Grid.Column="3" Height="77" Margin="10,25,10,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="2" TextChanged="CustomParametersBox_TextChanged"/>
-        <TextBox x:Name="QueryParametersBox" Grid.Column="5" Height="77" Margin="10,25,10,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <TextBox x:Name="QueryPaymentBox" Grid.Column="3" Margin="58,10,10,10" Grid.Row="5" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
-        <Label x:Name="QueryResponseLabel" Content="Query Response:" Grid.Column="3" HorizontalAlignment="Left" Margin="58,0,0,1" Grid.Row="4" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="CustomParametersBox" Grid.Column="3" Margin="10,25,10,53" Grid.Row="3" TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.RowSpan="2" TextChanged="CustomParametersBox_TextChanged"/>
+        <TextBox x:Name="QueryParametersBox" Grid.Column="5" Margin="10,25,10,53" Grid.Row="3" TextWrapping="Wrap" Grid.RowSpan="2"/>
+        <TextBox x:Name="QueryPaymentBox" Grid.Column="3" Margin="10" Grid.Row="5" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+        <Label x:Name="QueryResponseLabel" Content="Query Response:" Grid.Column="3" HorizontalAlignment="Left" Margin="10,0,0,1" Grid.Row="4" Height="26" VerticalAlignment="Bottom"/>
         <Label x:Name="RCMStatusLabel" Content="RCM Status:" Grid.Column="5" HorizontalAlignment="Left" Margin="10,0,0,1" Grid.Row="4" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="RCMStatusBox" Grid.Column="5" Height="245" Margin="10,10,10,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Image x:Name="SignatureImage" Grid.Column="2" Height="100" Margin="45,10,112,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-4.915,0.464" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="RCMStatusBox" Grid.Column="5" Margin="10" Grid.Row="5" TextWrapping="Wrap"/>
+        <Image x:Name="SignatureImage" Grid.Column="2" Height="100" Margin="45,10,10,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-4.915,0.464"/>
         <Label x:Name="SignatureLabel" Content="Signature:" Grid.Column="2" HorizontalAlignment="Left" Margin="45,62,0,0" Grid.Row="4" VerticalAlignment="Top" RenderTransformOrigin="1.284,1.363"/>
+        <Button x:Name="QueryToJsonButton" Content="QueryString to JSON" Grid.Column="4" HorizontalAlignment="Left" Margin="10,0,0,3" Grid.Row="4" VerticalAlignment="Bottom" Width="135" RenderTransformOrigin="0.573,3.682" Click="QueryToJsonButton_Click"/>
+        <Button x:Name="SaveToken" Content="Save Token" HorizontalAlignment="Left" Margin="31,-1,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="3" IsCancel="True" Click="SaveToken_Click"/>
 
     </Grid>
 </Window>

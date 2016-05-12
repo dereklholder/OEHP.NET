@@ -175,7 +175,7 @@ namespace OEHP_Tester
         }
         //MPD Transaction ParamBuilder
         public string MpdBuilder(string accountToken, string orderID, string transactionType, string chargeType,
-            string chargeAmount, string payer_id, string span, string expYY, string expMM)
+            string chargeAmount, string payer_id, string span)
         {
             string accountTokenBuilder = "account_token=" + accountToken;
             string transactionTypeBuilder = "transaction_type=" + transactionType;

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OEHP.NET.Test", "OEHP.NET.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OEHP Tester", "OEHP Tester\OEHP Tester.csproj", "{F9A02FF4-6ECA-4951-9423-F17888DCF1CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OEHP Tester.Test", "OEHP Tester.Test\OEHP Tester.Test.csproj", "{34E93C20-6E89-441A-BDC1-7D7DBF4DB475}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F9A02FF4-6ECA-4951-9423-F17888DCF1CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9A02FF4-6ECA-4951-9423-F17888DCF1CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9A02FF4-6ECA-4951-9423-F17888DCF1CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34E93C20-6E89-441A-BDC1-7D7DBF4DB475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34E93C20-6E89-441A-BDC1-7D7DBF4DB475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34E93C20-6E89-441A-BDC1-7D7DBF4DB475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34E93C20-6E89-441A-BDC1-7D7DBF4DB475}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
