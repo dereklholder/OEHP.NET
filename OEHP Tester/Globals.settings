@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OEHP_Tester" GeneratedClassName="Globals">
+  <Profiles />
+  <Settings>
+    <Setting Name="AccountToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)">04173F8DCE65520D3580E5FF8555A961CECF249E46B5C2FAEFA04E248CD95FEA9D55BB581758D0591B</Value>
+    </Setting>
+    <Setting Name="DefaultAccountToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)">04173F8DCE65520D3580E5FF8555A961CECF249E46B5C2FAEFA04E248CD95FEA9D55BB581758D0591B</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -30,14 +30,15 @@ namespace OEHP_Tester
 
             InitializeComponent();
 
-            //if (Properties.Settings.Default.IsFirstRun == "true")
-            //{
-            //    GeneralFunctions gf = new GeneralFunctions();
-            //    gf.CreateDBFile();
-            //    Properties.Settings.Default.IsFirstRun = "false";
-            //}
+            if (Properties.Settings.Default.IsFirstRun == "true")
+            {
+                GeneralFunctions gf = new GeneralFunctions();
+                gf.CreateDBFile();
+                Properties.Settings.Default.IsFirstRun = "false";
+                Properties.Settings.Default.Save();
+            }
 
-            AccountTokenBox.Text = Properties.Settings.Default.AccountToken;
+            AccountTokenBox.Text = Globals.Default.AccountToken;
 
             SubmitMethodBoxValues.Clear();
             SubmitMethodBoxValues.Add("PayPage Post");
@@ -776,33 +777,43 @@ namespace OEHP_Tester
         {
             try
             {
-                string ssp = OEHP.NET.SSP.SessionToken;
-                
-                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                if (SubmitMethodBox.SelectedItem.ToString() == "PayPage Post")
                 {
-                    WebRequest wr = WebRequest.Create(OEHP.NET.VariableHandler.TestRcmStatusURL + OEHP.NET.VariableHandler.SessionToken);
-                    wr.Method = "GET";
+                    string ssp = OEHP.NET.SSP.SessionToken;
 
-                    Stream objStream;
-                    objStream = wr.GetResponse().GetResponseStream();
+                    if (ModeComboBox.SelectedItem.ToString() == "Test")
+                    {
+                        WebRequest wr = WebRequest.Create(OEHP.NET.VariableHandler.TestRcmStatusURL + OEHP.NET.VariableHandler.SessionToken);
+                        wr.Method = "GET";
 
-                    StreamReader sr = new StreamReader(objStream);
+                        Stream objStream;
+                        objStream = wr.GetResponse().GetResponseStream();
 
-                    string rcmStatus = sr.ReadToEnd();
-                    RCMStatusBox.Text = rcmStatus;
+                        StreamReader sr = new StreamReader(objStream);
+
+                        string rcmStatus = sr.ReadToEnd();
+                        RCMStatusBox.Text = rcmStatus;
+                    }
+                    else
+                    {
+                        WebRequest wr = WebRequest.Create(OEHP.NET.VariableHandler.LiveRcmStatusURL + OEHP.NET.VariableHandler.SessionToken);
+                        wr.Method = "GET";
+
+                        Stream objStream;
+                        objStream = wr.GetResponse().GetResponseStream();
+
+                        StreamReader sr = new StreamReader(objStream);
+
+                        string rcmStatus = sr.ReadToEnd();
+                        RCMStatusBox.Text = rcmStatus;
+                    }
                 }
                 else
                 {
-                    WebRequest wr = WebRequest.Create(OEHP.NET.VariableHandler.LiveRcmStatusURL + OEHP.NET.VariableHandler.SessionToken);
-                    wr.Method = "GET";
-
-                    Stream objStream;
-                    objStream = wr.GetResponse().GetResponseStream();
-
-                    StreamReader sr = new StreamReader(objStream);
-
-                    string rcmStatus = sr.ReadToEnd();
-                    RCMStatusBox.Text = rcmStatus;
+                    GeneralFunctions gf = new GeneralFunctions();
+                    string pageHTML = gf.GetPageContent(OEHPWebBrowser);
+                    string rcmText = gf.RCMStatusFromWebPage(pageHTML);
+                    RCMStatusBox.Text = rcmText;
                 }
 
 
@@ -1100,6 +1111,7 @@ namespace OEHP_Tester
                 if (firstChar.ToString() == "r")
                 {
                     OEHP.NET.DataManipulation dm = new OEHP.NET.DataManipulation();
+                    
                     string result = dm.QueryStringToJson(queryString);
                     QueryPaymentBox.Text = result;
                 }
@@ -1117,7 +1129,21 @@ namespace OEHP_Tester
 
         private void SaveToken_Click(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.AccountToken = AccountTokenBox.Text;
+            Globals.Default.AccountToken = AccountTokenBox.Text;
+            Globals.Default.Save();
+
+        }
+
+        private void AccountTokenBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.Default.AccountToken = Globals.Default.DefaultAccountToken;
+            Globals.Default.Save();
+            AccountTokenBox.Text = Globals.Default.AccountToken;
         }
     }
 }

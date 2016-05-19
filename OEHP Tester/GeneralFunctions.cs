@@ -26,7 +26,7 @@ namespace OEHP_Tester
             catch (Exception ex)
             {
 
-                MessageBox.Show("An Error Occured when Writing to the Log File.");
+                MessageBox.Show("An Error Occured when Writing to the Log File." + Environment.NewLine + ex.GetBaseException().ToString());
             }
         }
         public BitmapImage DecodeBase64Image(string base64String)
@@ -85,6 +85,35 @@ namespace OEHP_Tester
                 return null;
             }
         }
+
+        public string RCMStatusFromWebPage(string pageHTML)
+        {
+            if (pageHTML != null)
+            {
+                HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                doc.LoadHtml(pageHTML);
+                try
+                {
+                    string rcmStartingSignal = doc.DocumentNode.SelectSingleNode("//input[@type='hidden' and @id='rcmStartingSignal']").Attributes["value"].Value;
+                    string rcmFinishedSignal = doc.DocumentNode.SelectSingleNode("//input[@type='hidden' and @id='rcmFinishedSignal']").Attributes["value"].Value;
+                    string rcmResponseCode = doc.DocumentNode.SelectSingleNode("//input[@type='hidden' and @id='rcmResponseCode']").Attributes["value"].Value;
+                    string rcmResponseDescription = doc.DocumentNode.SelectSingleNode("//input[@type='hidden' and @id='rcmResponseDescription']").Attributes["value"].Value;
+                    string result = "rcm_starting_signal=" + rcmStartingSignal + "&rcm_finished_signal=" + rcmFinishedSignal + "&rcm_response_code=" + rcmResponseCode + "&rcm_response_description=" + rcmResponseDescription;
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    WriteToLog(ex.ToString());
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
         public void CreateDBFile()
         {
             try

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OEHP Tester", "OEHP Tester\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OEHP Tester.Test", "OEHP Tester.Test\OEHP Tester.Test.csproj", "{34E93C20-6E89-441A-BDC1-7D7DBF4DB475}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperServicesPOS", "DeveloperServicesPOS\DeveloperServicesPOS.csproj", "{21CC1CDF-E2B8-4B84-8D69-A7881770E30E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{34E93C20-6E89-441A-BDC1-7D7DBF4DB475}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34E93C20-6E89-441A-BDC1-7D7DBF4DB475}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34E93C20-6E89-441A-BDC1-7D7DBF4DB475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21CC1CDF-E2B8-4B84-8D69-A7881770E30E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21CC1CDF-E2B8-4B84-8D69-A7881770E30E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21CC1CDF-E2B8-4B84-8D69-A7881770E30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21CC1CDF-E2B8-4B84-8D69-A7881770E30E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

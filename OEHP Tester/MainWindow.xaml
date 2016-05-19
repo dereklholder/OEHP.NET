@@ -30,7 +30,7 @@
         <Label x:Name="modeLabel" Content="Mode:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,61" Grid.Row="3" Width="44" Grid.RowSpan="2" Height="26" VerticalAlignment="Bottom"/>
         <ComboBox x:Name="ModeComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,38" Grid.Row="4" Width="130" SelectedIndex="0" Height="22" VerticalAlignment="Bottom"/>
         <Label x:Name="AccountTokenLabel" Content="Account Token:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="93" Grid.RowSpan="2" RenderTransformOrigin="1.466,1.332" Margin="10,0,0,0"/>
-        <TextBox x:Name="AccountTokenBox" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="561" Grid.ColumnSpan="4" Text="04173F8DCE65520D3580E5FF8555A961CECF249E46B5C2FAEFA04E248CD95FEA9D55BB581758D0591B"/>
+        <TextBox x:Name="AccountTokenBox" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="561" Grid.ColumnSpan="4" Text="04173F8DCE65520D3580E5FF8555A961CECF249E46B5C2FAEFA04E248CD95FEA9D55BB581758D0591B" TextChanged="AccountTokenBox_TextChanged"/>
         <Label x:Name="EntryModeLabel" Content="Entry Mode:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="10,0,0,0" Grid.Row="2" Height="26" Width="74"/>
         <Label x:Name="TransactionTypeLabel" Content="Transaction Type:" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="102"/>
         <Label x:Name="ChargeTypeLabel" Content="Charge Type:" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="79"/>
@@ -62,7 +62,8 @@
         <Image x:Name="SignatureImage" Grid.Column="2" Height="100" Margin="45,10,10,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-4.915,0.464"/>
         <Label x:Name="SignatureLabel" Content="Signature:" Grid.Column="2" HorizontalAlignment="Left" Margin="45,62,0,0" Grid.Row="4" VerticalAlignment="Top" RenderTransformOrigin="1.284,1.363"/>
         <Button x:Name="QueryToJsonButton" Content="QueryString to JSON" Grid.Column="4" HorizontalAlignment="Left" Margin="10,0,0,3" Grid.Row="4" VerticalAlignment="Bottom" Width="135" RenderTransformOrigin="0.573,3.682" Click="QueryToJsonButton_Click"/>
-        <Button x:Name="SaveToken" Content="Save Token" HorizontalAlignment="Left" Margin="31,-1,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="3" IsCancel="True" Click="SaveToken_Click"/>
+        <Button x:Name="SaveToken" Content="Save Token" Margin="80,0,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1" IsCancel="True" Click="SaveToken_Click" HorizontalAlignment="Left" Width="75"/>
+        <Button x:Name="ResetButton" Content="Reset Token" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Top" Click="ResetButton_Click" HorizontalAlignment="Left" Width="75"/>
 
     </Grid>
 </Window>

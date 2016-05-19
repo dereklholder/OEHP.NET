@@ -1,0 +1,29 @@
+﻿<Window x:Class="DeveloperServicesPOS.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeveloperServicesPOS"
+        xmlns:properties="clr-namespace:DeveloperServicesPOS.Properties"
+        mc:Ignorable="d"
+        Title="Settings" Height="163.712" Width="503.601" ResizeMode="NoResize">
+    <Grid>
+        <Label x:Name="label" Content="Account Token:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-1.487,-1.836" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+        <TextBox x:Name="AccountTokenBox" HorizontalAlignment="Left" Height="23" Margin="0,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="496" Text="{Binding Source={x:Static properties:Settings.Default}, Path=AccountToken}"/>
+        <Label x:Name="DuplicateModeLabel" Content="Duplicate Mode:" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+        <ComboBox x:Name="DuplicateModeBox" HorizontalAlignment="Left" Margin="0,82,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="No Checking, RCM Checking Off" IsSelected="True"/>
+            <ComboBoxItem Content="No Checking, RCM Checking On"/>
+            <ComboBoxItem Content="Duplicate Checking, RCM Checking Off"/>
+            <ComboBoxItem Content="Duplicate Checking, RCM Checking On"/>
+        </ComboBox>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Right" Margin="0,103,87,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
+        <Button x:Name="ExitButton" Content="Close" Margin="0,103,0,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="ExitButton_Click"/>
+        <Label x:Name="RCMEnabledLabel" Content="RCM Enabled:" HorizontalAlignment="Left" Margin="125,56,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+        <ComboBox x:Name="RCMEnabledBox" HorizontalAlignment="Left" Margin="125,82,0,0" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS">
+            <ComboBoxItem Content="Yes" IsSelected="True"/>
+            <ComboBoxItem Content="No"/>
+        </ComboBox>
+
+    </Grid>
+</Window>
