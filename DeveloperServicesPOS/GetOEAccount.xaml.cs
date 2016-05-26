@@ -48,6 +48,11 @@ namespace DeveloperServicesPOS
         {
             this.Close();
         }
+
+        private void richTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
     
 }

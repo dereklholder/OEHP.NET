@@ -114,26 +114,34 @@ namespace DeveloperServicesPOS
 
         private void CreditButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            TransactionRequest tr = new TransactionRequest();
-            string orderID = tr.OrderIDRandom(8);
-            string transactionRequest = tr.CreditCardParamBuilder(Properties.Settings.Default.AccountToken, "CREDIT_CARD", "SALE", "EMV", orderID, TotalAmountBox.Text, "&prompt_signature=TRUE");
+            if (Properties.Settings.Default.OEEnabled == "true")
+            {
+                TransactionRequest tr = new TransactionRequest();
+                string orderID = tr.OrderIDRandom(8);
+                string transactionRequest = tr.CreditCardParamBuilder(Properties.Settings.Default.AccountToken, "CREDIT_CARD", "SALE", "EMV", orderID, TotalAmountBox.Text, "&prompt_signature=TRUE");
 
-            OEHP.NET.GatewayRequest gr = new OEHP.NET.GatewayRequest();
-            ProcessingWindow pw = new ProcessingWindow(gr.TestPayPagePost(transactionRequest), "CREDIT_CARD", orderID);
-            pw.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            pw.ShowDialog();
-            
-            if (GlobalVariables.LastTransactionResult == "1")
-            {
-                MessageBox.Show("Transaction Was Successful!");
-                CurrentTicketList.Items.Clear();
-                TotalAmountBox.Text = "0";
+                OEHP.NET.GatewayRequest gr = new OEHP.NET.GatewayRequest();
+                ProcessingWindow pw = new ProcessingWindow(gr.TestPayPagePost(transactionRequest), "CREDIT_CARD", orderID);
+                pw.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                pw.ShowDialog();
+
+                if (GlobalVariables.LastTransactionResult == "1")
+                {
+                    MessageBox.Show("Transaction Was Successful!");
+                    CurrentTicketList.Items.Clear();
+                    TotalAmountBox.Text = "0";
+                }
+                if (GlobalVariables.LastTransactionResult != "1")
+                {
+                    MessageBox.Show("Transaction Failed!");
+                    CurrentTicketList.Items.Clear();
+                    TotalAmountBox.Text = "0";
+                } 
             }
-            if (GlobalVariables.LastTransactionResult != "1")
+            else
             {
-                MessageBox.Show("Transaction Failed!");
-                CurrentTicketList.Items.Clear();
-                TotalAmountBox.Text = "0";
+                MessageBox.Show("Integrated payment processing not enabled! Please enabled Payment Processing by going to File -> Settings. If you do not have an OpenEdge Account, you can go to Help -> Integrated Payment Processing to learn more");
+
             }
             
         }
@@ -167,6 +175,16 @@ namespace DeveloperServicesPOS
         private void CurrentTicketList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        
+
+        private void PabDemoClick_Click(object sender, RoutedEventArgs e)
+        {
+            PABDemoMain pdm = new PABDemoMain();
+            pdm.Show();
+            this.Close();
+            
         }
     }
 }

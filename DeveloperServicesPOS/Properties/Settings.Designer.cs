@@ -71,5 +71,31 @@ namespace DeveloperServicesPOS.Properties {
                 this["RCMEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://staging.agreementexpress.net/api/TemplateServices/v2/publishTransaction?a" +
+            "gexp_transrefid=LP_Test&agexp_transfolderid=1748&agexp_transcompany=645&allRecip" +
+            "ients=Owner1:Owner1&aex_direct=true")]
+        public string RapidActivateURL {
+            get {
+                return ((string)(this["RapidActivateURL"]));
+            }
+            set {
+                this["RapidActivateURL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OEEnabled {
+            get {
+                return ((string)(this["OEEnabled"]));
+            }
+            set {
+                this["OEEnabled"] = value;
+            }
+        }
     }
 }

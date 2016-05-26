@@ -29,6 +29,7 @@
                         <Image Source="Images/RCM-Logo-16x16.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem x:Name="PabDemoClick" Header="_Pab Demo" Click="PabDemoClick_Click"></MenuItem>
             </MenuItem>
         </Menu>
         <Label x:Name="Items" Content="Items:" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold" Height="27" Width="49"/>

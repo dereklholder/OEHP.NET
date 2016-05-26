@@ -6,24 +6,26 @@
         xmlns:local="clr-namespace:DeveloperServicesPOS"
         xmlns:properties="clr-namespace:DeveloperServicesPOS.Properties"
         mc:Ignorable="d"
-        Title="Settings" Height="163.712" Width="503.601" ResizeMode="NoResize">
+        Title="Settings" Height="184.624" Width="503.601" ResizeMode="NoResize">
     <Grid>
-        <Label x:Name="label" Content="Account Token:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-1.487,-1.836" FontFamily="Comic Sans MS" FontWeight="Bold"/>
-        <TextBox x:Name="AccountTokenBox" HorizontalAlignment="Left" Height="23" Margin="0,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="496" Text="{Binding Source={x:Static properties:Settings.Default}, Path=AccountToken}"/>
-        <Label x:Name="DuplicateModeLabel" Content="Duplicate Mode:" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
-        <ComboBox x:Name="DuplicateModeBox" HorizontalAlignment="Left" Margin="0,82,0,0" VerticalAlignment="Top" Width="120">
+        <Label x:Name="Enable" Content="Account Token:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-1.487,-1.836" FontFamily="Comic Sans MS" FontWeight="Bold" Margin="0,42,0,0"/>
+        <TextBox x:Name="AccountTokenBox" HorizontalAlignment="Left" Height="23" Margin="0,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="496" Text="{Binding Source={x:Static properties:Settings.Default}, Path=AccountToken}"/>
+        <Label x:Name="DuplicateModeLabel" Content="Duplicate Mode:" HorizontalAlignment="Left" Margin="0,97,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+        <ComboBox x:Name="DuplicateModeBox" HorizontalAlignment="Left" Margin="0,124,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="DuplicateModeBox_SelectionChanged">
             <ComboBoxItem Content="No Checking, RCM Checking Off" IsSelected="True"/>
             <ComboBoxItem Content="No Checking, RCM Checking On"/>
             <ComboBoxItem Content="Duplicate Checking, RCM Checking Off"/>
             <ComboBoxItem Content="Duplicate Checking, RCM Checking On"/>
         </ComboBox>
-        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Right" Margin="0,103,87,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
-        <Button x:Name="ExitButton" Content="Close" Margin="0,103,0,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="ExitButton_Click"/>
-        <Label x:Name="RCMEnabledLabel" Content="RCM Enabled:" HorizontalAlignment="Left" Margin="125,56,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
-        <ComboBox x:Name="RCMEnabledBox" HorizontalAlignment="Left" Margin="125,82,0,0" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS">
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Right" Margin="0,124,80,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
+        <Button x:Name="ExitButton" Content="Close" Margin="0,124,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="ExitButton_Click"/>
+        <Label x:Name="RCMEnabledLabel" Content="RCM Enabled:" HorizontalAlignment="Left" Margin="125,98,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+        <ComboBox x:Name="RCMEnabledBox" HorizontalAlignment="Left" Margin="125,124,0,0" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS">
             <ComboBoxItem Content="Yes" IsSelected="True"/>
             <ComboBoxItem Content="No"/>
         </ComboBox>
+        <Label x:Name="EnableProcessingLabel" Content="Enable Integrated Payment Processing:" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+        <CheckBox x:Name="EnabledCheckBox" Content="Enabled" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" Checked="EnabledCheckBox_Checked" Unchecked="EnabledCheckBox_Unchecked"/>
 
     </Grid>
 </Window>

@@ -14,5 +14,11 @@
     <Setting Name="RCMEnabled" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="RapidActivateURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://staging.agreementexpress.net/api/TemplateServices/v2/publishTransaction?agexp_transrefid=LP_Test&amp;agexp_transfolderid=1748&amp;agexp_transcompany=645&amp;allRecipients=Owner1:Owner1&amp;aex_direct=true</Value>
+    </Setting>
+    <Setting Name="OEEnabled" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

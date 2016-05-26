@@ -65,6 +65,17 @@
     <Compile Include="GetOEAccount.xaml.cs">
       <DependentUpon>GetOEAccount.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PABDemo\GetOE.xaml.cs">
+      <DependentUpon>GetOE.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PABDemo\PABDemo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>PABDemo.settings</DependentUpon>
+    </Compile>
+    <Compile Include="PABDemo\PABDemoMain.xaml.cs">
+      <DependentUpon>PABDemoMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProcessingWindow.xaml.cs">
       <DependentUpon>ProcessingWindow.xaml</DependentUpon>
     </Compile>
@@ -89,6 +100,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PABDemo\GetOE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PABDemo\PABDemoMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProcessingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +135,40 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="fonts\OpenSans\Semibold\OpenSans-Semibold.ttf" />
+    <Resource Include="fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.ttf" />
+    <Resource Include="fonts\OpenSans\Regular\OpenSans-Regular.ttf" />
+    <Resource Include="fonts\OpenSans\Light\OpenSans-Light.ttf" />
+    <Resource Include="fonts\OpenSans\LightItalic\OpenSans-LightItalic.ttf" />
+    <Resource Include="fonts\OpenSans\Italic\OpenSans-Italic.ttf" />
+    <Resource Include="fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.ttf" />
+    <Resource Include="fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.ttf" />
+    <Resource Include="fonts\OpenSans\Bold\OpenSans-Bold.ttf" />
+    <Resource Include="fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.ttf" />
+    <None Include="fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.eot" />
+    <None Include="fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.woff" />
+    <None Include="fonts\OpenSans\Bold\OpenSans-Bold.eot" />
+    <None Include="fonts\OpenSans\Bold\OpenSans-Bold.woff" />
+    <None Include="fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.eot" />
+    <None Include="fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.woff" />
+    <None Include="fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.eot" />
+    <None Include="fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.woff" />
+    <None Include="fonts\OpenSans\Italic\OpenSans-Italic.eot" />
+    <None Include="fonts\OpenSans\Italic\OpenSans-Italic.woff" />
+    <None Include="fonts\OpenSans\LightItalic\OpenSans-LightItalic.eot" />
+    <None Include="fonts\OpenSans\LightItalic\OpenSans-LightItalic.woff" />
+    <None Include="fonts\OpenSans\Light\OpenSans-Light.eot" />
+    <None Include="fonts\OpenSans\Light\OpenSans-Light.woff" />
+    <None Include="fonts\OpenSans\Regular\OpenSans-Regular.eot" />
+    <None Include="fonts\OpenSans\Regular\OpenSans-Regular.woff" />
+    <None Include="fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.eot" />
+    <None Include="fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.woff" />
+    <None Include="fonts\OpenSans\Semibold\OpenSans-Semibold.eot" />
+    <None Include="fonts\OpenSans\Semibold\OpenSans-Semibold.woff" />
+    <None Include="PABDemo\PABDemo.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>PABDemo.Designer.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -149,6 +202,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\OpenEdge Logo - Horizontal Tagline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\OpenSans\BoldItalic\OpenSans-BoldItalic.svg" />
+    <Content Include="fonts\OpenSans\Bold\OpenSans-Bold.svg" />
+    <Content Include="fonts\OpenSans\ExtraBoldItalic\OpenSans-ExtraBoldItalic.svg" />
+    <Content Include="fonts\OpenSans\ExtraBold\OpenSans-ExtraBold.svg" />
+    <Content Include="fonts\OpenSans\Italic\OpenSans-Italic.svg" />
+    <Content Include="fonts\OpenSans\LightItalic\OpenSans-LightItalic.svg" />
+    <Content Include="fonts\OpenSans\Light\OpenSans-Light.svg" />
+    <Content Include="fonts\OpenSans\Regular\OpenSans-Regular.svg" />
+    <Content Include="fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.svg" />
+    <Content Include="fonts\OpenSans\Semibold\OpenSans-Semibold.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Integrated Payment Processing" Height="300" Width="300" WindowStyle="ToolWindow" ShowInTaskbar="False"> 
     <Grid>
-        <RichTextBox x:Name="richTextBox" HorizontalAlignment="Left" Height="122" Margin="10,108,0,0" VerticalAlignment="Top" Width="272" IsReadOnly="True">
+        <RichTextBox x:Name="richTextBox" HorizontalAlignment="Left" Height="122" Margin="10,108,0,0" VerticalAlignment="Top" Width="272" IsReadOnly="True" TextChanged="richTextBox_TextChanged">
             <RichTextBox.Resources>
                 <Style TargetType="Hyperlink">
                     <Setter Property="Cursor" Value="Hand"/>

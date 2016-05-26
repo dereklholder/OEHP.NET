@@ -22,6 +22,10 @@ namespace DeveloperServicesPOS
         public SettingsWindow()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.OEEnabled == "true")
+            {
+                EnabledCheckBox.IsChecked = true;
+            }
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -41,6 +45,21 @@ namespace DeveloperServicesPOS
             {
                 MessageBox.Show("One or More Settings not Defined, Please select all Settings.");
             }
+        }
+
+        private void DuplicateModeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void EnabledCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.OEEnabled = "true";
+        }
+
+        private void EnabledCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.OEEnabled = "false";
         }
     }
 }

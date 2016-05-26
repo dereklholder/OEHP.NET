@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DeveloperServicesPOS.PABDemo" GeneratedClassName="PABDemo">
+  <Profiles />
+  <Settings>
+    <Setting Name="CCProcessingEnabled" Type="System.String" Scope="User">
+      <Value Profile="(Default)">false</Value>
+    </Setting>
+    <Setting Name="RapidActivateURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://staging.agreementexpress.net/api/TemplateServices/v2/publishTransaction?agexp_transrefid=LP_Test&amp;agexp_transfolderid=1748&amp;agexp_transcompany=645&amp;allRecipients=Owner1:Owner1&amp;aex_direct=true</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
