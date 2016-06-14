@@ -20,7 +20,7 @@
         <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Right" Margin="0,124,80,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
         <Button x:Name="ExitButton" Content="Close" Margin="0,124,2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="ExitButton_Click"/>
         <Label x:Name="RCMEnabledLabel" Content="RCM Enabled:" HorizontalAlignment="Left" Margin="125,98,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontWeight="Bold"/>
-        <ComboBox x:Name="RCMEnabledBox" HorizontalAlignment="Left" Margin="125,124,0,0" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS">
+        <ComboBox x:Name="RCMEnabledBox" HorizontalAlignment="Left" Margin="125,124,0,0" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS" SelectionChanged="RCMEnabledBox_SelectionChanged">
             <ComboBoxItem Content="Yes" IsSelected="True"/>
             <ComboBoxItem Content="No"/>
         </ComboBox>

@@ -52,8 +52,8 @@ namespace DeveloperServicesPOS
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MainWindow window = new MainWindow();
-            window.Show();
+            //MainWindow window = new MainWindow();
+            //window.Show();
         }
 
         private void CreditLabel_MouseDown(object sender, MouseButtonEventArgs e)

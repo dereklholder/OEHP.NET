@@ -1,0 +1,140 @@
+﻿<Window x:Name="PayPageFieldCustomization" x:Class="OEHP_Tester.PayPageCustomization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OEHP_Tester"
+        mc:Ignorable="d"
+        Title="PayPage Field Customization" Height="475.732" Width="405.439" WindowStyle="ToolWindow" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="81*"/>
+            <ColumnDefinition Width="58*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="47*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="VisibleLabel" Content="Visible" HorizontalAlignment="Left" Margin="69,0,0,0" VerticalAlignment="Top" Height="24" FontSize="10.667" FontWeight="Bold" RenderTransformOrigin="-0.194,0.276" Grid.ColumnSpan="2" Grid.Column="2"/>
+        <Label x:Name="EditableLabel" Content="Editable" HorizontalAlignment="Left" Margin="41,0,0,0" VerticalAlignment="Top" Height="24" FontSize="10.667" FontWeight="Bold" RenderTransformOrigin="0.959,0.799" Grid.Column="3" Grid.ColumnSpan="2"/>
+        <Label x:Name="MandatoryLabel" Content="Mandatory" HorizontalAlignment="Left" Margin="31,0,0,0" VerticalAlignment="Top" Height="24" FontSize="10.667" FontWeight="Bold" Grid.Column="4" Grid.ColumnSpan="2"/>
+        <Label x:Name="LabelLabel" Content="Label" HorizontalAlignment="Left" Margin="24,0,0,0" VerticalAlignment="Top" Height="24" FontSize="10.667" FontWeight="Bold" RenderTransformOrigin="-0.194,0.276" Grid.Column="2"/>
+        <Grid Grid.ColumnSpan="6" Margin="10,24,17,404">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Billing Customer Title" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="BillCustomerLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="BillCustomerVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="BillCustomerEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="BillCustomerMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295" Checked="BillCustomerMandatory_Checked"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,47,17,381">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Billing First Name" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="BillingFirstNameLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="BillingFirstNameVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top" Checked="BillingFirstNameVisibleCheckBox_Checked"/>
+            <CheckBox x:Name="BillingFirstNameEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="BillingFirstNameMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,70,17,358">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Billing Middle Name" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="BillingMiddleNameLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="BillingMiddleNameVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="BillingMiddleNameEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="MandatoryCheckBox2" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,93,17,335">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Billing Last Name" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="BillingLastNameLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="BillingLastNameVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="BillingLastNameEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="BillingLastNameMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,116,17,312">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Billing Company" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="BillingCompanyLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="BillingCompanyVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="BillingCompanyEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="BillingCompanyMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,139,17,289">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Billing Address One" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="BillingAddressOneLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="BillingAddressOneVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="BillingAddressOneEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="BillingAddressOneMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,162,17,266">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Billing Address Two" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="BillingAddressTwoLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="BillingAddressTwoVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="BillingAddressTwoEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="BillingAddressTwoMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,185,17,243">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Billing City" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="BillingCityLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="BillingCityVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="BillingCityEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19" Checked="EditableCheckBox7_Checked"/>
+            <CheckBox x:Name="BillingCityMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,207,17,221">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Billing State/Province" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="BillingStateProvinceLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="BillingStateProvinceVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="BillingStateProvinceEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="BillingStateProvinceMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,230,17,198">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Billing Country Code" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="BillingCountryCodeLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="BillingCountryCodeVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="BillingCountryCodeEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="BillingCountryCodeMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,253,17,175">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Billing Postal Code" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="BillingPostalCodeLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="BillingPostalCodeVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="BillingPostalCodeEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="BillingPostalCodeMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,276,17,152">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Invoice Number" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="InvoiceNumberLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="InvoiceNumberVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="InvoiceNumberEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="InvoiceNumberMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,299,17,129">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Purchase Order Number" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="PONumberLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="PONumberVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="PONumberEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="PONumberMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,322,17,106">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="CVV Number" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="CVVNumberLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="CVVNumberVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="CVVNumberEditable" Content="" Margin="259,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.899,0.42" HorizontalAlignment="Left" Width="19"/>
+            <CheckBox x:Name="CVVNumberMandatory" Content="" Margin="316,3,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="44" RenderTransformOrigin="1.145,0.295"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,345,17,83">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Order Information" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="OrderInformationLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="OrderInformationVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,368,17,60">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Card Information" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="CardInformationLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="CardInformationVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="6" Margin="10,391,17,37">
+            <TextBlock HorizontalAlignment="Left" Margin="0,3,0,-23" TextWrapping="Wrap" Text="Customer Information" VerticalAlignment="Top" FontSize="10.667" Width="141"/>
+            <TextBox x:Name="CustomerInformationLabel" HorizontalAlignment="Left" Height="23" Margin="146,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontSize="10.667" TextChanged="textBox_TextChanged"/>
+            <CheckBox x:Name="CustomerInformationVisible" Content="" Margin="210,3,141,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Button x:Name="SaveButton" Grid.ColumnSpan="2" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Grid.Column="1" Margin="85,419,0,0"/>
+        <Button x:Name="CancelButton" Grid.ColumnSpan="2" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Grid.Column="3" Margin="0,419,0,0"/>
+        <Button x:Name="button" Content="Button" Grid.Column="5" HorizontalAlignment="Left" Margin="139,440,-156,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>

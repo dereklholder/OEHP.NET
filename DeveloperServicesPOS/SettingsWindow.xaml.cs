@@ -38,7 +38,6 @@ namespace DeveloperServicesPOS
             try
             {
                 Properties.Settings.Default.AccountToken = AccountTokenBox.Text;
-                Properties.Settings.Default.RCMEnabled = RCMEnabledBox.SelectedValue.ToString();
                 Properties.Settings.Default.DuplicateMode = DuplicateModeBox.SelectedValue.ToString();
             }
             catch (Exception ex)
@@ -60,6 +59,19 @@ namespace DeveloperServicesPOS
         private void EnabledCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.OEEnabled = "false";
+        }
+
+        private void RCMEnabledBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (RCMEnabledBox.SelectedItem.ToString() == "Yes")
+            {
+                Properties.Settings.Default.RCMEnabled = "EMV";
+
+            }
+            if (RCMEnabledBox.SelectedItem.ToString() == "No")
+            {
+                Properties.Settings.Default.RCMEnabled = "AUTO";
+            }
         }
     }
 }

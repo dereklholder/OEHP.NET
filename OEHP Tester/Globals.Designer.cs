@@ -48,5 +48,79 @@ namespace OEHP_Tester {
                 this["DefaultAccountToken"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3C6D0A90CE65590E308DEDFC8657AC62CDCF2B9E43B2CAFEEDA34B258CDE5FEA9B51BE5C8A78F86FF" +
+            "C")]
+        public string LoopBackAccountToken {
+            get {
+                return ((string)(this["LoopBackAccountToken"]));
+            }
+            set {
+                this["LoopBackAccountToken"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("301B206BCE6D570C378EEEFB8D59AD60CFCB2D9542B1C4FFEBA9402185DE5FEA9953BE585C8E0F121" +
+            "D")]
+        public string CanadianAccountToken {
+            get {
+                return ((string)(this["CanadianAccountToken"]));
+            }
+            set {
+                this["CanadianAccountToken"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Querystring")]
+        public string QueryResponseMode {
+            get {
+                return ((string)(this["QueryResponseMode"]));
+            }
+            set {
+                this["QueryResponseMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Test")]
+        public string ProcessingMode {
+            get {
+                return ((string)(this["ProcessingMode"]));
+            }
+            set {
+                this["ProcessingMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PayPage Post")]
+        public string SubmitMethod {
+            get {
+                return ((string)(this["SubmitMethod"]));
+            }
+            set {
+                this["SubmitMethod"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CustomParameters {
+            get {
+                return ((string)(this["CustomParameters"]));
+            }
+            set {
+                this["CustomParameters"] = value;
+            }
+        }
     }
 }

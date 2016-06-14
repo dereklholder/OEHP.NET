@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DeveloperServicesPOS.PABDemo"
-        mc:Ignorable="d" Height="109.205" Width="503.348" WindowStyle="ToolWindow" FontFamily="/DeveloperServicesPOS;component/fonts/OpenSans/Semibold/#Open Sans" ResizeMode="NoResize" ShowInTaskbar="False">
+        mc:Ignorable="d" WindowStyle="ToolWindow" FontFamily="/DeveloperServicesPOS;component/fonts/OpenSans/Semibold/#Open Sans" ResizeMode="NoResize" ShowInTaskbar="False" Width="500" Height="120">
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="66" Margin="10,15,-18,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="496" FontSize="10.667"><Run Text="Need to accept payments?"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="66" Margin="10,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="474" FontSize="10.667"><Run Text="Need to accept payments?"/>
             <LineBreak/>
             <Run/><LineBreak/>
             <Run Text="OpenEdge has you covered. Simply click "/>
@@ -14,7 +14,6 @@
                     <Run Text="here"/>
                 </Hyperlink>
             <Run Text=" to be approved for processing payments right within your OpenEdge Demo Software within just minutes."/></TextBlock>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Width="497"/>
 
     </Grid>
 </Window>

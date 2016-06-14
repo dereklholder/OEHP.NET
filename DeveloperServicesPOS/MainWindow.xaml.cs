@@ -118,7 +118,7 @@ namespace DeveloperServicesPOS
             {
                 TransactionRequest tr = new TransactionRequest();
                 string orderID = tr.OrderIDRandom(8);
-                string transactionRequest = tr.CreditCardParamBuilder(Properties.Settings.Default.AccountToken, "CREDIT_CARD", "SALE", "EMV", orderID, TotalAmountBox.Text, "&prompt_signature=TRUE");
+                string transactionRequest = tr.CreditCardParamBuilder(Properties.Settings.Default.AccountToken, "CREDIT_CARD", "SALE", Properties.Settings.Default.RCMEnabled, orderID, TotalAmountBox.Text, "&prompt_signature=TRUE");
 
                 OEHP.NET.GatewayRequest gr = new OEHP.NET.GatewayRequest();
                 ProcessingWindow pw = new ProcessingWindow(gr.TestPayPagePost(transactionRequest), "CREDIT_CARD", orderID);
@@ -148,27 +148,44 @@ namespace DeveloperServicesPOS
 
         private void DebitButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            TransactionRequest tr = new TransactionRequest();
-            string orderID = tr.OrderIDRandom(8);
-            string transactionRequest = tr.DebitCardParamBuilder(Properties.Settings.Default.AccountToken, "DEBIT_CARD", "PURCHASE", "EMV", orderID, TotalAmountBox.Text, "DEFAULT", "");
-
-            OEHP.NET.GatewayRequest gr = new OEHP.NET.GatewayRequest();
-            ProcessingWindow pw = new ProcessingWindow(gr.TestPayPagePost(transactionRequest), "DEBIT_CARD", orderID);
-            pw.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            pw.ShowDialog();
-
-            if (GlobalVariables.LastTransactionResult == "1")
+            if (Properties.Settings.Default.OEEnabled == "true")
             {
-                MessageBox.Show("Transaction Was Successful!");
-                CurrentTicketList.Items.Clear();
-                TotalAmountBox.Text = "0";
+                if (Properties.Settings.Default.RCMEnabled == "EMV")
+                {
+                    TransactionRequest tr = new TransactionRequest();
+                    string orderID = tr.OrderIDRandom(8);
+                    string transactionRequest = tr.DebitCardParamBuilder(Properties.Settings.Default.AccountToken, "DEBIT_CARD", "PURCHASE", Properties.Settings.Default.RCMEnabled, orderID, TotalAmountBox.Text, "DEFAULT", "");
+
+                    OEHP.NET.GatewayRequest gr = new OEHP.NET.GatewayRequest();
+                    ProcessingWindow pw = new ProcessingWindow(gr.TestPayPagePost(transactionRequest), "DEBIT_CARD", orderID);
+                    pw.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                    pw.ShowDialog();
+
+                    if (GlobalVariables.LastTransactionResult == "1")
+                    {
+                        MessageBox.Show("Transaction Was Successful!");
+                        CurrentTicketList.Items.Clear();
+                        TotalAmountBox.Text = "0";
+                    }
+                    if (GlobalVariables.LastTransactionResult != "1")
+                    {
+                        MessageBox.Show("Transaction Failed!");
+                        CurrentTicketList.Items.Clear();
+                        TotalAmountBox.Text = "0";
+                    } 
+                }
+                else
+                {
+                    MessageBox.Show("Debit transactiosn require the RCM Software be installed and enabled. Please install the RCM and enable it in File -> Settings.");
+                }
+
             }
-            if (GlobalVariables.LastTransactionResult != "1")
+            else
             {
-                MessageBox.Show("Transaction Failed!");
-                CurrentTicketList.Items.Clear();
-                TotalAmountBox.Text = "0";
+                MessageBox.Show("Integrated payment processing not enabled! Please enabled Payment Processing by going to File -> Settings. If you do not have an OpenEdge Account, you can go to Help -> Integrated Payment Processing to learn more");
+
             }
+
 
         }
 

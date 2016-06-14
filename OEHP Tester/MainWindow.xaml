@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OEHP_Tester"
         mc:Ignorable="d"
-        Title="OEHP Tester/Debug App" Height="606.141" Width="934.712">
+        Title="OEHP Tester/Debug App" Height="637.328" Width="934.712" Icon="oehpwpf.ico">
     <Grid Margin="0,0,2,-3">
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>
-            <RowDefinition Height="59*"/>
-            <RowDefinition Height="59*"/>
+            <RowDefinition Height="92*"/>
             <RowDefinition Height="60*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="265*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="89*"/>
+            <RowDefinition Height="309*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="31*"/>
@@ -26,11 +26,11 @@
         <Button x:Name="submitButton" Content="Submit" HorizontalAlignment="Left" Margin="10,0,0,9" Grid.Row="4" Width="75" Click="submitButton_Click" Height="22" VerticalAlignment="Bottom"/>
         <WebBrowser x:Name="OEHPWebBrowser" Margin="10,10,124,10" Grid.Row="5" RenderTransformOrigin="-1.001,-0.171" Grid.ColumnSpan="3" LoadCompleted="OEHPWebBrowser_LoadCompleted"/>
         <ComboBox x:Name="SubmitMethodBox" HorizontalAlignment="Left" Margin="10,0,0,38" Grid.Row="4" Width="130" Height="22" VerticalAlignment="Bottom" />
-        <Label x:Name="SubmitMethodLabel" Content="Submit Method:" HorizontalAlignment="Left" Margin="10,0,0,63" Grid.Row="3" Width="102" Grid.RowSpan="2" Height="24" VerticalAlignment="Bottom"/>
-        <Label x:Name="modeLabel" Content="Mode:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,61" Grid.Row="3" Width="44" Grid.RowSpan="2" Height="26" VerticalAlignment="Bottom"/>
-        <ComboBox x:Name="ModeComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,38" Grid.Row="4" Width="130" SelectedIndex="0" Height="22" VerticalAlignment="Bottom"/>
-        <Label x:Name="AccountTokenLabel" Content="Account Token:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="93" Grid.RowSpan="2" RenderTransformOrigin="1.466,1.332" Margin="10,0,0,0"/>
-        <TextBox x:Name="AccountTokenBox" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="561" Grid.ColumnSpan="4" Text="04173F8DCE65520D3580E5FF8555A961CECF249E46B5C2FAEFA04E248CD95FEA9D55BB581758D0591B" TextChanged="AccountTokenBox_TextChanged"/>
+        <Label x:Name="SubmitMethodLabel" Content="Submit Method:" HorizontalAlignment="Left" Margin="10,0,0,63" Grid.Row="4" Width="102" Height="24" VerticalAlignment="Bottom"/>
+        <Label x:Name="modeLabel" Content="Mode:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,61" Grid.Row="4" Width="44" Height="26" VerticalAlignment="Bottom" Visibility="Hidden"/>
+        <ComboBox x:Name="ModeComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,38" Grid.Row="4" Width="130" SelectedIndex="0" Height="22" VerticalAlignment="Bottom" Visibility="Hidden"/>
+        <Label x:Name="AccountTokenLabel" Content="Account Token:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="93" Grid.RowSpan="2" RenderTransformOrigin="1.466,1.332" Margin="10,28,0,0"/>
+        <TextBox x:Name="AccountTokenBox" HorizontalAlignment="Left" Height="23" Margin="10,59,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="561" Grid.ColumnSpan="4" Text="04173F8DCE65520D3580E5FF8555A961CECF249E46B5C2FAEFA04E248CD95FEA9D55BB581758D0591B" TextChanged="AccountTokenBox_TextChanged"/>
         <Label x:Name="EntryModeLabel" Content="Entry Mode:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="10,0,0,0" Grid.Row="2" Height="26" Width="74"/>
         <Label x:Name="TransactionTypeLabel" Content="Transaction Type:" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="102"/>
         <Label x:Name="ChargeTypeLabel" Content="Charge Type:" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="79"/>
@@ -45,25 +45,53 @@
         <ComboBox x:Name="CreditTypeBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="3" Width="130" Height="22" VerticalAlignment="Top" Visibility="Hidden" SelectionChanged="CreditTypeBox_SelectionChanged"/>
         <TextBox x:Name="AmountBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="10,25,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
         <TextBox x:Name="OrderIDBox" Grid.Column="4" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" IsReadOnly="True"/>
-        <Label x:Name="TCCLabel" Content="Transaction Condition Code:" Grid.Column="2" Margin="10,0,138,61" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="26" VerticalAlignment="Bottom" Visibility="Hidden"/>
+        <Label x:Name="TCCLabel" Content="Transaction Condition Code:" Grid.Column="2" Margin="10,0,138,61" Grid.Row="4" Grid.ColumnSpan="2" Height="26" VerticalAlignment="Bottom" Visibility="Hidden"/>
         <ComboBox x:Name="TCCBox" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,38" Grid.Row="4" Width="135" RenderTransformOrigin="0.54,3.041" Height="22" VerticalAlignment="Bottom" Visibility="Hidden"/>
         <Label x:Name="ApprovalCodeLabel" Content="Approval Code:" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="92" Visibility="Hidden"/>
         <TextBox x:Name="ApprovalCodeBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="10,25,0,0" Visibility="Hidden"/>
-        <Label x:Name="PostParametersLabel" Content="Post Parameters:" Grid.Column="5" HorizontalAlignment="Left" Grid.RowSpan="2" VerticalAlignment="Top" Margin="10,0,0,0"/>
-        <TextBox x:Name="PostParameterBox" Grid.Column="5" Margin="10,22,10,14" Grid.Row="1" TextWrapping="Wrap" Grid.RowSpan="2"/>
-        <Label x:Name="QueryParametersLabel" Content="Query Parameters:" Grid.Column="5" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="0.6,0.319"/>
-        <Label x:Name="CustomParametersLabel" Content="Custom Parameters:" Grid.Column="3" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="CustomParametersBox" Grid.Column="3" Margin="10,25,10,53" Grid.Row="3" TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.RowSpan="2" TextChanged="CustomParametersBox_TextChanged"/>
-        <TextBox x:Name="QueryParametersBox" Grid.Column="5" Margin="10,25,10,53" Grid.Row="3" TextWrapping="Wrap" Grid.RowSpan="2"/>
+        <Label x:Name="PostParametersLabel" Content="Post Parameters:" Grid.Column="5" HorizontalAlignment="Left" Grid.RowSpan="2" VerticalAlignment="Top" Margin="10,25,0,0" Height="26" Width="98"/>
+        <TextBox x:Name="PostParameterBox" Grid.Column="5" Margin="10,56,10,10" Grid.Row="1" TextWrapping="Wrap" Grid.RowSpan="2"/>
+        <Label x:Name="QueryParametersLabel" Content="Query Parameters:" Grid.Column="5" HorizontalAlignment="Left" Margin="10,17,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="0.6,0.319" Height="26" Width="107"/>
+        <Label x:Name="CustomParametersLabel" Content="Custom Parameters:" Grid.Column="3" HorizontalAlignment="Left" Margin="10,17,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120" Height="26"/>
+        <TextBox x:Name="CustomParametersBox" Grid.Column="3" Margin="10,48,10,30" Grid.Row="3" TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.RowSpan="2" TextChanged="CustomParametersBox_TextChanged" Text="{Binding Source={x:Static local:Globals.Default}, Path=CustomParameters}"/>
+        <TextBox x:Name="QueryParametersBox" Grid.Column="5" Margin="10,48,10,30" Grid.Row="3" TextWrapping="Wrap" Grid.RowSpan="2"/>
         <TextBox x:Name="QueryPaymentBox" Grid.Column="3" Margin="10" Grid.Row="5" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
-        <Label x:Name="QueryResponseLabel" Content="Query Response:" Grid.Column="3" HorizontalAlignment="Left" Margin="10,0,0,1" Grid.Row="4" Height="26" VerticalAlignment="Bottom"/>
-        <Label x:Name="RCMStatusLabel" Content="RCM Status:" Grid.Column="5" HorizontalAlignment="Left" Margin="10,0,0,1" Grid.Row="4" VerticalAlignment="Bottom"/>
+        <Label x:Name="QueryResponseLabel" Content="Query Response:" Grid.Column="3" HorizontalAlignment="Left" Margin="10,0,0,1" Grid.Row="4" Height="26" VerticalAlignment="Bottom" Width="99"/>
+        <Label x:Name="RCMStatusLabel" Content="RCM Status:" Grid.Column="5" HorizontalAlignment="Left" Margin="10,0,0,1" Grid.Row="4" VerticalAlignment="Bottom" Height="26" Width="74"/>
         <TextBox x:Name="RCMStatusBox" Grid.Column="5" Margin="10" Grid.Row="5" TextWrapping="Wrap"/>
         <Image x:Name="SignatureImage" Grid.Column="2" Height="100" Margin="45,10,10,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-4.915,0.464"/>
-        <Label x:Name="SignatureLabel" Content="Signature:" Grid.Column="2" HorizontalAlignment="Left" Margin="45,62,0,0" Grid.Row="4" VerticalAlignment="Top" RenderTransformOrigin="1.284,1.363"/>
-        <Button x:Name="QueryToJsonButton" Content="QueryString to JSON" Grid.Column="4" HorizontalAlignment="Left" Margin="10,0,0,3" Grid.Row="4" VerticalAlignment="Bottom" Width="135" RenderTransformOrigin="0.573,3.682" Click="QueryToJsonButton_Click"/>
-        <Button x:Name="SaveToken" Content="Save Token" Margin="80,0,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1" IsCancel="True" Click="SaveToken_Click" HorizontalAlignment="Left" Width="75"/>
-        <Button x:Name="ResetButton" Content="Reset Token" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Top" Click="ResetButton_Click" HorizontalAlignment="Left" Width="75"/>
+        <Label x:Name="SignatureLabel" Content="Signature:" Grid.Column="2" HorizontalAlignment="Left" Margin="45,62,0,0" Grid.Row="4" VerticalAlignment="Top" RenderTransformOrigin="1.284,1.363" Height="26" Width="63"/>
+        <Button x:Name="QueryToJsonButton" Content="QueryString to JSON" Grid.Column="4" HorizontalAlignment="Left" Margin="10,0,0,3" Grid.Row="4" VerticalAlignment="Bottom" Width="135" RenderTransformOrigin="0.573,3.682" Click="QueryToJsonButton_Click" Height="22"/>
+        <Menu x:Name="MenuBar" Height="20" Grid.RowSpan="2" VerticalAlignment="Top" Grid.ColumnSpan="6">
+            <MenuItem x:Name="File" Header="_File" Click="File_Click">
+                <MenuItem x:Name="SaveTokenMenuItem" Header="_Save Token" Click="SaveToken_Click" IsCheckable="False"/>
+                <MenuItem x:Name="ResetTokenMenuItem" Header="_Reset Token" Click="ResetButton_Click" IsCheckable="False"/>
+                <Separator />
+                <MenuItem x:Name="ExitMenuItem" Header="_Exit" Click="ExitMenuItem_Click" IsCheckable="False"/>
+            </MenuItem>
+            <MenuItem x:Name="Tools" Header="_Tools">
+                <MenuItem x:Name="ProcessingMode" Header="_Mode">
+                    <MenuItem x:Name="ProcessingModeTest" Header="_Test" Click="ProcessingModeTest_Click"/>
+                    <MenuItem x:Name="ProcessingModeLive" Header="_Live" Click="ProcessingModeLive_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="Presets" Header="_Presets">
+                    <MenuItem x:Name="PresetEMVTesting" Header="_EMV Testing" Click="PresetEMVTesting_Click"/>
+                    <MenuItem x:Name="PresetCanadianTesting" Header="_Canadian Testing" Click="PresetCanadianTesting_Click"/>
+                    <MenuItem x:Name="PresetLoopBackTesting" Header="_Loopback Testing" Click="PresetLoopBackTesting_Click"/>
+                    <Separator />
+                    <MenuItem x:Name="PresetHelp" Header="_About Presets" Click="PresetHelp_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="QueryResponseMode" Header="_Query Response Mode">
+                    <MenuItem x:Name="QueryResponseQueryString" Header="_Querystring" Click="QueryResponseQueryString_Click"/>
+                    <MenuItem x:Name="QueryResponseJSON" Header="JSON" Click="QueryResponseJSON_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="CosmeticParameters" Header="_PayPage Customization">
+                    <MenuItem x:Name="PayPageFields" Header="_PayPage Fields" Click="PayPageFields_Click"/>
+                    <MenuItem x:Name="PayPageBranding" Header="_PayPage Branding (CSS)"/>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
 
     </Grid>
 </Window>

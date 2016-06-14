@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -36,6 +37,24 @@ namespace OEHP_Tester
                 gf.CreateDBFile();
                 Properties.Settings.Default.IsFirstRun = "false";
                 Properties.Settings.Default.Save();
+            }
+            if (Globals.Default.QueryResponseMode == "Querystring")
+            {
+                QueryResponseQueryString.IsChecked = true;
+                QueryResponseJSON.IsChecked = false;
+            }
+            if (Globals.Default.QueryResponseMode == "JSON")
+            {
+                QueryResponseQueryString.IsChecked = false;
+                QueryResponseJSON.IsChecked = true;
+            }
+            if (Globals.Default.ProcessingMode == "Live")
+            {
+                ProcessingModeLive.IsChecked = true;
+            }
+            if (Globals.Default.ProcessingMode == "Test")
+            {
+                ProcessingModeTest.IsChecked = true;
             }
 
             AccountTokenBox.Text = Globals.Default.AccountToken;
@@ -156,18 +175,18 @@ namespace OEHP_Tester
                         switch (SubmitMethodBox.SelectedItem.ToString())
                         {
                             case "PayPage Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.Navigate(gr.TestPayPagePost(transactionRequestString));
 
                                 }
-                                if (ModeComboBox.SelectedItem.ToString() == "Live")
+                                if (Globals.Default.ProcessingMode == "Live")
                                 {
                                     OEHPWebBrowser.Navigate(gr.LivePayPagePost(transactionRequestString));
                                 }
                                 break;
                             case "HTML Doc Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.NavigateToString(gr.TestHtmlDocPost(transactionRequestString));
                                 }
@@ -195,19 +214,19 @@ namespace OEHP_Tester
                         switch (SubmitMethodBox.SelectedItem.ToString())
                         {
                             case "PayPage Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.Navigate(gr.TestPayPagePost(transactionRequestString));
 
                                 }
-                                if (ModeComboBox.SelectedItem.ToString() == "Live")
+                                if (Globals.Default.ProcessingMode == "Live")
                                 {
                                     ;
                                     OEHPWebBrowser.Navigate(gr.LivePayPagePost(transactionRequestString));
                                 }
                                 break;
                             case "HTML Doc Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.NavigateToString(gr.TestHtmlDocPost(transactionRequestString));
                                 }
@@ -234,18 +253,18 @@ namespace OEHP_Tester
                         switch (SubmitMethodBox.SelectedItem.ToString())
                         {
                             case "PayPage Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.Navigate(gr.TestPayPagePost(transactionRequestString));
 
                                 }
-                                if (ModeComboBox.SelectedItem.ToString() == "Live")
+                                if (Globals.Default.ProcessingMode == "Live")
                                 {
                                     OEHPWebBrowser.Navigate(gr.LivePayPagePost(transactionRequestString));
                                 }
                                 break;
                             case "HTML Doc Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.NavigateToString(gr.TestHtmlDocPost(transactionRequestString));
                                 }
@@ -271,18 +290,18 @@ namespace OEHP_Tester
                         switch (SubmitMethodBox.SelectedItem.ToString())
                         {
                             case "PayPage Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.Navigate(gr.TestPayPagePost(transactionRequestString));
 
                                 }
-                                if (ModeComboBox.SelectedItem.ToString() == "Live")
+                                if (Globals.Default.ProcessingMode == "Live")
                                 {
                                     OEHPWebBrowser.Navigate(gr.LivePayPagePost(transactionRequestString));
                                 }
                                 break;
                             case "HTML Doc Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.NavigateToString(gr.TestHtmlDocPost(transactionRequestString));
                                 }
@@ -308,18 +327,18 @@ namespace OEHP_Tester
                         switch (SubmitMethodBox.SelectedItem.ToString())
                         {
                             case "PayPage Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.Navigate(gr.TestPayPagePost(transactionRequestString));
 
                                 }
-                                if (ModeComboBox.SelectedItem.ToString() == "Live")
+                                if (Globals.Default.ProcessingMode == "Live")
                                 {
                                     OEHPWebBrowser.Navigate(gr.LivePayPagePost(transactionRequestString));
                                 }
                                 break;
                             case "HTML Doc Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.NavigateToString(gr.TestHtmlDocPost(transactionRequestString));
                                 }
@@ -345,18 +364,18 @@ namespace OEHP_Tester
                         switch (SubmitMethodBox.SelectedItem.ToString())
                         {
                             case "PayPage Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.Navigate(gr.TestPayPagePost(transactionRequestString));
 
                                 }
-                                if (ModeComboBox.SelectedItem.ToString() == "Live")
+                                if (Globals.Default.ProcessingMode == "Live")
                                 {
                                     OEHPWebBrowser.Navigate(gr.LivePayPagePost(transactionRequestString));
                                 }
                                 break;
                             case "HTML Doc Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.NavigateToString(gr.TestHtmlDocPost(transactionRequestString));
                                 }
@@ -378,7 +397,7 @@ namespace OEHP_Tester
                         gf.WriteToLog(transactionRequestString);
                         PostParameterBox.Text = transactionRequestString;
                         
-                        if (ModeComboBox.SelectedItem.ToString() == "Test")
+                        if (Globals.Default.ProcessingMode == "Test")
                         {
                             OEHPWebBrowser.NavigateToString(gr.TestDirectPost(transactionRequestString));
                         }
@@ -397,18 +416,18 @@ namespace OEHP_Tester
                         switch (SubmitMethodBox.SelectedItem.ToString())
                         {
                             case "PayPage Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.Navigate(gr.TestPayPagePost(transactionRequestString));
 
                                 }
-                                if (ModeComboBox.SelectedItem.ToString() == "Live")
+                                if (Globals.Default.ProcessingMode == "Live")
                                 {
                                     OEHPWebBrowser.Navigate(gr.LivePayPagePost(transactionRequestString));
                                 }
                                 break;
                             case "HTML Doc Post":
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.NavigateToString(gr.TestHtmlDocPost(transactionRequestString)); 
                                 }
@@ -429,7 +448,7 @@ namespace OEHP_Tester
                         transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
                         gf.WriteToLog(transactionRequestString);
                         PostParameterBox.Text = transactionRequestString;
-                        if (ModeComboBox.SelectedItem.ToString() == "Test")
+                        if (Globals.Default.ProcessingMode == "Test")
                         {
                             OEHPWebBrowser.NavigateToString(gr.TestDirectPost(transactionRequestString));
                         }
@@ -443,7 +462,7 @@ namespace OEHP_Tester
                         transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
                         gf.WriteToLog(transactionRequestString);
                         PostParameterBox.Text = transactionRequestString;
-                        if (ModeComboBox.SelectedItem.ToString() == "Test")
+                        if (Globals.Default.ProcessingMode == "Test")
                         {
                             OEHPWebBrowser.NavigateToString(gr.TestDirectPost(transactionRequestString));
                         }
@@ -467,18 +486,18 @@ namespace OEHP_Tester
                                 switch (SubmitMethodBox.SelectedItem.ToString())
                                 {
                                     case "PayPage Post":
-                                        if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                        if (Globals.Default.ProcessingMode == "Test")
                                         {
                                             OEHPWebBrowser.Navigate(gr.TestPayPagePost(transactionRequestString));
 
                                         }
-                                        if (ModeComboBox.SelectedItem.ToString() == "Live")
+                                        if (Globals.Default.ProcessingMode == "Live")
                                         {
                                             OEHPWebBrowser.Navigate(gr.LivePayPagePost(transactionRequestString));
                                         }
                                         break;
                                     case "HTML Doc Post":
-                                        if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                        if (Globals.Default.ProcessingMode == "Test")
                                         {
                                             OEHPWebBrowser.NavigateToString(gr.TestHtmlDocPost(transactionRequestString));
                                         }
@@ -500,7 +519,7 @@ namespace OEHP_Tester
                                                                                         EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
                                 gf.WriteToLog(transactionRequestString);
                                 PostParameterBox.Text = transactionRequestString;
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.NavigateToString(gr.TestDirectPost(transactionRequestString));
                                 }
@@ -521,18 +540,18 @@ namespace OEHP_Tester
                                 switch (SubmitMethodBox.SelectedItem.ToString())
                                 {
                                     case "PayPage Post":
-                                        if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                        if (Globals.Default.ProcessingMode == "Test")
                                         {
                                             OEHPWebBrowser.Navigate(gr.TestPayPagePost(transactionRequestString));
 
                                         }
-                                        if (ModeComboBox.SelectedItem.ToString() == "Live")
+                                        if (Globals.Default.ProcessingMode == "Live")
                                         {
                                             OEHPWebBrowser.Navigate(gr.LivePayPagePost(transactionRequestString));
                                         }
                                         break;
                                     case "HTML Doc Post":
-                                        if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                        if (Globals.Default.ProcessingMode == "Test")
                                         {
                                             OEHPWebBrowser.NavigateToString(gr.TestHtmlDocPost(transactionRequestString));
                                         }
@@ -554,7 +573,7 @@ namespace OEHP_Tester
                                                                                     OrderIDBox.Text, AmountBox.Text, TCCBox.SelectedItem.ToString(), CustomParametersBox.Text);
                                 gf.WriteToLog(transactionRequestString);
                                 PostParameterBox.Text = transactionRequestString;
-                                if (ModeComboBox.SelectedItem.ToString() == "Test")
+                                if (Globals.Default.ProcessingMode == "Test")
                                 {
                                     OEHPWebBrowser.NavigateToString(gr.TestDirectPost(transactionRequestString));
                                 }
@@ -770,7 +789,7 @@ namespace OEHP_Tester
 
         private void CustomParametersBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            Globals.Default.CustomParameters = CustomParametersBox.Text;
         }
 
         public void RCMStatus()
@@ -781,7 +800,7 @@ namespace OEHP_Tester
                 {
                     string ssp = OEHP.NET.SSP.SessionToken;
 
-                    if (ModeComboBox.SelectedItem.ToString() == "Test")
+                    if (Globals.Default.ProcessingMode == "Test")
                     {
                         WebRequest wr = WebRequest.Create(OEHP.NET.VariableHandler.TestRcmStatusURL + OEHP.NET.VariableHandler.SessionToken);
                         wr.Method = "GET";
@@ -843,10 +862,17 @@ namespace OEHP_Tester
                         queryParameters = tr.DirectPostBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.SelectedItem.ToString(), "QUERY_PAYMENT");
                         QueryParametersBox.Text = queryParameters;
                         gf.WriteToLog(queryParameters);
-                        if (ModeComboBox.SelectedItem.ToString() == "Test")
+                        if (Globals.Default.ProcessingMode == "Test")
                         {
                             QueryPaymentBox.Text = gr.TestDirectPost(queryParameters);
                             gf.WriteToLog(QueryPaymentBox.Text);
+
+                            //Converts QueryString to JSON in Query Response if mode is set.
+                            if (Globals.Default.QueryResponseMode == "JSON")
+                            {
+                                string result = dm.QueryStringToJson(QueryPaymentBox.Text);
+                                QueryPaymentBox.Text = result;
+                            }
 
                             //Writes transaction data to DB
                             char firstChar = QueryPaymentBox.Text[0];
@@ -917,10 +943,16 @@ namespace OEHP_Tester
                         queryParameters = tr.DirectPostBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.SelectedItem.ToString(), "QUERY_PURCHASE");
                         QueryParametersBox.Text = queryParameters;
                         gf.WriteToLog(queryParameters);
-                        if (ModeComboBox.SelectedItem.ToString() == "Test")
+                        if (Globals.Default.ProcessingMode == "Test")
                         {
                             QueryPaymentBox.Text = gr.TestDirectPost(queryParameters);
                             gf.WriteToLog(QueryPaymentBox.Text);
+                            //Converts QueryString to JSON in Query Response if mode is set.
+                            if (Globals.Default.QueryResponseMode == "JSON")
+                            {
+                                string result = dm.QueryStringToJson(QueryPaymentBox.Text);
+                                QueryPaymentBox.Text = result;
+                            }
 
                             //Writes transaction data to DB
                             char firstChar = QueryPaymentBox.Text[0];
@@ -969,10 +1001,17 @@ namespace OEHP_Tester
                         queryParameters = tr.DirectPostBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.SelectedItem.ToString(), "QUERY");
                         QueryParametersBox.Text = queryParameters;
                         gf.WriteToLog(queryParameters);
-                        if (ModeComboBox.SelectedItem.ToString() == "Test")
+                        if (Globals.Default.ProcessingMode == "Test")
                         {
                             QueryPaymentBox.Text = gr.TestDirectPost(queryParameters);
                             gf.WriteToLog(QueryPaymentBox.Text);
+
+                            //Converts QueryString to JSON in Query Response if mode is set.
+                            if (Globals.Default.QueryResponseMode == "JSON")
+                            {
+                                string result = dm.QueryStringToJson(QueryPaymentBox.Text);
+                                QueryPaymentBox.Text = result;
+                            }
 
                             //Writes transaction data to DB
                             char firstChar = QueryPaymentBox.Text[0];
@@ -1021,10 +1060,17 @@ namespace OEHP_Tester
                         queryParameters = tr.DirectPostBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.SelectedItem.ToString(), "QUERY_PURCHASE");
                         QueryParametersBox.Text = queryParameters;
                         gf.WriteToLog(queryParameters);
-                        if (ModeComboBox.SelectedItem.ToString() == "Test")
+                        if (Globals.Default.ProcessingMode == "Test")
                         {
                             QueryPaymentBox.Text = gr.TestDirectPost(queryParameters);
                             gf.WriteToLog(QueryPaymentBox.Text);
+
+                            //Converts QueryString to JSON in Query Response if mode is set.
+                            if (Globals.Default.QueryResponseMode == "JSON")
+                            {
+                                string result = dm.QueryStringToJson(QueryPaymentBox.Text);
+                                QueryPaymentBox.Text = result;
+                            }
 
                             //Writes transaction data to DB
                             char firstChar = QueryPaymentBox.Text[0];
@@ -1145,5 +1191,89 @@ namespace OEHP_Tester
             Globals.Default.Save();
             AccountTokenBox.Text = Globals.Default.AccountToken;
         }
+
+        private void File_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void PresetEMVTesting_Click(object sender, RoutedEventArgs e)
+        {
+            AccountTokenBox.Text = Globals.Default.DefaultAccountToken;
+        }
+
+        private void PresetCanadianTesting_Click(object sender, RoutedEventArgs e)
+        {
+            AccountTokenBox.Text = Globals.Default.CanadianAccountToken;
+        }
+
+        private void PresetLoopBackTesting_Click(object sender, RoutedEventArgs e)
+        {
+            AccountTokenBox.Text = Globals.Default.LoopBackAccountToken;
+        }
+
+        private void PresetHelp_Click(object sender, RoutedEventArgs e)
+        {
+            PresetHelp ph = new PresetHelp();
+            ph.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            ph.ShowDialog();
+        }
+
+        private void QueryResponseQueryString_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.Default.QueryResponseMode = "Querystring";
+            if (QueryResponseJSON.IsChecked == true)
+            {
+                QueryResponseJSON.IsChecked = false;
+            }
+            QueryResponseQueryString.IsChecked = true;
+            Globals.Default.Save();
+
+        }
+
+        private void QueryResponseJSON_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.Default.QueryResponseMode = "JSON";
+            if (QueryResponseQueryString.IsChecked == true)
+            {
+                QueryResponseQueryString.IsChecked = false;
+            }
+            QueryResponseJSON.IsChecked = true;
+            Globals.Default.Save();
+        }
+
+        private void ProcessingModeTest_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.Default.ProcessingMode = "Test";
+            if (ProcessingModeLive.IsChecked == true)
+            {
+                ProcessingModeLive.IsChecked = false;
+            }
+            ProcessingModeTest.IsChecked = true;
+        }
+
+        private void ProcessingModeLive_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.Default.ProcessingMode = "Live";
+            if (ProcessingModeTest.IsChecked == true)
+            {
+                ProcessingModeTest.IsChecked = false;
+            }
+            ProcessingModeLive.IsChecked = true;
+        }
+
+        private void PayPageFields_Click(object sender, RoutedEventArgs e)
+        {
+            PayPageCustomization ppf = new PayPageCustomization();
+            ppf.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            ppf.ShowDialog();
+
+        }
     }
+    
 }

@@ -8,5 +8,23 @@
     <Setting Name="DefaultAccountToken" Type="System.String" Scope="User">
       <Value Profile="(Default)">04173F8DCE65520D3580E5FF8555A961CECF249E46B5C2FAEFA04E248CD95FEA9D55BB581758D0591B</Value>
     </Setting>
+    <Setting Name="LoopBackAccountToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3C6D0A90CE65590E308DEDFC8657AC62CDCF2B9E43B2CAFEEDA34B258CDE5FEA9B51BE5C8A78F86FFC</Value>
+    </Setting>
+    <Setting Name="CanadianAccountToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)">301B206BCE6D570C378EEEFB8D59AD60CFCB2D9542B1C4FFEBA9402185DE5FEA9953BE585C8E0F121D</Value>
+    </Setting>
+    <Setting Name="QueryResponseMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Querystring</Value>
+    </Setting>
+    <Setting Name="ProcessingMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Test</Value>
+    </Setting>
+    <Setting Name="SubmitMethod" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PayPage Post</Value>
+    </Setting>
+    <Setting Name="CustomParameters" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
