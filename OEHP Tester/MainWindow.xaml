@@ -30,7 +30,7 @@
         <Label x:Name="modeLabel" Content="Mode:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,61" Grid.Row="4" Width="44" Height="26" VerticalAlignment="Bottom" Visibility="Hidden"/>
         <ComboBox x:Name="ModeComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,38" Grid.Row="4" Width="130" SelectedIndex="0" Height="22" VerticalAlignment="Bottom" Visibility="Hidden"/>
         <Label x:Name="AccountTokenLabel" Content="Account Token:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="93" Grid.RowSpan="2" RenderTransformOrigin="1.466,1.332" Margin="10,28,0,0"/>
-        <TextBox x:Name="AccountTokenBox" HorizontalAlignment="Left" Height="23" Margin="10,59,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="561" Grid.ColumnSpan="4" Text="04173F8DCE65520D3580E5FF8555A961CECF249E46B5C2FAEFA04E248CD95FEA9D55BB581758D0591B" TextChanged="AccountTokenBox_TextChanged"/>
+        <TextBox x:Name="AccountTokenBox" HorizontalAlignment="Left" Height="23" Margin="10,59,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="561" Grid.ColumnSpan="4" Text="{Binding Source={x:Static local:Globals.Default}, Path=AccountToken}" TextChanged="AccountTokenBox_TextChanged"/>
         <Label x:Name="EntryModeLabel" Content="Entry Mode:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="10,0,0,0" Grid.Row="2" Height="26" Width="74"/>
         <Label x:Name="TransactionTypeLabel" Content="Transaction Type:" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="102"/>
         <Label x:Name="ChargeTypeLabel" Content="Charge Type:" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="79"/>
@@ -87,7 +87,7 @@
                 </MenuItem>
                 <MenuItem x:Name="CosmeticParameters" Header="_PayPage Customization">
                     <MenuItem x:Name="PayPageFields" Header="_PayPage Fields" Click="PayPageFields_Click"/>
-                    <MenuItem x:Name="PayPageBranding" Header="_PayPage Branding (CSS)"/>
+                    <MenuItem x:Name="PayPageBranding" Header="_PayPage Branding (CSS)" Click="PayPageBranding_Click"/>
                 </MenuItem>
             </MenuItem>
         </Menu>

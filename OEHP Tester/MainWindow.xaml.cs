@@ -57,7 +57,7 @@ namespace OEHP_Tester
                 ProcessingModeTest.IsChecked = true;
             }
 
-            AccountTokenBox.Text = Globals.Default.AccountToken;
+            // AccountTokenBox.Text = Globals.Default.AccountToken; Replaced with Binding
 
             SubmitMethodBoxValues.Clear();
             SubmitMethodBoxValues.Add("PayPage Post");
@@ -1272,6 +1272,11 @@ namespace OEHP_Tester
             PayPageCustomization ppf = new PayPageCustomization();
             ppf.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             ppf.ShowDialog();
+
+        }
+
+        private void PayPageBranding_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

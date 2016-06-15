@@ -95,6 +95,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.101.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -120,11 +121,19 @@
       <DependentUpon>Globals.settings</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="PayPageBranding.xaml.cs">
+      <DependentUpon>PayPageBranding.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PayPageCustomization.xaml.cs">
       <DependentUpon>PayPageCustomization.xaml</DependentUpon>
     </Compile>
     <Compile Include="PresetHelp.xaml.cs">
       <DependentUpon>PresetHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PayPageCosmetic.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>PayPageCosmetic.settings</DependentUpon>
     </Compile>
     <Compile Include="TransactionRequest.cs" />
     <Page Include="MainWindow.xaml">
@@ -139,6 +148,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PayPageBranding.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PayPageCustomization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -178,6 +191,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="PayPageCosmetic.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>PayPageCosmetic.Designer.cs</LastGenOutput>
+    </None>
     <None Include="tran.oehp" />
   </ItemGroup>
   <ItemGroup>
