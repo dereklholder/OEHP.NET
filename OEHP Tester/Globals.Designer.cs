@@ -122,5 +122,77 @@ namespace OEHP_Tester {
                 this["CustomParameters"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PostParameters {
+            get {
+                return ((string)(this["PostParameters"]));
+            }
+            set {
+                this["PostParameters"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string QueryResponse {
+            get {
+                return ((string)(this["QueryResponse"]));
+            }
+            set {
+                this["QueryResponse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RCMStatus {
+            get {
+                return ((string)(this["RCMStatus"]));
+            }
+            set {
+                this["RCMStatus"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Amount {
+            get {
+                return ((string)(this["Amount"]));
+            }
+            set {
+                this["Amount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OrderID {
+            get {
+                return ((string)(this["OrderID"]));
+            }
+            set {
+                this["OrderID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string QueryParameters {
+            get {
+                return ((string)(this["QueryParameters"]));
+            }
+            set {
+                this["QueryParameters"] = value;
+            }
+        }
     }
 }

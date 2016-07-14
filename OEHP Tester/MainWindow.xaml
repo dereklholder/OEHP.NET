@@ -54,11 +54,11 @@
         <Label x:Name="QueryParametersLabel" Content="Query Parameters:" Grid.Column="5" HorizontalAlignment="Left" Margin="10,17,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="0.6,0.319" Height="26" Width="107"/>
         <Label x:Name="CustomParametersLabel" Content="Custom Parameters:" Grid.Column="3" HorizontalAlignment="Left" Margin="10,17,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120" Height="26"/>
         <TextBox x:Name="CustomParametersBox" Grid.Column="3" Margin="10,48,10,30" Grid.Row="3" TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.RowSpan="2" TextChanged="CustomParametersBox_TextChanged" Text="{Binding Source={x:Static local:Globals.Default}, Path=CustomParameters}"/>
-        <TextBox x:Name="QueryParametersBox" Grid.Column="5" Margin="10,48,10,30" Grid.Row="3" TextWrapping="Wrap" Grid.RowSpan="2"/>
-        <TextBox x:Name="QueryPaymentBox" Grid.Column="3" Margin="10" Grid.Row="5" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="QueryParametersBox" Grid.Column="5" Margin="10,48,10,30" Grid.Row="3" TextWrapping="Wrap" Grid.RowSpan="2" Text="{Binding Source={x:Static local:Globals.Default}, Path=QueryParameters}"/>
+        <TextBox x:Name="QueryPaymentBox" Grid.Column="3" Margin="10" Grid.Row="5" TextWrapping="Wrap" Grid.ColumnSpan="2" Text="{Binding Source={x:Static local:Globals.Default}, Path=QueryResponse}"/>
         <Label x:Name="QueryResponseLabel" Content="Query Response:" Grid.Column="3" HorizontalAlignment="Left" Margin="10,0,0,1" Grid.Row="4" Height="26" VerticalAlignment="Bottom" Width="99"/>
         <Label x:Name="RCMStatusLabel" Content="RCM Status:" Grid.Column="5" HorizontalAlignment="Left" Margin="10,0,0,1" Grid.Row="4" VerticalAlignment="Bottom" Height="26" Width="74"/>
-        <TextBox x:Name="RCMStatusBox" Grid.Column="5" Margin="10" Grid.Row="5" TextWrapping="Wrap"/>
+        <TextBox x:Name="RCMStatusBox" Grid.Column="5" Margin="10" Grid.Row="5" TextWrapping="Wrap" Text="{Binding Source={x:Static local:Globals.Default}, Path=RCMStatus}"/>
         <Image x:Name="SignatureImage" Grid.Column="2" Height="100" Margin="45,10,10,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="-4.915,0.464"/>
         <Label x:Name="SignatureLabel" Content="Signature:" Grid.Column="2" HorizontalAlignment="Left" Margin="45,62,0,0" Grid.Row="4" VerticalAlignment="Top" RenderTransformOrigin="1.284,1.363" Height="26" Width="63"/>
         <Button x:Name="QueryToJsonButton" Content="QueryString to JSON" Grid.Column="4" HorizontalAlignment="Left" Margin="10,0,0,3" Grid.Row="4" VerticalAlignment="Bottom" Width="135" RenderTransformOrigin="0.573,3.682" Click="QueryToJsonButton_Click" Height="22"/>
@@ -66,6 +66,8 @@
             <MenuItem x:Name="File" Header="_File" Click="File_Click">
                 <MenuItem x:Name="SaveTokenMenuItem" Header="_Save Token" Click="SaveToken_Click" IsCheckable="False"/>
                 <MenuItem x:Name="ResetTokenMenuItem" Header="_Reset Token" Click="ResetButton_Click" IsCheckable="False"/>
+                <Separator />
+                <MenuItem x:Name="MPDTransactions" Header="_MPD/Card On File Transactions" Click="MPDTransactions_Click"/>
                 <Separator />
                 <MenuItem x:Name="ExitMenuItem" Header="_Exit" Click="ExitMenuItem_Click" IsCheckable="False"/>
             </MenuItem>

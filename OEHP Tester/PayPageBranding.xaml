@@ -5,29 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OEHP_Tester"
         mc:Ignorable="d"
-        Title="PayPageBranding" Height="539.72" Width="333.021">
+        Title="PayPageBranding" Height="625.164" Width="333.021" WindowStyle="ToolWindow">
     <Grid>
-        <Label x:Name="CSS" Content="CSS" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label x:Name="Value" Content="Value" HorizontalAlignment="Left" Margin="230,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="CSS" Content="CSS" HorizontalAlignment="Left" Margin="18,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="Value" Content="Value" HorizontalAlignment="Left" Margin="230,5,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBlock x:Name="noteText" HorizontalAlignment="Left" Margin="18,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="10.667"/>
-        <TextBlock x:Name="fontFamily" HorizontalAlignment="Left" Margin="5,36,0,0" TextWrapping="Wrap" Text="Font Family" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="5,57,0,0" TextWrapping="Wrap" Text="Font Size" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="5,78,0,0" TextWrapping="Wrap" Text="Background Color" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="5,99,0,0" TextWrapping="Wrap" Text="Button Color" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="5,120,0,0" TextWrapping="Wrap" Text="Button Background Color" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="5,141,0,0" TextWrapping="Wrap" Text="Button Height" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="5,162,0,0" TextWrapping="Wrap" Text="Button Width" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="5,183,0,0" TextWrapping="Wrap" Text="Button Border Top Right Radius" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="5,204,0,0" TextWrapping="Wrap" Text="Button Border Top Left Radius" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="5,225,0,0" TextWrapping="Wrap" Text="Button Border Bottom Right Radius" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy8" HorizontalAlignment="Left" Margin="5,246,0,0" TextWrapping="Wrap" Text="Button Border Bottom Left Radius" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
-        <TextBlock x:Name="textBlock_Copy9" HorizontalAlignment="Left" Margin="5,267,0,0" TextWrapping="Wrap" Text="Button Border Color" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
-        <TextBlock x:Name="textBlock_Copy10" HorizontalAlignment="Left" Margin="5,288,0,0" TextWrapping="Wrap" Text="Button Border Width" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
-        <TextBlock x:Name="textBlock_Copy11" HorizontalAlignment="Left" Margin="5,309,0,0" TextWrapping="Wrap" Text="Button Border Style" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
-        <TextBlock x:Name="textBlock_Copy12" HorizontalAlignment="Left" Margin="5,330,0,0" TextWrapping="Wrap" Text="Button Font Size" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
-        <TextBlock x:Name="textBlock_Copy13" HorizontalAlignment="Left" Margin="5,351,0,0" TextWrapping="Wrap" Text="Section Header Font Size" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
-        <TextBlock x:Name="textBlock_Copy14" HorizontalAlignment="Left" Margin="5,372,0,0" TextWrapping="Wrap" Text="Line Spacing Size" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
-        <TextBlock x:Name="textBlock_Copy15" HorizontalAlignment="Left" Margin="5,393,0,0" TextWrapping="Wrap" Text="Input Field Height" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
+        <TextBlock x:Name="fontFamily" HorizontalAlignment="Left" Margin="10,39,0,0" TextWrapping="Wrap" Text="Font Family" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,67,0,0" TextWrapping="Wrap" Text="Font Size" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,95,0,0" TextWrapping="Wrap" Text="Background Color" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,123,0,0" TextWrapping="Wrap" Text="Button Color" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="10,151,0,0" TextWrapping="Wrap" Text="Button Background Color" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,179,0,0" TextWrapping="Wrap" Text="Button Height" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,207,0,0" TextWrapping="Wrap" Text="Button Width" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="9,263,0,0" TextWrapping="Wrap" Text="Button Border Top Right Radius" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="9,235,0,0" TextWrapping="Wrap" Text="Button Border Top Left Radius" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="9,291,0,0" TextWrapping="Wrap" Text="Button Border Bottom Right Radius" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy8" HorizontalAlignment="Left" Margin="9,319,0,0" TextWrapping="Wrap" Text="Button Border Bottom Left Radius" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
+        <TextBlock x:Name="textBlock_Copy9" HorizontalAlignment="Left" Margin="10,431,0,0" TextWrapping="Wrap" Text="Button Border Color" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
+        <TextBlock x:Name="textBlock_Copy10" HorizontalAlignment="Left" Margin="10,347,0,0" TextWrapping="Wrap" Text="Button Border Width" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
+        <TextBlock x:Name="textBlock_Copy11" HorizontalAlignment="Left" Margin="10,403,0,0" TextWrapping="Wrap" Text="Button Border Style" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
+        <TextBlock x:Name="textBlock_Copy12" HorizontalAlignment="Left" Margin="10,375,0,0" TextWrapping="Wrap" Text="Button Font Size" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
+        <TextBlock x:Name="textBlock_Copy13" HorizontalAlignment="Left" Margin="10,515,0,0" TextWrapping="Wrap" Text="Section Header Font Size" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
+        <TextBlock x:Name="textBlock_Copy14" HorizontalAlignment="Left" Margin="10,487,0,0" TextWrapping="Wrap" Text="Line Spacing Size" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
+        <TextBlock x:Name="textBlock_Copy15" HorizontalAlignment="Left" Margin="10,459,0,0" TextWrapping="Wrap" Text="Input Field Height" VerticalAlignment="Top" RenderTransformOrigin="0.399,1.716"/>
+        <TextBox x:Name="FontFamilyBox" HorizontalAlignment="Left" Height="23" Margin="214,36,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=font_family}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="FontSizeBox" HorizontalAlignment="Left" Height="23" Margin="214,64,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=font_size}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="BackgroundColorBox" HorizontalAlignment="Left" Height="23" Margin="214,92,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=background_color}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonColorBox" HorizontalAlignment="Left" Height="23" Margin="214,120,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_color}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonBackgroundColorBox" HorizontalAlignment="Left" Height="23" Margin="214,148,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_background_color}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonHeightBox" HorizontalAlignment="Left" Height="23" Margin="214,176,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_height}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonWidthBox" HorizontalAlignment="Left" Height="23" Margin="214,204,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_width}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonBorderTopLeftRadiusBox" HorizontalAlignment="Left" Height="23" Margin="214,232,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_border_top_left_radius}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonBorderTopRightRadiusBox" HorizontalAlignment="Left" Height="23" Margin="214,260,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_border_top_right_radius}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonBorderBottomRightRadiusBox" HorizontalAlignment="Left" Height="23" Margin="214,288,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_border_bottom_left_radius}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonBorderBottomLeftRadiusBox" HorizontalAlignment="Left" Height="23" Margin="214,316,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_border_bottom_right_radius}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonBorderWidthBox" HorizontalAlignment="Left" Height="23" Margin="214,344,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_border_width}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonBorderFontSizeBox" HorizontalAlignment="Left" Height="23" Margin="214,372,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_font_size}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonBorderStyleBox" HorizontalAlignment="Left" Height="23" Margin="214,400,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_border_style}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="ButtonBorderColorBox" HorizontalAlignment="Left" Height="23" Margin="214,428,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=button_border_color}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="InputFieldHeightBox" HorizontalAlignment="Left" Height="23" Margin="214,456,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=input_field_height}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="LineSpacingSizeBox" HorizontalAlignment="Left" Height="23" Margin="214,484,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=line_spacing_size}" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="SectionHeaderFontSizeBox" HorizontalAlignment="Left" Height="23" Margin="214,512,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=section_header_font_size}" VerticalAlignment="Top" Width="101"/>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="89,569,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="169,569,0,0" VerticalAlignment="Top" Width="75" Click="CancelButton_Click"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,543,0,0" TextWrapping="Wrap" Text="Color" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="214,540,0,0" TextWrapping="Wrap" Text="{Binding Source={x:Static local:PayPageCosmetic.Default}, Path=color}" VerticalAlignment="Top" Width="101"/>
 
     </Grid>
 </Window>

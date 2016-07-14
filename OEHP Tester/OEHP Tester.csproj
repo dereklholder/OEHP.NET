@@ -121,6 +121,9 @@
       <DependentUpon>Globals.settings</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="MPDTransactions.xaml.cs">
+      <DependentUpon>MPDTransactions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PayPageBranding.xaml.cs">
       <DependentUpon>PayPageBranding.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MPDTransactions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PayPageBranding.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
