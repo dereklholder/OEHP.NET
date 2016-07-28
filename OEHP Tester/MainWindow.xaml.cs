@@ -1319,6 +1319,13 @@ namespace OEHP_Tester
         {
 
         }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            About window = new About();
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.ShowDialog();
+        }
     }
     
 }

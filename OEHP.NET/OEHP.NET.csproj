@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataManipulation.cs" />
+    <Compile Include="DtGFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GatewayRequest.cs" />
     <Compile Include="VariableHandler.cs" />

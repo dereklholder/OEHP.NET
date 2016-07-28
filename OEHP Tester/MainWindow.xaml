@@ -67,7 +67,7 @@
                 <MenuItem x:Name="SaveTokenMenuItem" Header="_Save Token" Click="SaveToken_Click" IsCheckable="False"/>
                 <MenuItem x:Name="ResetTokenMenuItem" Header="_Reset Token" Click="ResetButton_Click" IsCheckable="False"/>
                 <Separator />
-                <MenuItem x:Name="MPDTransactions" Header="_MPD/Card On File Transactions" Click="MPDTransactions_Click"/>
+                <MenuItem x:Name="MPDTransactions" Header="_MPD/Card On File Transactions (NYI)" Click="MPDTransactions_Click"/>
                 <Separator />
                 <MenuItem x:Name="ExitMenuItem" Header="_Exit" Click="ExitMenuItem_Click" IsCheckable="False"/>
             </MenuItem>
@@ -91,6 +91,9 @@
                     <MenuItem x:Name="PayPageFields" Header="_PayPage Fields" Click="PayPageFields_Click"/>
                     <MenuItem x:Name="PayPageBranding" Header="_PayPage Branding (CSS)" Click="PayPageBranding_Click"/>
                 </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="Help"  Header="_Help">
+                <MenuItem x:Name="About" Header="_About" Click="About_Click"/>
             </MenuItem>
         </Menu>
 

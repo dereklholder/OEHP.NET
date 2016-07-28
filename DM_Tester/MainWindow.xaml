@@ -1,0 +1,44 @@
+﻿<Window x:Class="DM_Tester.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DM_Tester"
+        mc:Ignorable="d"
+        Title="Decline Minimizer Test Tool" Height="350" Width="525" Icon="oehpwpf.ico" ResizeMode="NoResize">
+    <Window.Resources>
+        <XmlDataProvider x:Key="FunctionComboBoxSource" XPath="Items">
+            <x:XData>
+                <Items xmlns="">
+                    <Item Header="Update Alias" Value="UpdateAlias" Attribute="1"/>
+                    <Item Header="Lookup Alias" Value="LookupAlias" Attribute="2"/>
+                    <Item Header="Delete Alias" Value="DeleteAlias" Attribute="3"/>
+                </Items>
+            </x:XData>
+        </XmlDataProvider>
+    </Window.Resources>
+    <Grid>
+        <Menu x:Name="menu" Height="20" VerticalAlignment="Top">
+            <MenuItem x:Name="file" Header="_File">
+                <MenuItem x:Name="credentials" Header="_Credentials" Click="credentials_Click"/>
+                <MenuItem x:Name="exit" Header="_Exit" Click="exit_Click"/>
+            </MenuItem>
+        </Menu>
+        <TextBox x:Name="acctNumBox" HorizontalAlignment="Left" Height="23" Margin="10,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="acctNumLabel" Content="Card Number:" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="ExpDateLabel" Content="Expiration Date(MMYY):" HorizontalAlignment="Left" Margin="146,25,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="expDateBox" HorizontalAlignment="Left" Height="23" Margin="146,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="AliasLabel" Content="Alias/PayerID:" HorizontalAlignment="Left" Margin="292,25,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="AliasBox" HorizontalAlignment="Left" Height="23" Margin="292,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ResultTextBox" HorizontalAlignment="Left" Height="178" Margin="10,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="499"/>
+        <ComboBox x:Name="FunctionComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="10,105,0,0" 
+                  ItemsSource="{Binding Source={StaticResource FunctionComboBoxSource}, XPath=*, Mode=OneWay}" 
+                  SelectedValue="{Binding FallbackValue,UpdateSourceTrigger=PropertyChanged}"
+                  SelectedValuePath="@Value"
+                  DisplayMemberPath="@Header" SelectionChanged="FunctionComboBox_SelectionChanged"/>
+        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="135,105,0,0" VerticalAlignment="Top" Width="75" Click="SubmitButton_Click"/>
+        <Label x:Name="label" Content="Function:" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
+
+
+    </Grid>
+</Window>

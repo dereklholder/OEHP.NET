@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DM_Tester" GeneratedClassName="Globals">
+  <Profiles />
+  <Settings>
+    <Setting Name="XWebID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">800000001976</Value>
+    </Setting>
+    <Setting Name="AuthKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">lod2vlitgd0qDaKo04TxX7JSbxPY2CAj</Value>
+    </Setting>
+    <Setting Name="TerminalID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">80023028</Value>
+    </Setting>
+    <Setting Name="NewMaskedAcctNum" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NewExpDate" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -219,6 +219,7 @@
     <Content Include="fonts\OpenSans\Regular\OpenSans-Regular.svg" />
     <Content Include="fonts\OpenSans\SemiboldItalic\OpenSans-SemiboldItalic.svg" />
     <Content Include="fonts\OpenSans\Semibold\OpenSans-Semibold.svg" />
+    <Resource Include="oehpwpf.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
