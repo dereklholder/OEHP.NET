@@ -34,6 +34,7 @@ namespace DM_Tester
             if (responseCode[0] == "004")
             {
                 Globals.Default.Save();
+                this.Close();
             }
             else
             {

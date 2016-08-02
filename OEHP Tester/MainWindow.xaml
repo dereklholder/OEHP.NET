@@ -91,6 +91,10 @@
                     <MenuItem x:Name="PayPageFields" Header="_PayPage Fields" Click="PayPageFields_Click"/>
                     <MenuItem x:Name="PayPageBranding" Header="_PayPage Branding (CSS)" Click="PayPageBranding_Click"/>
                 </MenuItem>
+                <MenuItem x:Name="GenerateReceipt" Header="_Generate Receipt">
+                    <MenuItem x:Name="TipReceipt" Header="_Tip Receipt" Click="TipReceipt_Click"/>
+                    <MenuItem x:Name="StandardReceipt" Header="_Standard Receipt" Click="StandardReceipt_Click"/>
+                </MenuItem>
             </MenuItem>
             <MenuItem x:Name="Help"  Header="_Help">
                 <MenuItem x:Name="About" Header="_About" Click="About_Click"/>

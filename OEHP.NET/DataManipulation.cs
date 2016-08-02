@@ -54,5 +54,19 @@ namespace OEHP.NET
             }
             
         }
+        public ReceiptDataOnly ReceiptDataObject(string json)
+        {
+            try
+            {
+                ReceiptDataOnly RDO = new ReceiptDataOnly();
+                RDO = JsonConvert.DeserializeObject<ReceiptDataOnly>(json);
+                return RDO;
+            }
+            catch (Exception ex)
+            {
+                ReceiptDataOnly RDO = new ReceiptDataOnly();
+                return RDO;
+            }
+        }
     }
 }

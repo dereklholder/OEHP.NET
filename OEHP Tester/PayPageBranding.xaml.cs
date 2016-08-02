@@ -24,32 +24,39 @@ namespace OEHP_Tester
         public PayPageBranding()
         {
             InitializeComponent();
-
-            ParseQueryStringFromCustomParameters();
+            if (Globals.Default.CustomParameters != "")
+            {
+                ParseQueryStringFromCustomParameters(Globals.Default.CustomParameters);
+            }
+            
         }
-        public void ParseQueryStringFromCustomParameters()
+        public void ParseQueryStringFromCustomParameters(string parameters)
         {
-            NameValueCollection keyPairs = HttpUtility.ParseQueryString(Globals.Default.CustomParameters);
+            
+            if (parameters != "")
+            {
+                NameValueCollection keyPairs = HttpUtility.ParseQueryString(parameters);
 
-            PayPageCosmetic.Default.font_family = keyPairs.Get("font-family");
-            PayPageCosmetic.Default.font_size = keyPairs.Get("font-size");
-            PayPageCosmetic.Default.color = keyPairs.Get("color");
-            PayPageCosmetic.Default.background_color = keyPairs.Get("background-color");
-            PayPageCosmetic.Default.btn_color = keyPairs.Get("btn_color");
-            PayPageCosmetic.Default.btn_background_color = keyPairs.Get("btn-background-color");
-            PayPageCosmetic.Default.btn_height = keyPairs.Get("btn-height");
-            PayPageCosmetic.Default.btn_width = keyPairs.Get("btn-width");
-            PayPageCosmetic.Default.btn_border_top_left_radius = keyPairs.Get("btn-border-top-left-radius");
-            PayPageCosmetic.Default.btn_border_top_right_radius = keyPairs.Get("btn-border-top-right-radius");
-            PayPageCosmetic.Default.btn_border_bottom_left_radius = keyPairs.Get("btn-border-bottom-left-radius");
-            PayPageCosmetic.Default.btn_border_bottom_right_radius = keyPairs.Get("btn-border-bottom-right-radius");
-            PayPageCosmetic.Default.btn_border_color = keyPairs.Get("btn-border-color");
-            PayPageCosmetic.Default.btn_border_style = keyPairs.Get("btn-border-style");
-            PayPageCosmetic.Default.section_header_font_size = keyPairs.Get("section-header-font-size");
-            PayPageCosmetic.Default.line_spacing_size = keyPairs.Get("line-spacing-size");
-            PayPageCosmetic.Default.input_field_height = keyPairs.Get("input-field-height");
+                PayPageCosmetic.Default.font_family = keyPairs.Get("font-family").Trim(';');
+                PayPageCosmetic.Default.font_size = keyPairs.Get("font-size").Trim(';');
+                PayPageCosmetic.Default.color = keyPairs.Get("color").Trim(';');
+                PayPageCosmetic.Default.background_color = keyPairs.Get("background-color").Trim(';');
+                PayPageCosmetic.Default.btn_color = keyPairs.Get("btn_color").Trim(';');
+                PayPageCosmetic.Default.btn_background_color = keyPairs.Get("btn-background-color").Trim(';');
+                PayPageCosmetic.Default.btn_height = keyPairs.Get("btn-height").Trim(';');
+                PayPageCosmetic.Default.btn_width = keyPairs.Get("btn-width").Trim(';');
+                PayPageCosmetic.Default.btn_border_top_left_radius = keyPairs.Get("btn-border-top-left-radius").Trim(';');
+                PayPageCosmetic.Default.btn_border_top_right_radius = keyPairs.Get("btn-border-top-right-radius").Trim(';');
+                PayPageCosmetic.Default.btn_border_bottom_left_radius = keyPairs.Get("btn-border-bottom-left-radius").Trim(';');
+                PayPageCosmetic.Default.btn_border_bottom_right_radius = keyPairs.Get("btn-border-bottom-right-radius").Trim(';');
+                PayPageCosmetic.Default.btn_border_color = keyPairs.Get("btn-border-color").Trim(';');
+                PayPageCosmetic.Default.btn_border_style = keyPairs.Get("btn-border-style").Trim(';');
+                PayPageCosmetic.Default.section_header_font_size = keyPairs.Get("section-header-font-size").Trim(';');
+                PayPageCosmetic.Default.line_spacing_size = keyPairs.Get("line-spacing-size").Trim(';');
+                PayPageCosmetic.Default.input_field_height = keyPairs.Get("input-field-height").Trim(';');
 
-            PayPageCosmetic.Default.Save();
+                PayPageCosmetic.Default.Save(); 
+            }
         }
         public string PayPageBrandingCombiner()
         {

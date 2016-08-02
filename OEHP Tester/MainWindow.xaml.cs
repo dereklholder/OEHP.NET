@@ -35,13 +35,13 @@ namespace OEHP_Tester
 
             
             
-            if (Properties.Settings.Default.IsFirstRun == "true")
-            {
-                GeneralFunctions gf = new GeneralFunctions();
-                gf.CreateDBFile();
-                Properties.Settings.Default.IsFirstRun = "false";
-                Properties.Settings.Default.Save();
-            }
+            //if (Properties.Settings.Default.IsFirstRun == "true")
+            //{
+            //    GeneralFunctions gf = new GeneralFunctions();
+            //    gf.CreateDBFile();
+            //    Properties.Settings.Default.IsFirstRun = "false";
+            //    Properties.Settings.Default.Save();
+            //}
             if (Globals.Default.QueryResponseMode == "Querystring")
             {
                 QueryResponseQueryString.IsChecked = true;
@@ -1325,6 +1325,49 @@ namespace OEHP_Tester
             About window = new About();
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             window.ShowDialog();
+        }
+
+        private void TipReceipt_Click(object sender, RoutedEventArgs e)
+        {
+            OEHP.NET.DataManipulation dm = new OEHP.NET.DataManipulation();
+            ReceiptFormatter rf = new ReceiptFormatter();
+            if (Globals.Default.QueryResponseMode == "JSON")
+            {
+                var RDO = dm.ReceiptDataObject(QueryPaymentBox.Text);
+                string receiptData = rf.TipReceipt(RDO);
+                Receipt jr = new Receipt(receiptData);
+                jr.ShowDialog();
+
+            }
+            else
+            {
+                string json = dm.QueryStringToJson(QueryPaymentBox.Text);
+                var RDO = dm.ReceiptDataObject(json);
+                string receiptData = rf.TipReceipt(RDO);
+                Receipt qr = new Receipt(receiptData);
+                qr.ShowDialog();
+            }
+        }
+
+        private void StandardReceipt_Click(object sender, RoutedEventArgs e)
+        {
+            OEHP.NET.DataManipulation dm = new OEHP.NET.DataManipulation();
+            ReceiptFormatter rf = new ReceiptFormatter();
+            if (Globals.Default.QueryResponseMode == "JSON")
+            {
+                var RDO = dm.ReceiptDataObject(QueryPaymentBox.Text);
+                string receiptData = rf.GenericReceipt(RDO);
+                Receipt r = new Receipt(receiptData);
+                r.ShowDialog();
+            }
+            else
+            {
+                string json = dm.QueryStringToJson(QueryPaymentBox.Text);
+                var RDO = dm.ReceiptDataObject(json);
+                string receiptData = rf.GenericReceipt(RDO);
+                Receipt r = new Receipt(receiptData);
+                r.ShowDialog();
+            }
         }
     }
     

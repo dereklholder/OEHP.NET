@@ -159,4 +159,223 @@ namespace OEHP_Tester
 
         }
     }
+    public class ReceiptFormatter : OEHP.NET.DataManipulation
+    {
+        //Go through receipt Data and Create a Tip Line
+        public string TipReceipt(ReceiptDataOnly ReceiptDataObject)
+        {
+            StringBuilder sb = new StringBuilder(20000);
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_merchant_id_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_merchant_id_label).Append("%09").Append(ReceiptDataObject.receipt_merchant_id).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_transaction_id_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_transaction_id_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_transaction_id).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_order_id_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_order_id_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_order_id).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_transaction_type_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_transaction_type_label).Append("%09").Append(ReceiptDataObject.receipt_transaction_type).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_transaction_date_time_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_transaction_date_time_label).Append("%09").Append(ReceiptDataObject.receipt_transaction_date_time).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_card_type_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_card_type_label).Append("%09").Append(ReceiptDataObject.receipt_card_type).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_card_number_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_card_number_label).Append("%09").Append(ReceiptDataObject.receipt_card_number).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_entry_legend_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_entry_legend_label).Append("%09").Append(ReceiptDataObject.receipt_entry_legend).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_entry_method_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_entry_method_label).Append("%09").Append(ReceiptDataObject.receipt_entry_method).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_approval_code_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_approval_code_label).Append("%09").Append(ReceiptDataObject.receipt_approval_code).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_application_cryoptogram_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_application_cryoptogram_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_application_cryptogram).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_application_transaction_counter_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_application_transaction_counter_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_application_transaction_counter).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_application_identifier_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_application_identifier_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_application_identifier).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_application_preferred_name_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_application_preferred_name_label).Append("%09").Append(ReceiptDataObject.receipt_application_preferred_name).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_terminal_verification_results_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_terminal_verification_results_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_terminal_verification_results).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_transaction_status_information_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_transaction_status_information_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_transaction_status_information).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_transaction_reference_number_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_transaction_reference_number_label).Append("%09").Append(ReceiptDataObject.receipt_transaction_reference_number).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_authorization_response_code_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_authorization_response_code_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_authorization_response_code).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_validation_code_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_validation_code_label).Append("%09").Append(ReceiptDataObject.receipt_validation_code).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_total_amount_label) != true)
+            {
+                sb.Append(Environment.NewLine).Append("Subtotal:").Append("%09").Append("%09").Append(ReceiptDataObject.receipt_total_amount).Append(Environment.NewLine).Append(Environment.NewLine)
+                    .Append("Tip:").Append("%09").Append("%09").Append("____________").Append(Environment.NewLine).Append(Environment.NewLine)
+                    .Append("Total:").Append("%09").Append("%09").Append("____________").Append(Environment.NewLine);
+            }
+            
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_line_items) != true)
+            {
+                sb.Append(Environment.NewLine).Append(ReceiptDataObject.receipt_line_items).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_verbiage) != true)
+            {
+                sb.Append(Environment.NewLine).Append("%09").Append(ReceiptDataObject.receipt_verbiage).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_signature_line) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_signature_line);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_signature_text) != true)
+            {
+                sb.Append(Environment.NewLine).Append("%09").Append(ReceiptDataObject.receipt_signature_text).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_authorization_agreement) != true)
+            {
+                sb.Append(Environment.NewLine).Append(ReceiptDataObject.receipt_authorization_agreement).Append(Environment.NewLine).Append("%09").Append(ReceiptDataObject.receipt_merchant_copy_label);
+            }
+            return sb.ToString();
+        }
+        public string GenericReceipt(ReceiptDataOnly ReceiptDataObject)
+        {
+            StringBuilder sb = new StringBuilder(20000);
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_merchant_id_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_merchant_id_label).Append("%09").Append(ReceiptDataObject.receipt_merchant_id).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_transaction_id_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_transaction_id_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_transaction_id).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_order_id_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_order_id_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_order_id).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_transaction_type_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_transaction_type_label).Append("%09").Append(ReceiptDataObject.receipt_transaction_type).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_transaction_date_time_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_transaction_date_time_label).Append("%09").Append(ReceiptDataObject.receipt_transaction_date_time).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_card_type_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_card_type_label).Append("%09").Append(ReceiptDataObject.receipt_card_type).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_card_number_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_card_number_label).Append("%09").Append(ReceiptDataObject.receipt_card_number).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_entry_legend_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_entry_legend_label).Append("%09").Append(ReceiptDataObject.receipt_entry_legend).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_entry_method_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_entry_method_label).Append("%09").Append(ReceiptDataObject.receipt_entry_method).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_approval_code_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_approval_code_label).Append("%09").Append(ReceiptDataObject.receipt_approval_code).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_application_cryoptogram_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_application_cryoptogram_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_application_cryptogram).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_application_transaction_counter_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_application_transaction_counter_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_application_transaction_counter).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_application_identifier_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_application_identifier_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_application_identifier).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_application_preferred_name_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_application_preferred_name_label).Append("%09").Append(ReceiptDataObject.receipt_application_preferred_name).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_terminal_verification_results_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_terminal_verification_results_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_terminal_verification_results).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_transaction_status_information_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_transaction_status_information_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_transaction_status_information).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_transaction_reference_number_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_transaction_reference_number_label).Append("%09").Append(ReceiptDataObject.receipt_transaction_reference_number).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_authorization_response_code_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_authorization_response_code_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_authorization_response_code).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_validation_code_label) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_validation_code_label).Append("%09").Append(ReceiptDataObject.receipt_validation_code).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_total_amount_label) != true)
+            {
+                sb.Append(Environment.NewLine).Append(ReceiptDataObject.receipt_total_amount_label).Append("%09").Append("%09").Append(ReceiptDataObject.receipt_total_amount).Append(Environment.NewLine).Append(Environment.NewLine);               
+            }
+
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_line_items) != true)
+            {
+                sb.Append(Environment.NewLine).Append(ReceiptDataObject.receipt_line_items).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_verbiage) != true)
+            {
+                sb.Append(Environment.NewLine).Append("%09").Append(ReceiptDataObject.receipt_verbiage).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_signature_line) != true)
+            {
+                sb.Append(ReceiptDataObject.receipt_signature_line);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_signature_text) != true)
+            {
+                sb.Append(Environment.NewLine).Append("%09").Append(ReceiptDataObject.receipt_signature_text).Append(Environment.NewLine);
+            }
+            if (string.IsNullOrEmpty(ReceiptDataObject.receipt_authorization_agreement) != true)
+            {
+                sb.Append(Environment.NewLine).Append(ReceiptDataObject.receipt_authorization_agreement).Append(Environment.NewLine).Append("%09").Append(ReceiptDataObject.receipt_merchant_copy_label);
+            }
+            return sb.ToString();
+        }
+
+    }
 }

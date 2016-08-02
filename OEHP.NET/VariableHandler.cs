@@ -112,7 +112,56 @@ namespace OEHP.NET
             
             public string exceptionData { get; set; } //If an Exception Occurs when Deserializing, puts exception string here.
 
-
+        }
+        public struct ReceiptDataOnly
+        {
+            public string receipt_application_cryoptogram_label { get; set; }
+            public string receipt_application_cryptogram { get; set; }
+            public string receipt_application_identifier_label { get; set; }
+            public string receipt_application_identifier { get; set; }
+            public string receipt_application_preferred_name { get; set; }
+            public string receipt_application_preferred_name_label { get; set; }
+            public string receipt_application_transaction_counter_label { get; set; }
+            public string receipt_application_transaction_counter { get; set; }
+            public string receipt_approval_code_label { get; set; }
+            public string receipt_approval_code { get; set; }
+            public string receipt_authorization_response_code_label { get; set; }
+            public string receipt_authorization_response_code { get; set; }
+            public string receipt_authorization_agreement { get; set; }
+            public string receipt_card_number_label { get; set; }
+            public string receipt_card_number { get; set; }
+            public string receipt_card_type_label { get; set; }
+            public string receipt_card_type { get; set; }
+            public string receipt_entry_legend_label { get; set; }
+            public string receipt_entry_legend { get; set; }
+            public string receipt_entry_method_label { get; set; }
+            public string receipt_entry_method { get; set; }
+            public string receipt_line_items { get; set; }
+            public string receipt_merchant_id_label { get; set; }
+            public string receipt_merchant_id { get; set; }
+            public string receipt_order_id_label { get; set; }
+            public string receipt_order_id { get; set; }
+            public string receipt_signature_text { get; set; }
+            public string receipt_signature_line { get; set; }
+            public string receipt_terminal_verification_results_label { get; set; }
+            public string receipt_terminal_verification_results { get; set; }
+            public string receipt_total_amount_label { get; set; }
+            public string receipt_total_amount { get; set; }
+            public string receipt_transaction_date_time_label { get; set; }
+            public string receipt_transaction_date_time { get; set; }
+            public string receipt_transaction_id_label { get; set; }
+            public string receipt_transaction_id { get; set; }
+            public string receipt_transaction_reference_number_label { get; set; }
+            public string receipt_transaction_reference_number { get; set; }
+            public string receipt_transaction_status_information_label { get; set; }
+            public string receipt_transaction_status_information { get; set; }
+            public string receipt_transaction_type_label { get; set; }
+            public string receipt_transaction_type { get; set; }
+            public string receipt_validation_code_label { get; set; }
+            public string receipt_validation_code { get; set; }
+            public string receipt_verbiage { get; set; }
+            public string receipt_merchant_copy_label { get; set; }
+            public string receipt_customer_copy_label { get; set; }
         }
     }
     public static class SSP

@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("OEHP Tester")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("OE DevServices")]
 [assembly: AssemblyProduct("OEHP Tester")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
 [assembly: AssemblyTrademark("")]
