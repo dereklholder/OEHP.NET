@@ -10,6 +10,7 @@ using System.Web;
 using System.Net;
 using System.Windows.Controls;
 using System.Data.SQLite;
+using System.Data;
 
 namespace OEHP_Tester
 {
@@ -156,6 +157,27 @@ namespace OEHP_Tester
                 WriteToLog(ex.ToString());
                 
             }
+
+        }
+        public static DataTable GetPayerIDAndSpan()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                SQLiteConnection con = new SQLiteConnection("Data Source = tran.oehp;version=3");
+                con.Open();
+                SQLiteCommand command = new SQLiteCommand(con);
+                command.CommandText = "SELECT payer_identifier, span  FROM transactiondb";
+                SQLiteDataReader sdr = command.ExecuteReader();
+                dt.Load(sdr);
+                sdr.Close();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return dt;
 
         }
     }

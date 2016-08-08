@@ -1317,7 +1317,8 @@ namespace OEHP_Tester
 
         private void MPDTransactions_Click(object sender, RoutedEventArgs e)
         {
-
+            MPDTransactions mpd = new MPDTransactions();
+            mpd.ShowDialog();
         }
 
         private void About_Click(object sender, RoutedEventArgs e)

@@ -25,8 +25,8 @@ namespace OEHP_Tester {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("04173F8DCE65520D3580E5FF8555A961CECF249E46B5C2FAEFA04E248CD95FEA9D55BB581758D0591" +
-            "B")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C9CBE35FCE67540F328FE4FC8758AF6DCECC24954FB2C4FFE4A24F2B81D95FEA9953BC5CF45601D07" +
+            "8")]
         public string AccountToken {
             get {
                 return ((string)(this["AccountToken"]));
@@ -38,8 +38,8 @@ namespace OEHP_Tester {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("04173F8DCE65520D3580E5FF8555A961CECF249E46B5C2FAEFA04E248CD95FEA9D55BB581758D0591" +
-            "B")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C9CBE35FCE67540F328FE4FC8758AF6DCECC24954FB2C4FFE4A24F2B81D95FEA9953BC5CF45601D07" +
+            "8")]
         public string DefaultAccountToken {
             get {
                 return ((string)(this["DefaultAccountToken"]));

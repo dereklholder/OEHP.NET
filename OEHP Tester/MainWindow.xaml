@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:OEHP_Tester"
         mc:Ignorable="d"
         Title="OEHP Tester/Debug App" Height="637.328" Width="934.712" Icon="oehpwpf.ico">
+
+    
     <Grid Margin="0,0,2,-3">
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>
@@ -67,7 +69,7 @@
                 <MenuItem x:Name="SaveTokenMenuItem" Header="_Save Token" Click="SaveToken_Click" IsCheckable="False"/>
                 <MenuItem x:Name="ResetTokenMenuItem" Header="_Reset Token" Click="ResetButton_Click" IsCheckable="False"/>
                 <Separator />
-                <MenuItem x:Name="MPDTransactions" Header="_MPD/Card On File Transactions (NYI)" Click="MPDTransactions_Click"/>
+                <MenuItem x:Name="MPDTransactions" Header="_MPD/Card On File Transactions" Click="MPDTransactions_Click"/>
                 <Separator />
                 <MenuItem x:Name="ExitMenuItem" Header="_Exit" Click="ExitMenuItem_Click" IsCheckable="False"/>
             </MenuItem>

@@ -32,7 +32,10 @@ namespace OEHP_Tester
                         + "&" + tccBuilder
                         + customParameters)
                         ;
-
+            if (chargeType == "DEBIT")
+            {
+                parameters.Append("&manage_payer_data=true");
+            }
             return parameters.ToString();
 
         }
@@ -53,12 +56,15 @@ namespace OEHP_Tester
             parameters.Append(accountTokenBuilder
                         + "&" + transactionTypeBuilder
                         + "&" + entryModeBuilder
-                        + "&" + chargeTypeBuilder
+                        + "&" + chargeTypeBuilder                        
                         + "&" + chargeAmountBuilder
                         + "&" + orderIDBuilder
                         + "&" + "duplicate_check=NO_CHECK"
                         + customParameters);
-
+            if (chargeType == "SALE" || chargeType == "AUTH")
+            {
+                parameters.Append("&manage_payer_data=true");
+            }
             return parameters.ToString();
 
         }
@@ -175,7 +181,7 @@ namespace OEHP_Tester
         }
         //MPD Transaction ParamBuilder
         public string MpdBuilder(string accountToken, string orderID, string transactionType, string chargeType,
-            string chargeAmount, string payer_id, string span)
+            string chargeAmount, string payer_id, string span, string transactionConditionCode, string customParameters)
         {
             string accountTokenBuilder = "account_token=" + accountToken;
             string transactionTypeBuilder = "transaction_type=" + transactionType;
@@ -184,6 +190,7 @@ namespace OEHP_Tester
             string payerIDBuilder = "payer_identifier=" + payer_id;
             string spanBuilder = "span=" + span;
             string amountBuilder = "charge_total=" + chargeAmount;
+            string tccbuilder = "transaction_condition_code=" + transactionConditionCode;
             StringBuilder parameters = new StringBuilder();
             parameters.Append(accountTokenBuilder
                                 + "&" + transactionTypeBuilder
@@ -193,7 +200,36 @@ namespace OEHP_Tester
                                 + "&" + spanBuilder
                                 + "&" + amountBuilder
                                 + "&" + "managed_payer_data=true"
-                                /*+ "&" + "duplicate_check=NO_CHECK"*/);
+                                + "&" + tccbuilder
+                                + "&" + "duplicate_check=NO_CHECK"
+                                + "&" + customParameters);
+
+
+            return parameters.ToString();
+        }
+        public string MPDCheckBuilder(string accountToken, string orderID, string transactionType, string chargeType,
+            string chargeAmount, string payer_id, string span, string transactionConditionCode, string customParameters)
+        {
+            string accountTokenBuilder = "account_token=" + accountToken;
+            string transactionTypeBuilder = "transaction_type=" + transactionType;
+            string chargeTypeBuilder = "charge_type=" + chargeType;
+            string orderIDBuilder = "order_id=" + orderID;
+            string payerIDBuilder = "payer_identifier=" + payer_id;
+            string spanBuilder = "span=" + span;
+            string amountBuilder = "charge_total=" + chargeAmount;
+            string tccBuilder = "transaction_condition_code=" + transactionConditionCode;
+            StringBuilder parameters = new StringBuilder();
+            parameters.Append(accountTokenBuilder
+                                + "&" + transactionTypeBuilder
+                                + "&" + chargeTypeBuilder
+                                + "&" + orderIDBuilder
+                                + "&" + payerIDBuilder
+                                + "&" + spanBuilder
+                                + "&" + amountBuilder
+                                + "&" + "managed_payer_data=true"
+                                + "&" + "duplicate_check=NO_CHECK"
+                                + "&" + tccBuilder
+                                + "&" + customParameters);
 
 
             return parameters.ToString();

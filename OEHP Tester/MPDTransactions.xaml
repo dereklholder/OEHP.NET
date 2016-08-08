@@ -5,8 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OEHP_Tester"
         mc:Ignorable="d"
-        Title="MPDTransactions" Height="640" Width="940">
+        Title="MPD Transactions" Height="640" Width="940" Topmost="True" Icon="oehpwpf.ico" ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Right" Margin="0,223,6,0" VerticalAlignment="Top" Height="377" Width="314" ItemsSource="{Binding}"/>
+        <Label x:Name="label" Content="Account Token:" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Height="26" Width="92"/>
+        <Menu x:Name="MenuBar" Height="20" VerticalAlignment="Top">
+            <MenuItem x:Name="File" Header="_File" Click="File_Click">
+                <MenuItem x:Name="SaveTokenMenuItem" Header="_Save Token" Click="SaveToken_Click" IsCheckable="False"/>
+                <MenuItem x:Name="ResetTokenMenuItem" Header="_Reset Token" Click="ResetButton_Click" IsCheckable="False"/>
+                <Separator />
+                <MenuItem x:Name="CloseMenuItem" Header="_Close" Click="ExitMenuItem_Click" IsCheckable="False"/>
+            </MenuItem>
+            <MenuItem x:Name="Tools" Header="_Tools" Click="Tools_Click">
+                <MenuItem x:Name="Presets" Header="_Presets">
+                    <MenuItem x:Name="PresetEMVTesting" Header="_EMV Testing" Click="PresetEMVTesting_Click"/>
+                    <MenuItem x:Name="PresetCanadianTesting" Header="_Canadian Testing" Click="PresetCanadianTesting_Click"/>
+                    <MenuItem x:Name="PresetLoopBackTesting" Header="_Loopback Testing" Click="PresetLoopBackTesting_Click"/>
+                    <Separator />
+                    <MenuItem x:Name="PresetHelp" Header="_About Presets" Click="PresetHelp_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="QueryResponseMode" Header="_Query Response Mode">
+                    <MenuItem x:Name="QueryResponseQueryString" Header="_Querystring" Click="QueryResponseQueryString_Click"/>
+                    <MenuItem x:Name="QueryResponseJSON" Header="JSON" Click="QueryResponseJSON_Click"/>
+                </MenuItem>
+
+
+            </MenuItem>
+            <MenuItem x:Name="Help"  Header="_Help">
+                <MenuItem x:Name="About" Header="_About" Click="About_Click"/>
+            </MenuItem>
+        </Menu>
+        <TextBox x:Name="AccountTokenBox" HorizontalAlignment="Left" Height="23" Margin="10,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="432" Text="{Binding Source={x:Static local:Globals.Default}, Path=AccountToken}"/>
+        <Label x:Name="TransactionTypeLabel" Content="Transaction Type:" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Height="26" Width="102"/>
+        <Label x:Name="ChargeTypeLabel" Content="Charge Type:" HorizontalAlignment="Left" Margin="165,79,0,0" VerticalAlignment="Top" Height="26" Width="79"/>
+        <Label x:Name="AmountLabel" Content="Amount:" HorizontalAlignment="Left" Margin="307,79,0,0" VerticalAlignment="Top" Height="26" Width="67"/>
+        <Label x:Name="OrderIDLabel" Content="Order ID:" HorizontalAlignment="Left" Margin="442,79,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="TransactionTypeBox" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="TransactionTypeBox_SelectionChanged"/>
+        <ComboBox x:Name="ChargeTypeBox" HorizontalAlignment="Left" Margin="165,110,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="AmountBox" HorizontalAlignment="Left" Height="23" Margin="307,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="OrderIDBox" HorizontalAlignment="Left" Height="23" Margin="442,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" IsReadOnly="True"/>
+        <TextBox x:Name="PostParametersBox" HorizontalAlignment="Left" Height="167" Margin="614,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="310"/>
+        <Label x:Name="PostParametersLabel" Content="Post Parameters:" HorizontalAlignment="Left" Margin="614,20,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="PayerIDLabel" Content="Payer Identifier:" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="SpanLabel" Content="Span:" HorizontalAlignment="Left" Margin="165,137,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="PayerIDBox" HorizontalAlignment="Left" Height="23" Margin="10,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="PayerIDBox_TextChanged"/>
+        <TextBox x:Name="SpanBox" HorizontalAlignment="Left" Height="23" Margin="165,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="TCCLabel" Content="Transaction Condition Code:" HorizontalAlignment="Left" Margin="307,137,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="TCCComboBox" HorizontalAlignment="Left" Margin="307,168,0,0" VerticalAlignment="Top" Width="120" DisplayMemberPath="Header" SelectedValuePath="Value"/>
+        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="10,303,0,0" VerticalAlignment="Top" Width="75" Click="SubmitButton_Click"/>
+        <TextBox x:Name="CustomParametersBox" HorizontalAlignment="Left" Height="102" Margin="307,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272"/>
+        <Label x:Name="CustomParametersLabel" Content="Custom Parameters:" HorizontalAlignment="Left" Margin="307,190,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="HostPayBrowser" HorizontalAlignment="Left" Height="270" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="599"/>
+
     </Grid>
 </Window>
