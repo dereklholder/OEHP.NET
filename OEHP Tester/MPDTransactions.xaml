@@ -15,7 +15,7 @@
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Right" Margin="0,223,6,0" VerticalAlignment="Top" Height="377" Width="314" ItemsSource="{Binding}"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Right" Margin="0,223,6,0" VerticalAlignment="Top" Height="377" Width="314" ItemsSource="{Binding}" AutoGenerateColumns="True"/>
         <Label x:Name="label" Content="Account Token:" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Height="26" Width="92"/>
         <Menu x:Name="MenuBar" Height="20" VerticalAlignment="Top">
             <MenuItem x:Name="File" Header="_File" Click="File_Click">
@@ -24,7 +24,12 @@
                 <Separator />
                 <MenuItem x:Name="CloseMenuItem" Header="_Close" Click="ExitMenuItem_Click" IsCheckable="False"/>
             </MenuItem>
-            <MenuItem x:Name="Tools" Header="_Tools" Click="Tools_Click">
+            <MenuItem x:Name="Options" Header="_Options" Click="Tools_Click">
+                <MenuItem x:Name="DuplicateMode" Header="_Duplicate Checking">
+                    <MenuItem x:Name="DupCheckOn" Header="_On" IsChecked="{Binding Source={x:Static local:Globals.Default}, Path=DuplicateOn}"/>
+                    <MenuItem x:Name="DupCheckOff" Header="_Off" IsChecked="{Binding Source={x:Static local:Globals.Default}, Path=DuplicateOff}"/>
+                    
+                </MenuItem>
                 <MenuItem x:Name="Presets" Header="_Presets">
                     <MenuItem x:Name="PresetEMVTesting" Header="_EMV Testing" Click="PresetEMVTesting_Click"/>
                     <MenuItem x:Name="PresetCanadianTesting" Header="_Canadian Testing" Click="PresetCanadianTesting_Click"/>
@@ -63,7 +68,7 @@
         <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="10,303,0,0" VerticalAlignment="Top" Width="75" Click="SubmitButton_Click"/>
         <TextBox x:Name="CustomParametersBox" HorizontalAlignment="Left" Height="102" Margin="307,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272"/>
         <Label x:Name="CustomParametersLabel" Content="Custom Parameters:" HorizontalAlignment="Left" Margin="307,190,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="HostPayBrowser" HorizontalAlignment="Left" Height="270" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="599"/>
+        <TextBox x:Name="HostPayBrowser" HorizontalAlignment="Left" Height="270" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="569"/>
 
     </Grid>
 </Window>

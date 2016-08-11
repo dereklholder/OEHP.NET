@@ -194,5 +194,29 @@ namespace OEHP_Tester {
                 this["QueryParameters"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DuplicateOn {
+            get {
+                return ((string)(this["DuplicateOn"]));
+            }
+            set {
+                this["DuplicateOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DuplicateOff {
+            get {
+                return ((string)(this["DuplicateOff"]));
+            }
+            set {
+                this["DuplicateOff"] = value;
+            }
+        }
     }
 }

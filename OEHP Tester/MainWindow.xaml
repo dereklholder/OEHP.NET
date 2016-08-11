@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OEHP_Tester"
         mc:Ignorable="d"
-        Title="OEHP Tester/Debug App" Height="637.328" Width="934.712" Icon="oehpwpf.ico">
+        Title="OEHP Tester/Debug App" Height="637.328" Width="934.712" Icon="oehpwpf.ico" WindowStartupLocation="CenterScreen">
 
     
     <Grid Margin="0,0,2,-3">
@@ -73,10 +73,14 @@
                 <Separator />
                 <MenuItem x:Name="ExitMenuItem" Header="_Exit" Click="ExitMenuItem_Click" IsCheckable="False"/>
             </MenuItem>
-            <MenuItem x:Name="Tools" Header="_Tools">
+            <MenuItem x:Name="Options" Header="_Options">
                 <MenuItem x:Name="ProcessingMode" Header="_Mode">
                     <MenuItem x:Name="ProcessingModeTest" Header="_Test" Click="ProcessingModeTest_Click"/>
                     <MenuItem x:Name="ProcessingModeLive" Header="_Live" Click="ProcessingModeLive_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="DuplicateChecking" Header="_Duplicate Checking">
+                    <MenuItem x:Name="DupCheckOn" Header="_On" Click="DupCheckOn_Click" IsChecked="{Binding Source={x:Static local:Globals.Default}, Path=DuplicateOn}"/>
+                    <MenuItem x:Name="DupCheckOff" Header="_Off" Click="DupCheckOff_Click" IsChecked="{Binding Source={x:Static local:Globals.Default}, Path=DuplicateOff}"/>
                 </MenuItem>
                 <MenuItem x:Name="Presets" Header="_Presets">
                     <MenuItem x:Name="PresetEMVTesting" Header="_EMV Testing" Click="PresetEMVTesting_Click"/>
@@ -93,7 +97,9 @@
                     <MenuItem x:Name="PayPageFields" Header="_PayPage Fields" Click="PayPageFields_Click"/>
                     <MenuItem x:Name="PayPageBranding" Header="_PayPage Branding (CSS)" Click="PayPageBranding_Click"/>
                 </MenuItem>
-                <MenuItem x:Name="GenerateReceipt" Header="_Generate Receipt">
+            </MenuItem>
+            <MenuItem x:Name="Tools" Header="_Tools">
+                 <MenuItem x:Name="GenerateReceipt" Header="_Generate Receipt">
                     <MenuItem x:Name="TipReceipt" Header="_Tip Receipt" Click="TipReceipt_Click"/>
                     <MenuItem x:Name="StandardReceipt" Header="_Standard Receipt" Click="StandardReceipt_Click"/>
                 </MenuItem>

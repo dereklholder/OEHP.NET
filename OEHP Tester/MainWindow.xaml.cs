@@ -132,6 +132,7 @@ namespace OEHP_Tester
 
 
         }
+
         //Collections for Combo Boxes
         public ObservableCollection<string> SubmitMethodBoxValues = new ObservableCollection<string>();
         public ObservableCollection<string> SubmitMethodBoxDirectPost = new ObservableCollection<string>();
@@ -1369,6 +1370,22 @@ namespace OEHP_Tester
                 Receipt r = new Receipt(receiptData);
                 r.ShowDialog();
             }
+        }
+
+        private void DupCheckOn_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.Default.DuplicateOn = "TRUE";
+            Globals.Default.DuplicateOff = "FALSE";
+            
+            Globals.Default.Save();
+        }
+
+        private void DupCheckOff_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.Default.DuplicateOn = "FALSE";
+            Globals.Default.DuplicateOff = "TRUE";
+            
+            Globals.Default.Save();
         }
     }
     

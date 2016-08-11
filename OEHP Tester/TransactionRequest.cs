@@ -20,7 +20,7 @@ namespace OEHP_Tester
             string orderIDBuilder = "order_id=" + orderID;
             string accountTokenBuilder = "account_token=" + accountToken;
             string tccBuilder = "transaction_condition_code=" + tcc;
-
+            
             StringBuilder parameters = new StringBuilder();
             parameters.Append(accountTokenBuilder
                         + "&" + transactionTypeBuilder
@@ -28,10 +28,17 @@ namespace OEHP_Tester
                         + "&" + chargeTypeBuilder
                         + "&" + chargeAmountBuilder
                         + "&" + orderIDBuilder
-                        + "&" + "duplicate_check=NO_CHECK" //Because app is for Debug Purposes only, Duplicate checkign is disabeld on all transactions
                         + "&" + tccBuilder
                         + customParameters)
                         ;
+            if (Globals.Default.DuplicateOn == "TRUE")
+            {
+                parameters.Append("&duplicate_check=CHECK");
+            }
+            if (Globals.Default.DuplicateOff =="TRUE")
+            {
+                parameters.Append("&duplicate_check=NO_CHECK");
+            }
             if (chargeType == "DEBIT")
             {
                 parameters.Append("&manage_payer_data=true");
@@ -59,8 +66,15 @@ namespace OEHP_Tester
                         + "&" + chargeTypeBuilder                        
                         + "&" + chargeAmountBuilder
                         + "&" + orderIDBuilder
-                        + "&" + "duplicate_check=NO_CHECK"
                         + customParameters);
+            if (Globals.Default.DuplicateOn == "TRUE")
+            {
+                parameters.Append("&duplicate_check=CHECK");
+            }
+            if (Globals.Default.DuplicateOff == "TRUE")
+            {
+                parameters.Append("&duplicate_check=NO_CHECK");
+            }
             if (chargeType == "SALE" || chargeType == "AUTH")
             {
                 parameters.Append("&manage_payer_data=true");
@@ -89,11 +103,17 @@ namespace OEHP_Tester
                                 + "&" + chargeAmountBuilder
                                 + "&" + orderIDBuilder
                                 + "&" + approvalCodeBuilder
-                                + "&" + approvalCodeBuilder
-                                + "&" + "duplicate_check=NO_CHECK"
                                 + customParameters)
                                 ;
             ;
+            if (Globals.Default.DuplicateOn == "TRUE")
+            {
+                parameters.Append("&duplicate_check=CHECK");
+            }
+            if (Globals.Default.DuplicateOff == "TRUE")
+            {
+                parameters.Append("&duplicate_check=NO_CHECK");
+            }
             return parameters.ToString();
 
         }
@@ -139,9 +159,16 @@ namespace OEHP_Tester
                                     + "&" + chargeTypeBuilder
                                     + "&" + chargeAmountBuilder
                                     + "&" + orderIDBuilder
-                                    + "&" + "duplicate_check=NO_CHECK"
                                     + customParamBuilder)
-                ;
+                                    ;
+                if (Globals.Default.DuplicateOn == "TRUE")
+                {
+                    parameters.Append("&duplicate_check=CHECK");
+                }
+                if (Globals.Default.DuplicateOff == "TRUE")
+                {
+                    parameters.Append("&duplicate_check=NO_CHECK");
+                }
             }
             if (usesAccountType == true)
             {
@@ -151,10 +178,17 @@ namespace OEHP_Tester
                                     + "&" + chargeTypeBuilder
                                     + "&" + chargeAmountBuilder
                                     + "&" + orderIDBuilder
-                                    + "&" + "duplicate_check=NO_CHECK"
                                     + "&" + accountTypeBuilder
                                     + customParamBuilder)
-                ;
+                                    ;
+                if (Globals.Default.DuplicateOn == "TRUE")
+                {
+                    parameters.Append("&duplicate_check=CHECK");
+                }
+                if (Globals.Default.DuplicateOff == "TRUE")
+                {
+                    parameters.Append("&duplicate_check=NO_CHECK");
+                }
             }
 
             return parameters.ToString();
@@ -201,8 +235,15 @@ namespace OEHP_Tester
                                 + "&" + amountBuilder
                                 + "&" + "managed_payer_data=true"
                                 + "&" + tccbuilder
-                                + "&" + "duplicate_check=NO_CHECK"
                                 + "&" + customParameters);
+            if (Globals.Default.DuplicateOn == "TRUE")
+            {
+                parameters.Append("&duplicate_check=CHECK");
+            }
+            if (Globals.Default.DuplicateOff == "FALSE")
+            {
+                parameters.Append("&duplicate_check=NO_CHECK");
+            }
 
 
             return parameters.ToString();
@@ -226,10 +267,17 @@ namespace OEHP_Tester
                                 + "&" + payerIDBuilder
                                 + "&" + spanBuilder
                                 + "&" + amountBuilder
-                                + "&" + "managed_payer_data=true"
-                                + "&" + "duplicate_check=NO_CHECK"
+                                + "&" + "managed_payer_data=true"                             
                                 + "&" + tccBuilder
                                 + "&" + customParameters);
+            if (Globals.Default.DuplicateOn == "TRUE")
+            {
+                parameters.Append("&duplicate_check=CHECK");
+            }
+            if (Globals.Default.DuplicateOff == "TRUE")
+            {
+                parameters.Append("&duplicate_check=NO_CHECK");
+            }
 
 
             return parameters.ToString();
