@@ -1,4 +1,8 @@
-﻿1.1 Release:
+﻿1.1.1 Release:
+Added Toggle for Duplicate Checking.
+Added Live Toggle to MPD Transactions
+Added Query after Void, Capture, Adjustment, Auth, and Dependent Return
+1.1 Release:
 Added MPD Functionality to Tester Utility.
 1.0 Release:
 Initial Release to DevServices Group. Basic Functionality included.

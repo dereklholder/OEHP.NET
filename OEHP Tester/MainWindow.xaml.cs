@@ -858,7 +858,63 @@ namespace OEHP_Tester
             OEHP.NET.DataManipulation dm = new OEHP.NET.DataManipulation();
             OEHP.NET.GatewayRequest gr = new OEHP.NET.GatewayRequest();
             string paymentFinishedSignal = gf.PaymentFinishedSignal(gf.GetPageContent(OEHPWebBrowser));
+            if (ChargeTypeBox.Text == "VOID" || ChargeTypeBox.Text == "CAPTURE" || ChargeTypeBox.Text == "AUTH" || ChargeTypeBox.Text == "ADJUSTMENT")
+            {
+                queryParameters = tr.DirectPostBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.SelectedItem.ToString(), "QUERY");
+                Globals.Default.QueryParameters = queryParameters;
 
+                gf.WriteToLog(queryParameters);
+                if (Globals.Default.ProcessingMode == "Test")
+                {
+                    Globals.Default.QueryResponse = gr.TestDirectPost(queryParameters);
+                    gf.WriteToLog(QueryPaymentBox.Text);
+
+                    if (Globals.Default.QueryResponseMode == "JSON")
+                    {
+                        Globals.Default.QueryResponse = dm.QueryStringToJson(QueryPaymentBox.Text);
+                    }
+                }
+                if (Globals.Default.ProcessingMode == "Live")
+                {
+                    Globals.Default.QueryResponse = gr.LiveDirectPost(queryParameters);
+                    gf.WriteToLog(QueryPaymentBox.Text);
+
+                    if (Globals.Default.QueryResponse == "JSON")
+                    {
+                        Globals.Default.QueryResponse = dm.QueryStringToJson(QueryPaymentBox.Text);
+                    }
+                }
+            }
+            if (ChargeTypeBox.Text == "CREDIT" && CreditTypeBox.Text == "DEPENDENT")
+            {
+                queryParameters = tr.DirectPostBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.Text, "QUERY");
+                Globals.Default.QueryParameters = queryParameters; 
+                   
+                gf.WriteToLog(queryParameters);
+                if (Globals.Default.ProcessingMode == "Test")
+                {
+                    Globals.Default.QueryResponse = gr.TestDirectPost(queryParameters);
+                    gf.WriteToLog(QueryParametersBox.Text);
+
+                    if (Globals.Default.QueryResponse == "JSON")
+                    {
+                        Globals.Default.QueryResponse = dm.QueryStringToJson(QueryPaymentBox.Text);
+                    }
+                }
+                if (Globals.Default.ProcessingMode == "Live")
+                {
+                    Globals.Default.QueryResponse = gr.TestDirectPost(queryParameters);
+                    gf.WriteToLog(QueryParametersBox.Text);
+                    
+                    if (Globals.Default.QueryResponse == "JSON")
+                    {
+                        Globals.Default.QueryResponse = dm.QueryStringToJson(QueryParametersBox.Text);
+                    }
+                }                  
+
+
+                
+            }
             if (paymentFinishedSignal == "done")
             {
                 switch (TransactionTypeBox.SelectedItem.ToString())

@@ -21,7 +21,30 @@ namespace OEHP.NET
         public string LiveDirectPostURL = "https://ws.paygateway.com/api/v1/transactions";
         public string LiveHtmlDocPostURL = "https://ws.paygateway.com/HostPayService/v1/hostpay/paypage/";
         public static string LiveRcmStatusURL = "https://ws.paygateway.com/HostPayService/v1/hostpay/transactions/status/";
+        //Object for PayPage CSS Fields
+        public struct PayPageCSS
+        {
+            public string font_family { get; set; }
+            public string font_size { get; set; }
+            public string color { get; set; }
+            public string background_color { get; set; }
+            public string btn_background_color { get; set; }
+            public string btn_color { get; set; }
+            public string btn_width { get; set; }
+            public string btn_height { get; set; }
+            public string btn_border_top_left_radius { get; set; }
+            public string btn_border_top_right_radius { get; set; }
+            public string btn_border_bottom_left_radius { get; set; }
+            public string btn_border_bottom_right_radius { get; set; }
+            public string btn_border_color { get; set; }
+            public string btn_border_style { get; set; }
+            public string section_header_font_size { get; set; }
+            public string line_spacing_size { get; set; }
+            public string input_field_height { get; set; }
 
+            public string exceptionData { get; set; }
+
+        }
         //Object for deserializing the JSOn returned from PayPage POST
         public struct PayPageJson
         {

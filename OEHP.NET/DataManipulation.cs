@@ -54,6 +54,23 @@ namespace OEHP.NET
             }
             
         }
+        public PayPageCSS PayPageCSSObject(string json)
+        {
+            try
+            {
+                PayPageCSS PPC = new PayPageCSS();
+                PPC = JsonConvert.DeserializeObject<PayPageCSS>(json);
+                return PPC;
+            }
+            catch (Exception ex)
+            {
+                PayPageCSS PPC = new PayPageCSS();
+                PPC.exceptionData = ex.ToString();
+                return PPC;
+            }
+        }
+
+
         public ReceiptDataOnly ReceiptDataObject(string json)
         {
             try

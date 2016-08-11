@@ -53,6 +53,14 @@ namespace OEHP_Tester
                 QueryResponseQueryString.IsChecked = false;
                 QueryResponseJSON.IsChecked = true;
             }
+            if (Globals.Default.ProcessingMode == "Live")
+            {
+                Live.IsChecked = true;
+            }
+            if (Globals.Default.ProcessingMode == "Test")
+            {
+                Test.IsChecked = true;
+            }
 
         }
         public List<TCCList> ACHorCCTCC()
@@ -235,6 +243,26 @@ namespace OEHP_Tester
             {
                 MessageBox.Show("Invalid Transaction Parameters, please check your Parameters and try again.");
             }
+        }
+
+        private void Live_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.Default.ProcessingMode = "Live";
+            if (Test.IsChecked == true)
+            {
+                Test.IsChecked = false;
+            }
+            Live.IsChecked = true;
+        }
+
+        private void Test_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.Default.ProcessingMode = "Test";
+            if (Live.IsChecked == true)
+            {
+                Live.IsChecked = false;
+            }
+            Test.IsChecked = true;
         }
     }
     public class TCCList

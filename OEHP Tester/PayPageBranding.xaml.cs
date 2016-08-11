@@ -19,22 +19,50 @@ namespace OEHP_Tester
     /// <summary>
     /// Interaction logic for PayPageBranding.xaml
     /// </summary>
+
+    
     public partial class PayPageBranding : Window
     {
         public PayPageBranding()
         {
             InitializeComponent();
+            //parseIntoPPCObject(Globals.Default?.CustomParameters);
             if (Globals.Default.CustomParameters != "")
             {
                 ParseQueryStringFromCustomParameters(Globals.Default.CustomParameters);
             }
             
         }
+        private void parseIntoPPCObject(string parameters)
+        {
+            OEHP.NET.DataManipulation dm = new OEHP.NET.DataManipulation();
+            var PPCObject = dm.PayPageCSSObject(dm.QueryStringToJson(parameters));
+            PayPageCosmetic.Default.font_family = PPCObject.font_family.Trim(';');
+            PayPageCosmetic.Default.font_size = PPCObject.font_size.Trim(';');
+            PayPageCosmetic.Default.color = PPCObject.color.Trim(';');
+            PayPageCosmetic.Default.background_color = PPCObject.color.Trim(';');
+            PayPageCosmetic.Default.btn_color = PPCObject.btn_color.Trim(';');
+            PayPageCosmetic.Default.btn_background_color = PPCObject.btn_background_color.Trim(';');
+            PayPageCosmetic.Default.btn_height = PPCObject.btn_height.Trim(';');
+            PayPageCosmetic.Default.btn_width = PPCObject.btn_width.Trim(';');
+            PayPageCosmetic.Default.btn_border_top_left_radius = PPCObject.btn_border_top_left_radius.Trim(';');
+            PayPageCosmetic.Default.btn_border_top_right_radius = PPCObject.btn_border_top_right_radius.Trim(';');
+            PayPageCosmetic.Default.btn_border_bottom_left_radius = PPCObject.btn_border_bottom_left_radius.Trim(';');
+            PayPageCosmetic.Default.btn_border_bottom_right_radius = PPCObject.btn_border_bottom_right_radius.Trim(';');
+            PayPageCosmetic.Default.btn_border_color = PPCObject.btn_border_color.Trim(';');
+            PayPageCosmetic.Default.btn_border_style = PPCObject.btn_border_style.Trim(';');
+            PayPageCosmetic.Default.section_header_font_size = PPCObject.section_header_font_size.Trim(';');
+            PayPageCosmetic.Default.line_spacing_size = PPCObject.line_spacing_size.Trim(';');
+            PayPageCosmetic.Default.input_field_height = PPCObject.input_field_height.Trim(';');
+
+        }
+
         public void ParseQueryStringFromCustomParameters(string parameters)
         {
             
             if (parameters != "")
             {
+
                 NameValueCollection keyPairs = HttpUtility.ParseQueryString(parameters);
 
                 PayPageCosmetic.Default.font_family = keyPairs.Get("font-family").Trim(';');
@@ -55,7 +83,7 @@ namespace OEHP_Tester
                 PayPageCosmetic.Default.line_spacing_size = keyPairs.Get("line-spacing-size").Trim(';');
                 PayPageCosmetic.Default.input_field_height = keyPairs.Get("input-field-height").Trim(';');
 
-                PayPageCosmetic.Default.Save(); 
+                PayPageCosmetic.Default.Save();
             }
         }
         public string PayPageBrandingCombiner()

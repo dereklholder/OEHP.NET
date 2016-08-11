@@ -25,10 +25,14 @@
                 <MenuItem x:Name="CloseMenuItem" Header="_Close" Click="ExitMenuItem_Click" IsCheckable="False"/>
             </MenuItem>
             <MenuItem x:Name="Options" Header="_Options" Click="Tools_Click">
+                <MenuItem x:Name="ProcessingMode" Header="_Processing Mode">
+                    <MenuItem x:Name="Test" Header="_Test" Click="Test_Click"/>
+                    <MenuItem x:Name="Live" Header="_Live" Click="Live_Click"/>                 
+                </MenuItem>
                 <MenuItem x:Name="DuplicateMode" Header="_Duplicate Checking">
                     <MenuItem x:Name="DupCheckOn" Header="_On" IsChecked="{Binding Source={x:Static local:Globals.Default}, Path=DuplicateOn}"/>
                     <MenuItem x:Name="DupCheckOff" Header="_Off" IsChecked="{Binding Source={x:Static local:Globals.Default}, Path=DuplicateOff}"/>
-                    
+                 
                 </MenuItem>
                 <MenuItem x:Name="Presets" Header="_Presets">
                     <MenuItem x:Name="PresetEMVTesting" Header="_EMV Testing" Click="PresetEMVTesting_Click"/>
