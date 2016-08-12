@@ -1,4 +1,8 @@
-﻿1.1.1 Release:
+﻿1.1.2 Release
+Adding utility to create new DB
+Created logic to create DB on startup if none is detected.
+Restricted Live Processing using Username/Password.
+1.1.1 Release:
 Added Toggle for Duplicate Checking.
 Added Live Toggle to MPD Transactions
 Added Query after Void, Capture, Adjustment, Auth, and Dependent Return

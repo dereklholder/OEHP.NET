@@ -247,12 +247,24 @@ namespace OEHP_Tester
 
         private void Live_Click(object sender, RoutedEventArgs e)
         {
-            Globals.Default.ProcessingMode = "Live";
-            if (Test.IsChecked == true)
+            LoginForLive login = new LoginForLive();
+            if (login.ShowDialog().Value == false)
             {
-                Test.IsChecked = false;
+                bool CorrectLogin = login.CorrectLogin;
+                if (CorrectLogin == true)
+                {
+                    Globals.Default.ProcessingMode = "Live";
+                    if (Test.IsChecked == true)
+                    {
+                        Test.IsChecked = false;
+                    }
+                    Live.IsChecked = true;
+                }
+                else
+                {
+                    MessageBox.Show("Live processing restricted to OpenEdge. Please contact your OpenEdge Representative.");
+                }
             }
-            Live.IsChecked = true;
         }
 
         private void Test_Click(object sender, RoutedEventArgs e)
@@ -263,6 +275,20 @@ namespace OEHP_Tester
                 Live.IsChecked = false;
             }
             Test.IsChecked = true;
+        }
+
+        private void CreateNewDB_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("This will delete the current database, do you want to continue?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                //do no stuff
+            }
+            else
+            {
+                GeneralFunctions gf = new GeneralFunctions();
+                gf.CreateDBFile();
+
+            }
         }
     }
     public class TCCList

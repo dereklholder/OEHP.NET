@@ -37,5 +37,10 @@ namespace OEHP_Tester.Test
             //Assert
             Assert.AreEqual(expected, result);
         }
+        [TestMethod]
+        public void CreditForceParamBuilderFormatsCorrect()
+        {
+
+        }
     }
 }

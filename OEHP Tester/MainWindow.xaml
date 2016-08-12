@@ -103,6 +103,7 @@
                     <MenuItem x:Name="TipReceipt" Header="_Tip Receipt" Click="TipReceipt_Click"/>
                     <MenuItem x:Name="StandardReceipt" Header="_Standard Receipt" Click="StandardReceipt_Click"/>
                 </MenuItem>
+                <MenuItem x:Name="CreateNewDB" Header="_Create New Database" Click="CreateNewDB_Click"/>
             </MenuItem>
             <MenuItem x:Name="Help"  Header="_Help">
                 <MenuItem x:Name="About" Header="_About" Click="About_Click"/>

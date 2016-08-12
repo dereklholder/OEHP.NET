@@ -32,8 +32,13 @@ namespace OEHP_Tester
 
 
             InitializeComponent();
-
-            
+            bool DBExists = IsThereADB();
+            if (DBExists == false)
+            {
+                GeneralFunctions gf = new GeneralFunctions();
+                gf.CreateDBFile();
+            }
+       
             
             //if (Properties.Settings.Default.IsFirstRun == "true")
             //{
@@ -152,7 +157,7 @@ namespace OEHP_Tester
         public ObservableCollection<string> AccountTypeValues = new ObservableCollection<string>();
         public ObservableCollection<string> TCCValues = new ObservableCollection<string>();
 
-
+        //Massive Method that does all the work.
         private void submitButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1349,12 +1354,24 @@ namespace OEHP_Tester
 
         private void ProcessingModeLive_Click(object sender, RoutedEventArgs e)
         {
-            Globals.Default.ProcessingMode = "Live";
-            if (ProcessingModeTest.IsChecked == true)
+            LoginForLive login = new LoginForLive();
+            if (login.ShowDialog().Value == false)
             {
-                ProcessingModeTest.IsChecked = false;
-            }
-            ProcessingModeLive.IsChecked = true;
+                bool CorrectLogin = login.CorrectLogin;
+                if (CorrectLogin == true)
+                {
+                    Globals.Default.ProcessingMode = "Live";
+                    if (ProcessingModeTest.IsChecked == true)
+                    {
+                        ProcessingModeTest.IsChecked = false;
+                    }
+                    ProcessingModeLive.IsChecked = true;
+                }
+                else
+                {
+                    MessageBox.Show("Live processing restricted to OpenEdge. Please contact your OpenEdge Representative.");
+                }
+            }            
         }
 
         private void PayPageFields_Click(object sender, RoutedEventArgs e)
@@ -1442,6 +1459,32 @@ namespace OEHP_Tester
             Globals.Default.DuplicateOff = "TRUE";
             
             Globals.Default.Save();
+        }
+
+        private void CreateNewDB_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("This will delete the current database, do you want to continue?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                //do no stuff
+            }
+            else
+            {
+                GeneralFunctions gf = new GeneralFunctions();
+                gf.CreateDBFile();
+
+            }
+        }
+        private bool IsThereADB()
+        {
+            if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "tran.oehp") == true)
+            {
+                
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
     

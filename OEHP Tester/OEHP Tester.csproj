@@ -132,6 +132,9 @@
       <DependentUpon>Globals.settings</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="LoginForLive.xaml.cs">
+      <DependentUpon>LoginForLive.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MPDTransactions.xaml.cs">
       <DependentUpon>MPDTransactions.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
     </Compile>
     <Compile Include="TransactionRequest.cs" />
     <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginForLive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,9 +234,7 @@
     <Content Include="ReleaseNotes.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="tran.oehp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="tran.oehp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
