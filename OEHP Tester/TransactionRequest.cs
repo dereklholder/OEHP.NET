@@ -240,7 +240,7 @@ namespace OEHP_Tester
             {
                 parameters.Append("&duplicate_check=CHECK");
             }
-            if (Globals.Default.DuplicateOff == "FALSE")
+            if (Globals.Default.DuplicateOff == "TRUE")
             {
                 parameters.Append("&duplicate_check=NO_CHECK");
             }

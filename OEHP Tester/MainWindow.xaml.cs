@@ -1486,6 +1486,16 @@ namespace OEHP_Tester
                 return false;
             }
         }
+
+        private void GoToPortal_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Globals.Default.DevPortalURL);
+        }
+
+        private void EmailDevServices_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("mailto:" + Globals.Default.ContactDevServices);
+        }
     }
     
 }

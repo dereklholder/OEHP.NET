@@ -27,6 +27,8 @@ namespace OEHP_Tester
             InitializeComponent();
 
             DataTable dt = GeneralFunctions.GetPayerIDAndSpan();
+            dt.Columns["payer_identifier"].ColumnName = "Payer Identifier";
+            dt.Columns["span"].ColumnName = "SPAN";
             dataGrid.DataContext = dt.DefaultView;
 
             CreditCardChargeTypeCollection.Add("SALE");
@@ -289,6 +291,16 @@ namespace OEHP_Tester
                 gf.CreateDBFile();
 
             }
+        }
+
+        private void GoToPortal_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Globals.Default.DevPortalURL);
+        }
+
+        private void EmailDevServices_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("mailto:" + Globals.Default.ContactDevServices);
         }
     }
     public class TCCList

@@ -8,6 +8,7 @@
         Title="Receipt" Height="Auto" Width="240" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock x:Name="receiptText" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="Auto" Width="220" Text=""/>
+        
 
     </Grid>
 </Window>

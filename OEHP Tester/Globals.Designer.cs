@@ -218,5 +218,29 @@ namespace OEHP_Tester {
                 this["DuplicateOff"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://www.xchargedeveloper.com")]
+        public string DevPortalURL {
+            get {
+                return ((string)(this["DevPortalURL"]));
+            }
+            set {
+                this["DevPortalURL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DeveloperServices@openedgepay.com")]
+        public string ContactDevServices {
+            get {
+                return ((string)(this["ContactDevServices"]));
+            }
+            set {
+                this["ContactDevServices"] = value;
+            }
+        }
     }
 }

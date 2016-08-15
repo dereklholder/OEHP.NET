@@ -50,5 +50,11 @@
     <Setting Name="DuplicateOff" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="DevPortalURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.xchargedeveloper.com</Value>
+    </Setting>
+    <Setting Name="ContactDevServices" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DeveloperServices@openedgepay.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

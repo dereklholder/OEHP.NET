@@ -106,6 +106,9 @@
                 <MenuItem x:Name="CreateNewDB" Header="_Create New Database" Click="CreateNewDB_Click"/>
             </MenuItem>
             <MenuItem x:Name="Help"  Header="_Help">
+                <MenuItem x:Name="GoToPortal" Header="_Developer Services Portal" Click="GoToPortal_Click"/>
+                <MenuItem x:Name="EmailDevServices" Header="_Contact Developer Services" Click="EmailDevServices_Click"/>
+                <Separator />
                 <MenuItem x:Name="About" Header="_About" Click="About_Click"/>
             </MenuItem>
         </Menu>

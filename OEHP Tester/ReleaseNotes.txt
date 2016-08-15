@@ -1,4 +1,7 @@
-﻿1.1.2 Release
+﻿1.1.3 Release
+Cosmetic Enhancements to PayerID/Span table on MPD transactions tab.
+Added Menu options to Help tab for visiting Developer portal and sending an e-mail to Developer Services
+1.1.2 Release
 Adding utility to create new DB
 Created logic to create DB on startup if none is detected.
 Restricted Live Processing using Username/Password.
