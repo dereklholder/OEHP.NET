@@ -295,12 +295,22 @@ namespace OEHP_Tester
 
         private void GoToPortal_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(Globals.Default.DevPortalURL);
+            GeneralFunctions.NavToDevPortal();
         }
 
         private void EmailDevServices_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("mailto:" + Globals.Default.ContactDevServices);
+            GeneralFunctions.EmailDevServices();
+        }
+
+        private void DupCheckOn_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralFunctions.SetDupModeOn();
+        }
+
+        private void DupCheckOff_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralFunctions.SetDupModeOff();
         }
     }
     public class TCCList

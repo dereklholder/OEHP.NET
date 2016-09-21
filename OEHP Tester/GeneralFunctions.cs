@@ -30,6 +30,30 @@ namespace OEHP_Tester
                 MessageBox.Show("An Error Occured when Writing to the Log File." + Environment.NewLine + ex.GetBaseException().ToString());
             }
         }
+        public static void SetDupModeOff()
+        {
+            Globals.Default.DuplicateOn = "FALSE";
+            Globals.Default.DuplicateOff = "TRUE";
+
+            Globals.Default.Save();
+        }
+        public static void SetDupModeOn()
+        {
+            Globals.Default.DuplicateOn = "TRUE";
+            Globals.Default.DuplicateOff = "FALSE";
+
+            Globals.Default.Save();
+        }
+        public static void NavToDevPortal()
+        {
+            System.Diagnostics.Process.Start(Globals.Default.DevPortalURL);
+        }
+        public static void EmailDevServices()
+        {
+            System.Diagnostics.Process.Start("mailto:" + Globals.Default.ContactDevServices);
+        }
+
+
         public BitmapImage DecodeBase64Image(string base64String)
         {
             try

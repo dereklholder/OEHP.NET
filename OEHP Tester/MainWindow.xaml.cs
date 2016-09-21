@@ -59,7 +59,7 @@ namespace OEHP_Tester
             }
             if (Globals.Default.ProcessingMode == "Live")
             {
-                ProcessingModeLive.IsChecked = true;
+                CheckForLive();
             }
             if (Globals.Default.ProcessingMode == "Test")
             {
@@ -101,14 +101,17 @@ namespace OEHP_Tester
             CreditChargeTypeValues.Add("CAPTURE");
             CreditChargeTypeValues.Add("ADJUSTMENT");
             CreditChargeTypeValues.Add("SIGNATURE");
+            CreditChargeTypeValues.Add("QUERY_PAYMENT");
 
             DebitChargeTypeValues.Clear();
             DebitChargeTypeValues.Add("PURCHASE");
             DebitChargeTypeValues.Add("REFUND");
+            DebitChargeTypeValues.Add("QUERY_PURCHASE");
 
             ACHChargeTypeValues.Clear();
             ACHChargeTypeValues.Add("DEBIT");
             ACHChargeTypeValues.Add("CREDIT");
+            ACHChargeTypeValues.Add("QUERY");
 
             AccountTypeValues.Clear();
             AccountTypeValues.Add("DEFAULT");
@@ -137,6 +140,32 @@ namespace OEHP_Tester
 
 
         }
+        private void CheckForLive()
+        {
+
+            MessageBox.Show("Live Mode Detected, please re-enter Username and password.");
+
+
+            LoginForLive login = new LoginForLive();
+            if (login.ShowDialog().Value == false)
+            {
+                bool CorrectLogin = login.CorrectLogin;
+                if (CorrectLogin == true)
+                {
+                    Globals.Default.ProcessingMode = "Live";
+                    if (ProcessingModeTest.IsChecked == true)
+                    {
+                        ProcessingModeTest.IsChecked = false;
+                    }
+                    ProcessingModeLive.IsChecked = true;
+                }
+                else
+                {
+                    MessageBox.Show("Live processing restricted to OpenEdge. Please contact your OpenEdge Representative.");
+                }
+            }
+        }
+
 
         //Collections for Combo Boxes
         public ObservableCollection<string> SubmitMethodBoxValues = new ObservableCollection<string>();
@@ -467,6 +496,48 @@ namespace OEHP_Tester
                             OEHPWebBrowser.NavigateToString(gr.LiveDirectPost(transactionRequestString));
                         }
                         break;
+                        //Query Logic
+                    case "QUERY_PAYMENT":
+                        transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        if (Globals.Default.ProcessingMode == "Test")
+                        {
+                            OEHPWebBrowser.NavigateToString(gr.TestDirectPost(transactionRequestString));
+                        }
+                        else
+                        {
+                            OEHPWebBrowser.NavigateToString(gr.LiveDirectPost(transactionRequestString));
+                        }
+                        break;
+
+                        case "QUERY_PURCHASE":
+                        transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        if (Globals.Default.ProcessingMode == "Test")
+                        {
+                            OEHPWebBrowser.NavigateToString(gr.TestDirectPost(transactionRequestString));
+                        }
+                        else
+                        {
+                            OEHPWebBrowser.NavigateToString(gr.LiveDirectPost(transactionRequestString));
+                        }
+                        break;
+
+                    case "QUERY":
+                        transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        if (Globals.Default.ProcessingMode == "Test")
+                        {
+                            OEHPWebBrowser.NavigateToString(gr.TestDirectPost(transactionRequestString));
+                        }
+                        else
+                        {
+                            OEHPWebBrowser.NavigateToString(gr.LiveDirectPost(transactionRequestString));
+                        }
+                        break;
 
                     case "ADJUSTMENT":
                         transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
@@ -650,6 +721,39 @@ namespace OEHP_Tester
                         break;
 
                     case "CAPTURE":
+                        OrderIDBox.IsReadOnly = false;
+
+                        CreditTypeBox.Visibility = Visibility.Hidden;
+                        CreditTypeLabel.Visibility = Visibility.Hidden;
+
+                        ApprovalCodeBox.Visibility = Visibility.Hidden;
+                        ApprovalCodeLabel.Visibility = Visibility.Hidden;
+
+                        break;
+
+                    case "QUERY_PAYMENT":
+                        OrderIDBox.IsReadOnly = false;
+
+                        CreditTypeBox.Visibility = Visibility.Hidden;
+                        CreditTypeLabel.Visibility = Visibility.Hidden;
+
+                        ApprovalCodeBox.Visibility = Visibility.Hidden;
+                        ApprovalCodeLabel.Visibility = Visibility.Hidden;
+
+                        break;
+
+                    case "QUERY_PURCHASE":
+                        OrderIDBox.IsReadOnly = false;
+
+                        CreditTypeBox.Visibility = Visibility.Hidden;
+                        CreditTypeLabel.Visibility = Visibility.Hidden;
+
+                        ApprovalCodeBox.Visibility = Visibility.Hidden;
+                        ApprovalCodeLabel.Visibility = Visibility.Hidden;
+
+                        break;
+
+                    case "QUERY":
                         OrderIDBox.IsReadOnly = false;
 
                         CreditTypeBox.Visibility = Visibility.Hidden;
@@ -1447,18 +1551,12 @@ namespace OEHP_Tester
 
         private void DupCheckOn_Click(object sender, RoutedEventArgs e)
         {
-            Globals.Default.DuplicateOn = "TRUE";
-            Globals.Default.DuplicateOff = "FALSE";
-            
-            Globals.Default.Save();
+            GeneralFunctions.SetDupModeOn();
         }
 
         private void DupCheckOff_Click(object sender, RoutedEventArgs e)
         {
-            Globals.Default.DuplicateOn = "FALSE";
-            Globals.Default.DuplicateOff = "TRUE";
-            
-            Globals.Default.Save();
+            GeneralFunctions.SetDupModeOff();
         }
 
         private void CreateNewDB_Click(object sender, RoutedEventArgs e)
@@ -1489,12 +1587,12 @@ namespace OEHP_Tester
 
         private void GoToPortal_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(Globals.Default.DevPortalURL);
+            GeneralFunctions.NavToDevPortal();
         }
 
         private void EmailDevServices_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("mailto:" + Globals.Default.ContactDevServices);
+            GeneralFunctions.EmailDevServices();
         }
     }
     

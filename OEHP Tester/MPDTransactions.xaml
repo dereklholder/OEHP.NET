@@ -30,8 +30,8 @@
                     <MenuItem x:Name="Live" Header="_Live" Click="Live_Click"/>                 
                 </MenuItem>
                 <MenuItem x:Name="DuplicateMode" Header="_Duplicate Checking">
-                    <MenuItem x:Name="DupCheckOn" Header="_On" IsChecked="{Binding Source={x:Static local:Globals.Default}, Path=DuplicateOn}"/>
-                    <MenuItem x:Name="DupCheckOff" Header="_Off" IsChecked="{Binding Source={x:Static local:Globals.Default}, Path=DuplicateOff}"/>
+                    <MenuItem x:Name="DupCheckOn" Header="_On" IsChecked="{Binding Source={x:Static local:Globals.Default}, Path=DuplicateOn}" Click="DupCheckOn_Click"/>
+                    <MenuItem x:Name="DupCheckOff" Header="_Off" IsChecked="{Binding Source={x:Static local:Globals.Default}, Path=DuplicateOff}" Click="DupCheckOff_Click"/>
                  
                 </MenuItem>
                 <MenuItem x:Name="Presets" Header="_Presets">
