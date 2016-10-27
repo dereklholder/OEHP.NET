@@ -81,6 +81,7 @@ namespace OEHP_Tester
             TransactionTypeValues.Clear();
             TransactionTypeValues.Add("CREDIT_CARD");
             TransactionTypeValues.Add("DEBIT_CARD");
+            TransactionTypeValues.Add("CREDIT_DEBIT_CARD");
             TransactionTypeValues.Add("ACH");
             TransactionTypeValues.Add("INTERAC");
             TransactionTypeBox.ItemsSource = TransactionTypeValues;
@@ -108,9 +109,14 @@ namespace OEHP_Tester
             DebitChargeTypeValues.Add("REFUND");
             DebitChargeTypeValues.Add("QUERY_PURCHASE");
 
+            CreditDebitChargeTypeValues.Clear();
+            CreditDebitChargeTypeValues.Add("SALE");
+            CreditDebitChargeTypeValues.Add("CREDIT");
+
             ACHChargeTypeValues.Clear();
             ACHChargeTypeValues.Add("DEBIT");
             ACHChargeTypeValues.Add("CREDIT");
+            ACHChargeTypeValues.Add("VOID");
             ACHChargeTypeValues.Add("QUERY");
 
             AccountTypeValues.Clear();
@@ -181,6 +187,7 @@ namespace OEHP_Tester
         public ObservableCollection<string> CreditChargeTypeValues = new ObservableCollection<string>();
         public ObservableCollection<string> DebitChargeTypeValues = new ObservableCollection<string>();
         public ObservableCollection<string> ACHChargeTypeValues = new ObservableCollection<string>();
+        public ObservableCollection<string> CreditDebitChargeTypeValues = new ObservableCollection<string>();
 
         public ObservableCollection<string> CreditTypeValues = new ObservableCollection<string>();
         public ObservableCollection<string> AccountTypeValues = new ObservableCollection<string>();
@@ -556,7 +563,7 @@ namespace OEHP_Tester
 
                         //May need to Redo ACH Dependent Return
                     case "CREDIT":
-                        if (TransactionTypeBox.SelectedItem.ToString() == "CREDIT_CARD")
+                        if (TransactionTypeBox.SelectedItem.ToString() == "CREDIT_CARD" || TransactionTypeBox.SelectedItem.ToString() == "CREDIT_DEBIT_CARD")
                         {
                             if (CreditTypeBox.SelectedItem.ToString() == "INDEPENDENT")
                             {
@@ -847,6 +854,30 @@ namespace OEHP_Tester
 
                         break;
 
+                    case "CREDIT_DEBIT_CARD":
+
+                        AccountTypeBox.Visibility = Visibility.Visible;
+                        AccountTypeLabel.Visibility = Visibility.Visible;
+                        CreditTypeLabel.Visibility = Visibility.Hidden;
+                        CreditTypeBox.Visibility = Visibility.Hidden;
+                        TCCBox.Visibility = Visibility.Hidden;
+                        TCCLabel.Visibility = Visibility.Hidden;
+                        ApprovalCodeBox.Visibility = Visibility.Hidden;
+                        ApprovalCodeLabel.Visibility = Visibility.Hidden;
+
+                        EntryModeBox.ItemsSource = DebitEntryModeValues;
+                        EntryModeBox.SelectedIndex = 0;
+
+                        AccountTypeBox.SelectedIndex = 0;
+
+                        ChargeTypeBox.ItemsSource = CreditDebitChargeTypeValues;
+                        ChargeTypeBox.SelectedIndex = 0;
+
+                        CreditTypeBox.SelectedIndex = -1;
+                        TCCBox.SelectedIndex = -1;
+
+                        break;
+
                     case "ACH":
 
                         AccountTypeBox.Visibility = Visibility.Hidden;
@@ -1111,6 +1142,102 @@ namespace OEHP_Tester
                             if (null != value)
                             {
                                 SignatureImage.Source =  gf.DecodeBase64Image(value);
+                            }
+                            else
+                            {
+                                gf.WriteToLog("No Signature Image to Display");
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            gf.WriteToLog(ex.ToString());
+                        }
+                        break;
+
+                    case "CREDIT_DEBIT_CARD":
+                        queryParameters = tr.DirectPostBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.SelectedItem.ToString(), "QUERY_PAYMENT");
+                        Globals.Default.QueryParameters = queryParameters;
+
+                        gf.WriteToLog(queryParameters);
+                        if (Globals.Default.ProcessingMode == "Test")
+                        {
+                            Globals.Default.QueryResponse = gr.TestDirectPost(queryParameters);
+                            gf.WriteToLog(QueryPaymentBox.Text);
+
+                            //Converts QueryString to JSON in Query Response if mode is set.
+                            if (Globals.Default.QueryResponseMode == "JSON")
+                            {
+                                Globals.Default.QueryResponse = dm.QueryStringToJson(QueryPaymentBox.Text);
+                                //QueryPaymentBox.Text = result;
+                            }
+
+                            //Writes transaction data to DB
+                            char firstChar = QueryPaymentBox.Text[0];
+                            if (firstChar == 'r')
+                            {
+
+                                string result = dm.QueryStringToJson(Globals.Default.QueryResponse);
+                                var qro = dm.QueryResultObject(result);
+                                object[] args = new object[] { qro.response_code, qro.response_code_text, qro.secondary_response_code, qro.secondary_response_code_text, qro.time_stamp, qro.retry_recommended, qro.authorized_amount, qro.bin, qro.captured_amount, qro.original_authorized_amount, qro.requested_amount, qro.time_stamp_created, qro.original_response_code, qro.original_response_code_text, qro.time_stamp_updated, qro.state, qro.bank_approval_code, qro.expire_month, qro.expire_year, qro.order_id, qro.payer_identifier, qro.reference_id, qro.span, qro.card_brand, qro.batch_id, qro.receipt_application_cryptogram, qro.receipt_application_identifier, qro.receipt_application_preferred_name, qro.receipt_application_transaction_counter, qro.receipt_approval_code, qro.receipt_authorization_response_code, qro.receipt_card_number, qro.receipt_card_type, qro.receipt_entry_legend, qro.receipt_entry_method, qro.receipt_line_items, qro.receipt_merchant_id, qro.receipt_order_id, qro.receipt_signature_text, qro.receipt_terminal_verification_results, qro.receipt_transaction_date_time, qro.receipt_transaction_id, qro.receipt_transaction_reference_number, qro.receipt_transaction_type, qro.receipt_validation_code, qro.receipt_verbiage };
+                                string sqlInsert = string.Format("INSERT INTO TRANSACTIONDB (response_code, response_code_text, secondary_response_code, secondary_response_code_text, time_stamp, retry_recommended, authorized_amount, bin, captured_amount, original_authorized_amount, requested_amount, time_stamp_created, original_response_code, original_response_code_text, time_stamp_updated, state, bank_approval_code, expire_month, expire_year, order_id, payer_identifier, reference_id, span, card_brand, batch_id, receipt_application_cryptogram, receipt_application_identifier, receipt_application_preferred_name, receipt_application_transaction_counter, receipt_approval_code, receipt_authorization_reseponse_code, receipt_card_number, receipt_card_type, receipt_entry_legend, receipt_entry_method, receipt_line_items, receipt_merchant_id, receipt_order_id, receipt_signature_text, receipt_terminal_verificiation_results, receipt_transaction_date_time, receipt_transaction_id, receipt_transaction_reference_number, receipt_transaction_type, receipt_validation_code, receipt_verbiage) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}', '{32}', '{33}', '{34}', '{35}', '{36}', '{37}', '{38}', '{39}', '{40}', '{41}', '{42}', '{43}', '{44}', '{45}')", args);
+                                gf.InsertTransactionData(sqlInsert);
+
+                            }
+                            if (firstChar == '{')
+                            {
+                                var qro = dm.QueryResultObject(Globals.Default.QueryResponse);
+                                object[] args = new object[] { qro.response_code, qro.response_code_text, qro.secondary_response_code, qro.secondary_response_code_text, qro.time_stamp, qro.retry_recommended, qro.authorized_amount, qro.bin, qro.captured_amount, qro.original_authorized_amount, qro.requested_amount, qro.time_stamp_created, qro.original_response_code, qro.original_response_code_text, qro.time_stamp_updated, qro.state, qro.bank_approval_code, qro.expire_month, qro.expire_year, qro.order_id, qro.payer_identifier, qro.reference_id, qro.span, qro.card_brand, qro.batch_id, qro.receipt_application_cryptogram, qro.receipt_application_identifier, qro.receipt_application_preferred_name, qro.receipt_application_transaction_counter, qro.receipt_approval_code, qro.receipt_authorization_response_code, qro.receipt_card_number, qro.receipt_card_type, qro.receipt_entry_legend, qro.receipt_entry_method, qro.receipt_line_items, qro.receipt_merchant_id, qro.receipt_order_id, qro.receipt_signature_text, qro.receipt_terminal_verification_results, qro.receipt_transaction_date_time, qro.receipt_transaction_id, qro.receipt_transaction_reference_number, qro.receipt_transaction_type, qro.receipt_validation_code, qro.receipt_verbiage };
+                                string sqlInsert = string.Format("INSERT INTO TRANSACTIONDB (response_code, response_code_text, secondary_response_code, secondary_response_code_text, time_stamp, retry_recommended, authorized_amount, bin, captured_amount, original_authorized_amount, requested_amount, time_stamp_created, original_response_code, original_response_code_text, time_stamp_updated, state, bank_approval_code, expire_month, expire_year, order_id, payer_identifier, reference_id, span, card_brand, batch_id, receipt_application_cryptogram, receipt_application_identifier, receipt_application_preferred_name, receipt_application_transaction_counter, receipt_approval_code, receipt_authorization_reseponse_code, receipt_card_number, receipt_card_type, receipt_entry_legend, receipt_entry_method, receipt_line_items, receipt_merchant_id, receipt_order_id, receipt_signature_text, receipt_terminal_verificiation_results, receipt_transaction_date_time, receipt_transaction_id, receipt_transaction_reference_number, receipt_transaction_type, receipt_validation_code, receipt_verbiage) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}', '{32}', '{33}', '{34}', '{35}', '{36}', '{37}', '{38}', '{39}', '{40}', '{41}', '{42}', '{43}', '{44}', '{45}')", args);
+                                gf.InsertTransactionData(sqlInsert);
+                            }
+                            else
+                            {
+                                //Do Nothing
+                            }
+
+                        }
+                        else
+                        {
+                            Globals.Default.QueryResponse = gr.LiveDirectPost(queryParameters);
+                            gf.WriteToLog(QueryPaymentBox.Text);
+
+                            //Writes transaction data to DB
+                            char firstChar = QueryPaymentBox.Text[0];
+                            if (firstChar == 'r')
+                            {
+
+                                string result = dm.QueryStringToJson(Globals.Default.QueryResponse);
+                                var qro = dm.QueryResultObject(result);
+                                object[] args = new object[] { qro.response_code, qro.response_code_text, qro.secondary_response_code, qro.secondary_response_code_text, qro.time_stamp, qro.retry_recommended, qro.authorized_amount, qro.bin, qro.captured_amount, qro.original_authorized_amount, qro.requested_amount, qro.time_stamp_created, qro.original_response_code, qro.original_response_code_text, qro.time_stamp_updated, qro.state, qro.bank_approval_code, qro.expire_month, qro.expire_year, qro.order_id, qro.payer_identifier, qro.reference_id, qro.span, qro.card_brand, qro.batch_id, qro.receipt_application_cryptogram, qro.receipt_application_identifier, qro.receipt_application_preferred_name, qro.receipt_application_transaction_counter, qro.receipt_approval_code, qro.receipt_authorization_response_code, qro.receipt_card_number, qro.receipt_card_type, qro.receipt_entry_legend, qro.receipt_entry_method, qro.receipt_line_items, qro.receipt_merchant_id, qro.receipt_order_id, qro.receipt_signature_text, qro.receipt_terminal_verification_results, qro.receipt_transaction_date_time, qro.receipt_transaction_id, qro.receipt_transaction_reference_number, qro.receipt_transaction_type, qro.receipt_validation_code, qro.receipt_verbiage };
+                                string sqlInsert = string.Format("INSERT INTO TRANSACTIONDB (response_code, response_code_text, secondary_response_code, secondary_response_code_text, time_stamp, retry_recommended, authorized_amount, bin, captured_amount, original_authorized_amount, requested_amount, time_stamp_created, original_response_code, original_response_code_text, time_stamp_updated, state, bank_approval_code, expire_month, expire_year, order_id, payer_identifier, reference_id, span, card_brand, batch_id, receipt_application_cryptogram, receipt_application_identifier, receipt_application_preferred_name, receipt_application_transaction_counter, receipt_approval_code, receipt_authorization_reseponse_code, receipt_card_number, receipt_card_type, receipt_entry_legend, receipt_entry_method, receipt_line_items, receipt_merchant_id, receipt_order_id, receipt_signature_text, receipt_terminal_verificiation_results, receipt_transaction_date_time, receipt_transaction_id, receipt_transaction_reference_number, receipt_transaction_type, receipt_validation_code, receipt_verbiage) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}', '{32}', '{33}', '{34}', '{35}', '{36}', '{37}', '{38}', '{39}', '{40}', '{41}', '{42}', '{43}', '{44}', '{45}')", args);
+                                gf.InsertTransactionData(sqlInsert);
+
+                            }
+                            if (firstChar == '{')
+                            {
+                                var qro = dm.QueryResultObject(Globals.Default.QueryResponse);
+                                object[] args = new object[] { qro.response_code, qro.response_code_text, qro.secondary_response_code, qro.secondary_response_code_text, qro.time_stamp, qro.retry_recommended, qro.authorized_amount, qro.bin, qro.captured_amount, qro.original_authorized_amount, qro.requested_amount, qro.time_stamp_created, qro.original_response_code, qro.original_response_code_text, qro.time_stamp_updated, qro.state, qro.bank_approval_code, qro.expire_month, qro.expire_year, qro.order_id, qro.payer_identifier, qro.reference_id, qro.span, qro.card_brand, qro.batch_id, qro.receipt_application_cryptogram, qro.receipt_application_identifier, qro.receipt_application_preferred_name, qro.receipt_application_transaction_counter, qro.receipt_approval_code, qro.receipt_authorization_response_code, qro.receipt_card_number, qro.receipt_card_type, qro.receipt_entry_legend, qro.receipt_entry_method, qro.receipt_line_items, qro.receipt_merchant_id, qro.receipt_order_id, qro.receipt_signature_text, qro.receipt_terminal_verification_results, qro.receipt_transaction_date_time, qro.receipt_transaction_id, qro.receipt_transaction_reference_number, qro.receipt_transaction_type, qro.receipt_validation_code, qro.receipt_verbiage };
+                                string sqlInsert = string.Format("INSERT INTO TRANSACTIONDB (response_code, response_code_text, secondary_response_code, secondary_response_code_text, time_stamp, retry_recommended, authorized_amount, bin, captured_amount, original_authorized_amount, requested_amount, time_stamp_created, original_response_code, original_response_code_text, time_stamp_updated, state, bank_approval_code, expire_month, expire_year, order_id, payer_identifier, reference_id, span, card_brand, batch_id, receipt_application_cryptogram, receipt_application_identifier, receipt_application_preferred_name, receipt_application_transaction_counter, receipt_approval_code, receipt_authorization_reseponse_code, receipt_card_number, receipt_card_type, receipt_entry_legend, receipt_entry_method, receipt_line_items, receipt_merchant_id, receipt_order_id, receipt_signature_text, receipt_terminal_verificiation_results, receipt_transaction_date_time, receipt_transaction_id, receipt_transaction_reference_number, receipt_transaction_type, receipt_validation_code, receipt_verbiage) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}', '{14}', '{15}', '{16}', '{17}', '{18}', '{19}', '{20}', '{21}', '{22}', '{23}', '{24}', '{25}', '{26}', '{27}', '{28}', '{29}', '{30}', '{31}', '{32}', '{33}', '{34}', '{35}', '{36}', '{37}', '{38}', '{39}', '{40}', '{41}', '{42}', '{43}', '{44}', '{45}')", args);
+                                gf.InsertTransactionData(sqlInsert);
+                            }
+                            else
+                            {
+                                //Do Nothing
+                            }
+                        }
+
+                        //Signature Image
+                        try
+                        {
+                            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                            doc.LoadHtml(gf.GetPageContent(OEHPWebBrowser));
+
+                            string value = doc.DocumentNode.SelectSingleNode("//input[@type='hidden' and @id='signatureImage' and @name='signatureImage']").Attributes["value"].Value;
+
+                            if (null != value)
+                            {
+                                SignatureImage.Source = gf.DecodeBase64Image(value);
                             }
                             else
                             {

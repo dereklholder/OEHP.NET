@@ -34,7 +34,7 @@ namespace OEHP_Tester
         {
             Globals.Default.DuplicateOn = "FALSE";
             Globals.Default.DuplicateOff = "TRUE";
-
+            ;
             Globals.Default.Save();
         }
         public static void SetDupModeOn()

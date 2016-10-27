@@ -1,4 +1,6 @@
-﻿1.1.4 Release:
+﻿1.1.5 Release:
+Updated app to support  most new features of OEHP 3.4.5 API (CREDIT_DEBIT_CARD, ACH DELETE_CUSTOMER, ACH VOID)
+1.1.4 Release:
 Added Manual Query_Payment, Query_Purchase, Query Functionality.
 1.1.3 Release:
 Cosmetic Enhancements to PayerID/Span table on MPD transactions tab.
