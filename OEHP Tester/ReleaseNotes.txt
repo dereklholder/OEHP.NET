@@ -1,4 +1,6 @@
-﻿1.1.5 Release:
+﻿1.1.6 Release:
+Added XL2 GetCurrentUserRCMPort Call
+1.1.5 Release:
 Updated app to support  most new features of OEHP 3.4.5 API (CREDIT_DEBIT_CARD, ACH DELETE_CUSTOMER, ACH VOID)
 1.1.4 Release:
 Added Manual Query_Payment, Query_Purchase, Query Functionality.

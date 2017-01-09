@@ -1721,6 +1721,37 @@ namespace OEHP_Tester
         {
             GeneralFunctions.EmailDevServices();
         }
+
+        private void GetRCMPort_Click(object sender, RoutedEventArgs e)
+        {
+            
+            string parameters = "/TRANSACTIONTYPE:GETRCMCURRENTUSERPORT";
+            string response;
+            XCharge.XpressLink2.XLEmv xl2 = new XCharge.XpressLink2.XLEmv();
+            xl2.Execute(parameters, out response);
+
+            MessageBox.Show(response, "Current User RCM Port");
+        }
+
+        private void PPDApplyDeviceConfiguration_Click(object sender, RoutedEventArgs e)
+        {
+            string ppdXml =     @"<DeviceConfigurationData>
+                                  <DeviceName>Ingenico iSC480 (US EMV)</DeviceName>
+                                  <SuppressUi>true</SuppressUi>
+                                  <Settings>
+                                  <Default_Message>Phtagn!</Default_Message>
+                                  </Settings>
+                                  <SetupActionsToRun>
+                                    <DeviceSetupFunctions>TestDevice</DeviceSetupFunctions>
+                                  </SetupActionsToRun>
+                                  </DeviceConfigurationData>";
+            string parameters = "/TRANSACTIONTYPE:PPDAPPLYDEVICECONFIGURATION \"/PPDXMLINPUT:" + ppdXml + "\"";
+            string response;
+            XCharge.XpressLink2.XLEmv xl2 = new XCharge.XpressLink2.XLEmv();
+            xl2.Execute(parameters, out response);
+
+            MessageBox.Show(response, "Response from Applying PPD Parameters");
+        }
     }
     
 }
