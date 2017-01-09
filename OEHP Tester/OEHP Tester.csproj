@@ -150,6 +150,9 @@
     <Compile Include="PayPageCustomization.xaml.cs">
       <DependentUpon>PayPageCustomization.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PPDApplyDeviceConfiguration.xaml.cs">
+      <DependentUpon>PPDApplyDeviceConfiguration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PresetHelp.xaml.cs">
       <DependentUpon>PresetHelp.xaml</DependentUpon>
     </Compile>
@@ -191,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PayPageCustomization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PPDApplyDeviceConfiguration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

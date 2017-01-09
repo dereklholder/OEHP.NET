@@ -105,7 +105,7 @@
                 </MenuItem>
                 <MenuItem x:Name="CreateNewDB" Header="_Create New Database" Click="CreateNewDB_Click"/>
                 <MenuItem x:Name="GetRCMPort" Header="_Get RCM Current User Port" Click="GetRCMPort_Click"/>
-                <MenuItem x:Name="PPDApplyDeviceConfiguration" Header="_Apply PinPad Configuration (WIP)" Click="PPDApplyDeviceConfiguration_Click"/>
+                <MenuItem x:Name="PPDApplyDeviceConfiguration" Header="Pin Pad Configuration" Click="PPDApplyDeviceConfiguration_Click"/>
             </MenuItem>
             <MenuItem x:Name="Help"  Header="_Help">
                 <MenuItem x:Name="GoToPortal" Header="_Developer Services Portal" Click="GoToPortal_Click"/>

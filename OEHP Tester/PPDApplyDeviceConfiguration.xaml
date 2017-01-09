@@ -1,0 +1,49 @@
+﻿<Window x:Class="OEHP_Tester.PPDApplyDeviceConfiguration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OEHP_Tester"
+        mc:Ignorable="d"
+        Title="PinPad Configuration" Height="399.419" Width="500.581" WindowStyle="ToolWindow">
+    <Grid>
+        <Label x:Name="DeviceNameLabel" Content="Device:" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <ComboBox x:Name="deviceNameComboBox" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Width="182" SelectedIndex="0" SelectionChanged="deviceNameComboBox_SelectionChanged">
+            <ComboBoxItem Content="MagTek DynaPro SC" Name="Dynapro"/>
+            <ComboBoxItem Content="Ingenico iPP320" Name="iPP320"/>
+            <ComboBoxItem Content="Ingenico iSC250" Name="iSC250"/>
+            <ComboBoxItem Content="Ingenico iSC480" Name="iSC480"/>
+            <ComboBoxItem Content="Ingenico iPP320 (US EMV)" Name="iPP320EMV"/>
+            <ComboBoxItem Content="Ingenico iSC250 (US EMV)" Name="iSC250EMV"/>
+            <ComboBoxItem Content="Ingenico iSC480 (US EMV)" Name="iSC480EMV"/>
+            <ComboBoxItem Content="Ingenico iPP320 (Canadian EMV)" Name="iPPCAEMV"/>
+        </ComboBox>
+        <CheckBox x:Name="suppressUICheckbox" Content="Suppress UI" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="settingsLabel" Content="Settings:" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="comPortLabel" Content="COM Port:" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="comPortText" HorizontalAlignment="Left" Height="23" Margin="118,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="defaultMessageLabel" Content="Default Message:" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="defaultMessageText" HorizontalAlignment="Left" Height="23" Margin="118,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="slideShowPauseLabel" Content="Slide Show Pause:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="243,108,0,0"/>
+        <Label x:Name="slideShowStartLabel" Content="Slide Show Start:" HorizontalAlignment="Left" Margin="243,138,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="slideShowEnableCheckbox" Content="Enable Slide Show" HorizontalAlignment="Left" Margin="118,13,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="canadianSettingsLabel" Content="Canadian Settings:" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="DebitMIDLabel" Content="Debit MID:" HorizontalAlignment="Left" Margin="10,201,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="CreditMIDLabel" Content="Credit MID:" HorizontalAlignment="Left" Margin="243,201,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="DebitMIDText" HorizontalAlignment="Left" Height="23" Margin="118,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="CreditMIDText" HorizontalAlignment="Left" Height="23" Margin="363,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="slideShowPauseText" HorizontalAlignment="Left" Height="23" Margin="363,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="slideShowStartText" HorizontalAlignment="Left" Height="23" Margin="363,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="SetupActionsLabel" Content="Setup Actions:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,232,0,0" FontWeight="Bold"/>
+        <ComboBox x:Name="deviceSetupFunctionsCombobox" HorizontalAlignment="Left" Margin="10,263,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+            <ComboBoxItem Content="Device Update" Name="DeviceUpdate"/>
+            <ComboBoxItem Content="Load Settings" Name="LoadSettings"/>
+            <ComboBoxItem Content="Load Forms" Name="LoadForms"/>
+            <ComboBoxItem Content="Test Device" Name="TestDevice"/>
+        </ComboBox>
+        <Button x:Name="sendToXL2Button" Content="Apply Configuration" HorizontalAlignment="Left" Margin="10,311,0,0" VerticalAlignment="Top" Width="182" Click="sendToXL2Button_Click"/>
+        <Button x:Name="showPPDXML" Content="Show PPDINPUTXML" HorizontalAlignment="Left" Margin="197,311,0,0" VerticalAlignment="Top" Width="151" Click="showPPDXML_Click"/>
+
+
+    </Grid>
+</Window>
