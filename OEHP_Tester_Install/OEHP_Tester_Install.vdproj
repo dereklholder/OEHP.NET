@@ -341,7 +341,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:XpressLink2, Version=8.1.1.730, Culture=neutral, PublicKeyToken=985668f7b95c45a7, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:XpressLink2, Version=8.1.1.729, Culture=neutral, PublicKeyToken=985668f7b95c45a7, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_2AE2CCC2C92A392A7B24D91FD4220877"
@@ -816,15 +816,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:OEHP Tester"
-        "ProductCode" = "8:{9677D798-559D-4C4D-86D8-1FE587382745}"
-        "PackageCode" = "8:{3E133C92-355F-4B38-94AB-15C405FC3C80}"
+        "ProductCode" = "8:{8ED3B374-109A-4690-8884-8D6198253A12}"
+        "PackageCode" = "8:{B040F2B2-FBBB-4944-AA9B-389269FCF87A}"
         "UpgradeCode" = "8:{0156C281-0EA8-4D5C-AFDF-FD077E195AC6}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.6"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8:OpenEdge Developer Services"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

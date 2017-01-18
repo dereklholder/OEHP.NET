@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="About" Height="300" Width="300" WindowStyle="ToolWindow">
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Version 1.1.4 &#x0d; Demo created by Derek Holder. &#x0d; Intended for Demonstration and Development Purposes only. &#x0d; Not Intended for Live/Production Merchant use." VerticalAlignment="Top" Height="255" Width="272" FontSize="10.667"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Version 1.2.0&#xA; Demo created by Derek Holder. &#xA; Intended for Demonstration and Development Purposes only. &#xA; Not Intended for Live/Production Merchant use." VerticalAlignment="Top" Height="255" Width="272" FontSize="10.667"/>
 
     </Grid>
 </Window>

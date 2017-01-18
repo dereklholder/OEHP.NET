@@ -56,5 +56,8 @@
     <Setting Name="ContactDevServices" Type="System.String" Scope="User">
       <Value Profile="(Default)">DeveloperServices@openedgepay.com</Value>
     </Setting>
+    <Setting Name="SubmitMode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">OneButton</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

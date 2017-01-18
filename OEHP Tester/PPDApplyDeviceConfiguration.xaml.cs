@@ -132,7 +132,7 @@ namespace OEHP_Tester
                 xml.WriteString(((ComboBoxItem)deviceSetupFunctionsCombobox.SelectedItem).Name);
                 xml.WriteEndElement();
 
-                xml.WriteEndElement(); //Close Setup Actiosn to Run
+                xml.WriteEndElement(); //Close Setup Actions to Run
 
                 xml.WriteEndElement(); //Close DeviceConfiguration Data
             }

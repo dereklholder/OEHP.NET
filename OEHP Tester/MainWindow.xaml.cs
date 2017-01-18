@@ -38,6 +38,7 @@ namespace OEHP_Tester
                 GeneralFunctions gf = new GeneralFunctions();
                 gf.CreateDBFile();
             }
+            SubmitModeConfigurationChecker();
        
             
             //if (Properties.Settings.Default.IsFirstRun == "true")
@@ -171,7 +172,36 @@ namespace OEHP_Tester
                 }
             }
         }
+        private void SubmitModeConfigurationChecker()
+        {
+            if (Globals.Default.SubmitMode == "OneButton")
+            {
+                SubmitOptionsLabel.Visibility = Visibility.Hidden;
+                BuildSubmitMethodSelectorComboBox.Visibility = Visibility.Hidden;
+                buildPostButton.Visibility = Visibility.Hidden;
+                submitPostButton.Visibility = Visibility.Hidden;
+                OneButton.IsChecked = true;
+                BuildThenSubmit.IsChecked = false;
 
+                submitButton.Visibility = Visibility.Visible;
+                SubmitMethodBox.Visibility = Visibility.Visible;
+                SubmitMethodLabel.Visibility = Visibility.Visible;
+            }
+            if (Globals.Default.SubmitMode == "BuildThenSubmit")
+            {
+                SubmitOptionsLabel.Visibility = Visibility.Visible;
+                BuildSubmitMethodSelectorComboBox.Visibility = Visibility.Visible;
+                buildPostButton.Visibility = Visibility.Visible;
+                submitPostButton.Visibility = Visibility.Visible;
+                BuildThenSubmit.IsChecked = true;
+                OneButton.IsChecked = false;
+
+                submitButton.Visibility = Visibility.Hidden;
+                SubmitMethodBox.Visibility = Visibility.Hidden;
+                SubmitMethodLabel.Visibility = Visibility.Hidden;
+
+            }
+        }
 
         //Collections for Combo Boxes
         public ObservableCollection<string> SubmitMethodBoxValues = new ObservableCollection<string>();
@@ -677,7 +707,14 @@ namespace OEHP_Tester
             catch (Exception ex)
             {
 
-                OEHPWebBrowser.NavigateToString("An Exception Occured. Please Check Parameters");
+                if (SubmitMethodBox.SelectedItem.ToString() == "PayPage Post")
+                {
+                    payPageExceptionErrorDisplay();
+                }
+                else
+                {
+                    OEHPWebBrowser.NavigateToString("An error Occured");
+                }
                 gf.WriteToLog(ex.ToString());
             }
 
@@ -1545,9 +1582,7 @@ namespace OEHP_Tester
 
         private void PresetHelp_Click(object sender, RoutedEventArgs e)
         {
-            PresetHelp ph = new PresetHelp();
-            ph.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            ph.ShowDialog();
+            GeneralFunctions.PresetHelpWindowLauncher();
         }
 
         private void QueryResponseQueryString_Click(object sender, RoutedEventArgs e)
@@ -1628,9 +1663,7 @@ namespace OEHP_Tester
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            About window = new About();
-            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            window.ShowDialog();
+            GeneralFunctions.AboutWindowLauncher();
         }
 
         private void TipReceipt_Click(object sender, RoutedEventArgs e)
@@ -1738,6 +1771,241 @@ namespace OEHP_Tester
             PPDApplyDeviceConfiguration ppd = new OEHP_Tester.PPDApplyDeviceConfiguration();
             ppd.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             ppd.ShowDialog();
+        }
+
+        private void OneButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Globals.Default.SubmitMode = "OneButton";
+            Globals.Default.Save();
+
+            SubmitModeConfigurationChecker();
+        }
+
+        private void BuildThenSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.Default.SubmitMode = "BuildThenSubmit";
+            Globals.Default.Save();
+
+            SubmitModeConfigurationChecker();
+        }
+
+        private void buildPostButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Create a new transaction Request Object
+            TransactionRequest tr = new TransactionRequest();
+            string transactionRequestString;
+            //Create GeneralFunctions object
+            GeneralFunctions gf = new GeneralFunctions();
+
+
+            try
+            {
+                switch (ChargeTypeBox.Text)
+                {
+                    case "SALE":
+                        OrderIDBox.Text = tr.OrderIDRandom(8);
+                        transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(),
+                                                    OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+                    case "AUTH":
+                        OrderIDBox.Text = tr.OrderIDRandom(8);
+                        transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(),
+                                                    OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+                    //need to Implement Signature IMage handling
+                    case "SIGNATURE":
+                        OrderIDBox.Text = tr.OrderIDRandom(8);
+                        transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(),
+                                                    OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+                    case "PURCHASE":
+                        OrderIDBox.Text = tr.OrderIDRandom(8);
+                        transactionRequestString = tr.DebitCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(),
+                                                        OrderIDBox.Text, AmountBox.Text, AccountTypeBox.SelectedItem.ToString(), CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+                    case "REFUND":
+                        OrderIDBox.Text = tr.OrderIDRandom(8);
+                        transactionRequestString = tr.DebitCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(),
+                                                        OrderIDBox.Text, AmountBox.Text, AccountTypeBox.SelectedItem.ToString(), CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+                    case "DEBIT":
+                        OrderIDBox.Text = tr.OrderIDRandom(8);
+                        transactionRequestString = tr.ACHParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(),
+                                                                        OrderIDBox.Text, AmountBox.Text, TCCBox.SelectedItem.ToString(), CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+                    case "VOID":
+                        transactionRequestString = tr.DirectPostBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.SelectionBoxItem.ToString(), ChargeTypeBox.SelectedItem.ToString());
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+                    case "FORCE_SALE":
+                        OrderIDBox.Text = tr.OrderIDRandom(8);
+                        transactionRequestString = tr.CreditForceParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(),
+                                                                                EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, ApprovalCodeBox.Text, CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+                    case "CAPTURE":
+                        transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+                    //Query Logic
+                    case "QUERY_PAYMENT":
+                        transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+                    case "QUERY_PURCHASE":
+                        transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+                    case "QUERY":
+                        transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+                    case "ADJUSTMENT":
+                        transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                        gf.WriteToLog(transactionRequestString);
+                        PostParameterBox.Text = transactionRequestString;
+                        break;
+
+
+                    //May need to Redo ACH Dependent Return
+                    case "CREDIT":
+                        if (TransactionTypeBox.SelectedItem.ToString() == "CREDIT_CARD" || TransactionTypeBox.SelectedItem.ToString() == "CREDIT_DEBIT_CARD")
+                        {
+                            if (CreditTypeBox.SelectedItem.ToString() == "INDEPENDENT")
+                            {
+                                OrderIDBox.Text = tr.OrderIDRandom(8);
+                                transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(),
+                                                                                        EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                                PostParameterBox.Text = (transactionRequestString);
+                            }
+                            if (CreditTypeBox.SelectedItem.ToString() == "DEPENDENT")
+                            {
+                                transactionRequestString = tr.CreditCardParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(),
+                                                                                        EntryModeBox.SelectedItem.ToString(), OrderIDBox.Text, AmountBox.Text, CustomParametersBox.Text);
+                                gf.WriteToLog(transactionRequestString);
+                                PostParameterBox.Text = transactionRequestString;
+                            }
+                        }
+                        if (TransactionTypeBox.SelectedItem.ToString() == "ACH")
+                        {
+                            if (CreditTypeBox.SelectedItem.ToString() == "INDEPENDENT")
+                            {
+                                OrderIDBox.Text = tr.OrderIDRandom(8);
+                                transactionRequestString = tr.ACHParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(),
+                                                                                    OrderIDBox.Text, AmountBox.Text, TCCBox.SelectedItem.ToString(), CustomParametersBox.Text);
+                                PostParameterBox.Text = (transactionRequestString);
+                            }
+                            if (CreditTypeBox.SelectedItem.ToString() == "DEPENDENT")
+                            {
+                                transactionRequestString = tr.ACHParamBuilder(AccountTokenBox.Text, TransactionTypeBox.SelectedItem.ToString(), ChargeTypeBox.SelectedItem.ToString(), EntryModeBox.SelectedItem.ToString(),
+                                                                                    OrderIDBox.Text, AmountBox.Text, TCCBox.SelectedItem.ToString(), CustomParametersBox.Text);
+                                gf.WriteToLog(transactionRequestString);
+                                PostParameterBox.Text = transactionRequestString;
+                            }
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                OEHPWebBrowser.NavigateToString("An Exception Occured.");
+                gf.WriteToLog(ex.ToString());
+            }
+        }
+        private void payPageExceptionErrorDisplay()
+        {
+            OEHP.NET.GatewayRequest gr = new OEHP.NET.GatewayRequest();
+            if (Globals.Default.ProcessingMode == "Test")
+            {
+                OEHPWebBrowser.NavigateToString(gr.TestPayPagePost(PostParameterBox.Text));
+            }
+            if (Globals.Default.ProcessingMode == "Live")
+            {
+                OEHPWebBrowser.NavigateToString(gr.LivePayPagePost(PostParameterBox.Text));
+            }
+        }
+        
+        private void submitPostButton_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralFunctions gf = new GeneralFunctions();
+
+            OEHP.NET.GatewayRequest gr = new OEHP.NET.GatewayRequest();
+            
+            if (Globals.Default.ProcessingMode == "Test")
+            {
+                switch (((ComboBoxItem)BuildSubmitMethodSelectorComboBox.SelectedItem).Name)
+                {
+                    case "PayPagePost":
+                        try
+                        {
+                            OEHPWebBrowser.Navigate(gr.TestPayPagePost(PostParameterBox.Text));
+                        }
+                        catch
+                        {
+                            OEHPWebBrowser.NavigateToString(gr.TestPayPagePost(PostParameterBox.Text));
+                        }
+                        break;
+                    case "DirectPost":
+                        OEHPWebBrowser.NavigateToString(gr.TestDirectPost(PostParameterBox.Text));
+                        break;
+                    default:
+                        break;           
+                }                      
+            }
+            if (Globals.Default.ProcessingMode == "Live")
+            {
+                switch (((ComboBoxItem)BuildSubmitMethodSelectorComboBox.SelectedItem).Name)
+                {
+                    case "PayPagePost":
+                        try
+                        {
+                            OEHPWebBrowser.Navigate(gr.LivePayPagePost(PostParameterBox.Text));
+                        }
+                        catch
+                        {
+                            OEHPWebBrowser.NavigateToString(gr.LivePayPagePost(PostParameterBox.Text));
+                        }
+                        break;
+                    case "DirectPost":
+                        OEHPWebBrowser.NavigateToString(gr.LiveDirectPost(PostParameterBox.Text));
+                            break;
+                    default:
+                        break;
+                }
+            }
+            
         }
     }
     

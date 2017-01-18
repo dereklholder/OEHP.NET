@@ -242,5 +242,17 @@ namespace OEHP_Tester {
                 this["ContactDevServices"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("OneButton")]
+        public string SubmitMode {
+            get {
+                return ((string)(this["SubmitMode"]));
+            }
+            set {
+                this["SubmitMode"] = value;
+            }
+        }
     }
 }

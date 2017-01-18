@@ -11,11 +11,41 @@ using System.Net;
 using System.Windows.Controls;
 using System.Data.SQLite;
 using System.Data;
+using System.Xml.Serialization;
 
 namespace OEHP_Tester
 {
+    [Serializable, XmlRoot("XLinkEMVResult")]
+    public class RCMPortXML
+    {
+        public string RCMPORT { get; set; }
+        public string RESULT { get; set; }
+        public string RESULTMSG { get; set; }
+    }
+    [Serializable, XmlRoot("XLinkEMVResult")]
+    public class PPDConfigurationXML
+    {
+        public string RESULT { get; set; }
+        public string RESULTMSG { get; set; }
+    }
+
     public class GeneralFunctions : OEHP.NET.VariableHandler
     {
+
+        public static void AboutWindowLauncher()
+        {
+            About window = new About();
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.Topmost = true;
+            window.ShowDialog();
+        }
+        public static void PresetHelpWindowLauncher()
+        {
+            PresetHelp ph = new PresetHelp();
+            ph.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            ph.Topmost = true;
+            ph.ShowDialog();
+        }
         public void WriteToLog(string logString) //Code for logging functions.
         {
             try
@@ -52,7 +82,6 @@ namespace OEHP_Tester
         {
             System.Diagnostics.Process.Start("mailto:" + Globals.Default.ContactDevServices);
         }
-
 
         public BitmapImage DecodeBase64Image(string base64String)
         {

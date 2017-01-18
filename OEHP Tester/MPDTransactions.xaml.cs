@@ -22,14 +22,18 @@ namespace OEHP_Tester
     /// </summary>
     public partial class MPDTransactions : Window
     {
-        public MPDTransactions()
+        public void GetAliasList()
         {
-            InitializeComponent();
-
             DataTable dt = GeneralFunctions.GetPayerIDAndSpan();
             dt.Columns["payer_identifier"].ColumnName = "Payer Identifier";
             dt.Columns["span"].ColumnName = "SPAN";
             dataGrid.DataContext = dt.DefaultView;
+        }
+        public MPDTransactions()
+        {
+            InitializeComponent();
+
+            GetAliasList();
 
             CreditCardChargeTypeCollection.Add("SALE");
             CreditCardChargeTypeCollection.Add("CREDIT");
@@ -150,18 +154,12 @@ namespace OEHP_Tester
 
         private void PresetHelp_Click(object sender, RoutedEventArgs e)
         {
-            PresetHelp ph = new PresetHelp();
-            ph.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            ph.Topmost = true;
-            ph.ShowDialog();
+            GeneralFunctions.PresetHelpWindowLauncher();
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            About window = new OEHP_Tester.About();
-            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            window.Topmost = true;
-            window.ShowDialog();
+            GeneralFunctions.AboutWindowLauncher();
         }
 
         private void Tools_Click(object sender, RoutedEventArgs e)
@@ -218,6 +216,7 @@ namespace OEHP_Tester
                         {
                             HostPayBrowser.Text = dm.QueryStringToJson(result);
                         }
+                        GetAliasList();
                         break;
                     case "ACH":
                         OrderIDBox.Text = tr.OrderIDRandom(8);
@@ -235,10 +234,13 @@ namespace OEHP_Tester
                         {
                             HostPayBrowser.Text = dm.QueryStringToJson(result);
                         }
+                        GetAliasList();
                         break;
+
                     default:
                         HostPayBrowser.Text = "Check Transaction Request parameters";
                         break;
+                        
                 }
             }
             catch (Exception ex)
@@ -311,6 +313,11 @@ namespace OEHP_Tester
         private void DupCheckOff_Click(object sender, RoutedEventArgs e)
         {
             GeneralFunctions.SetDupModeOff();
+        }
+
+        private void RefreshAliasList_Click(object sender, RoutedEventArgs e)
+        {
+            GetAliasList();
         }
     }
     public class TCCList

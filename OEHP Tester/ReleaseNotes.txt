@@ -1,5 +1,12 @@
-﻿1.1.6 Release:
+﻿1.2 
+Changed 'Mode' moniker to 'Environment'
+Added Ability to Conduct Raw posts.
+Improved Error Visibility when Transactions Fail.
+1.1.6 Release:
 Added XL2 GetCurrentUserRCMPort Call
+Added PPD Apply Device Configuration Functionality and UI for performing scripted requests.
+General Internal Consolidation and Bugfixes.
+Added Functionality to Refresh Alias List in MPD Functionality
 1.1.5 Release:
 Updated app to support  most new features of OEHP 3.4.5 API (CREDIT_DEBIT_CARD, ACH DELETE_CUSTOMER, ACH VOID)
 1.1.4 Release:
