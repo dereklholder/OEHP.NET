@@ -227,13 +227,10 @@ namespace OEHP_Tester
         private void submitButton_Click(object sender, RoutedEventArgs e)
         {
 
-            //Create a new transaction Request Object
+           
             TransactionRequest tr = new TransactionRequest();
             string transactionRequestString;
-
-            //Create a new Gateway Request Object
             OEHP.NET.GatewayRequest gr = new OEHP.NET.GatewayRequest();
-            //Create GeneralFunctions object
             GeneralFunctions gf = new GeneralFunctions();
             
 
@@ -1755,7 +1752,7 @@ namespace OEHP_Tester
             GeneralFunctions.EmailDevServices();
         }
 
-        private void GetRCMPort_Click(object sender, RoutedEventArgs e)
+        private void GetRCMPortXL2_Click(object sender, RoutedEventArgs e)
         {
             
             string parameters = "/TRANSACTIONTYPE:GETRCMCURRENTUSERPORT";
@@ -1765,6 +1762,7 @@ namespace OEHP_Tester
 
             MessageBox.Show(response, "Current User RCM Port");
         }
+
 
         private void PPDApplyDeviceConfiguration_Click(object sender, RoutedEventArgs e)
         {
@@ -2006,6 +2004,12 @@ namespace OEHP_Tester
                 }
             }
             
+        }
+
+        private void GetRCMPortRCM_Click(object sender, RoutedEventArgs e)
+        {
+            string rcmParameters = "https://localsystem.paygateway.com:21113/RcmService.svc/Initialize?callback=jsonpResponse&xl2Parameters=/TRANSACTIONTYPE:GETCURRENTUSERPORT";
+            MessageBox.Show("This Won't work :(", "Error");
         }
     }
     

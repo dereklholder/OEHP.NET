@@ -1,0 +1,24 @@
+﻿<Window x:Class="EdgeExpressDemoPOS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EdgeExpressDemoPOS"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Menu x:Name="menu" Height="20" VerticalAlignment="Top">
+            <MenuItem x:Name="file" Header="_File">
+                <MenuItem x:Name="changeUser" Header="_Change User" Click="changeUser_Click"/>
+                <MenuItem x:Name="settings" Header="_Settings" Click="settings_Click"/>
+                <Separator />
+                <MenuItem x:Name="createDB" Header="_Create New Database" Click="createDB_Click"/>
+                <Separator />
+                <MenuItem x:Name="exit" Header="_Exit" Click="exit_Click"/>
+                </MenuItem>
+        </Menu>
+        <Button x:Name="placeHolder" Content="PlaceHolder" HorizontalAlignment="Left" Margin="432,288,0,0" VerticalAlignment="Top" Width="75" Click="placeHolder_Click"/>
+        <TextBox x:Name="phText" HorizontalAlignment="Left" Height="23" Margin="387,260,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>
