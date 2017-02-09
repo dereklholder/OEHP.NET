@@ -82,5 +82,53 @@ namespace EdgeExpressDemoPOS {
                 this["TransactionCounter"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10.99")]
+        public double WidgetPrice {
+            get {
+                return ((double)(this["WidgetPrice"]));
+            }
+            set {
+                this["WidgetPrice"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20.99")]
+        public double BetterWidgetPrice {
+            get {
+                return ((double)(this["BetterWidgetPrice"]));
+            }
+            set {
+                this["BetterWidgetPrice"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("39.99")]
+        public double BestWidgetPrice {
+            get {
+                return ((double)(this["BestWidgetPrice"]));
+            }
+            set {
+                this["BestWidgetPrice"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SignatureCaptureEnabled {
+            get {
+                return ((bool)(this["SignatureCaptureEnabled"]));
+            }
+            set {
+                this["SignatureCaptureEnabled"] = value;
+            }
+        }
     }
 }

@@ -17,5 +17,17 @@
     <Setting Name="TransactionCounter" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="WidgetPrice" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">10.99</Value>
+    </Setting>
+    <Setting Name="BetterWidgetPrice" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20.99</Value>
+    </Setting>
+    <Setting Name="BestWidgetPrice" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">39.99</Value>
+    </Setting>
+    <Setting Name="SignatureCaptureEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

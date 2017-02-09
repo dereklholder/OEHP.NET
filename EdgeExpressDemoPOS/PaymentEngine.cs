@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -207,6 +208,415 @@ namespace EdgeExpressDemoPOS
             return sb.ToString();
         }
         #endregion
+        public static bool TransactionSuccessful(TranType TransactionType, SaleResultXML sRX, DebitReturnResultXML dRX, CreditReturnResultXML cRX, CreditVoidResultXML cVX)
+        {
+            bool isSuccessful = false;
+            switch (TransactionType.ToString())
+            {
+
+                case "Sale":
+                    switch (sRX.RESULT)
+                    {
+                        case "0":
+                            GeneralFunctions.WriteToLog(sRX.RECEIPTTEXT);
+                            isSuccessful = true;
+                            break;
+                            ;
+                        case "1":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "2":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "3":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "4":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "5":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "6":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "7":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "8":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "9":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "10":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "12":
+                            MessageBox.Show("The Payment Has Been Declined");
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "14":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "15":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "19":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "20":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "100":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        case "101":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + sRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+
+                        default:
+                            MessageBox.Show("Payment Not Completed,An Undefined Error Occured, Please Try Again");
+                            GeneralFunctions.WriteToLog(sRX.RESULTMSG);
+                            break;
+                    }
+                    break;
+                case "DebitReturn":
+                    switch (dRX.RESULT)
+                    {
+                        case "0":
+                            GeneralFunctions.WriteToLog(dRX.RECEIPTTEXT);
+                            isSuccessful = true;
+                            break;
+                            ;
+                        case "1":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "2":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "3":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "4":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "5":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "6":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "7":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "8":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "9":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "10":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "12":
+                            MessageBox.Show("The Payment Has Been Declined");
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "14":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "15":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "19":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "20":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "100":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        case "101":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + dRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+
+                        default:
+                            MessageBox.Show("Payment Not Completed, An Undefined Error Occured, Please Try Again");
+                            GeneralFunctions.WriteToLog(dRX.RESULTMSG);
+                            break;
+                    }
+                    break;
+                case "CreditReturn":
+                    switch (cRX.RESULT)
+                    {
+                        case "0":
+                            GeneralFunctions.WriteToLog(cRX.RECEIPTTEXT);
+                            isSuccessful = true;
+                            break;
+                            ;
+                        case "1":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "2":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "3":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "4":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "5":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "6":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "7":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "8":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "9":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "10":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "12":
+                            MessageBox.Show("The Payment Has Been Declined");
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "14":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "15":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "19":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "20":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "100":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        case "101":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+
+                        default:
+                            MessageBox.Show("Payment Not Completed, An Undefined Error Occured, Please Try Again");
+                            GeneralFunctions.WriteToLog(cRX.RESULTMSG);
+                            break;
+                    }
+                    break;
+                case "Void":
+                    switch (cVX.RESULT)
+                    {
+                        case "0":
+                            GeneralFunctions.WriteToLog(cVX.RECEIPTTEXT);
+                            isSuccessful = true;
+                            break;
+                            ;
+                        case "1":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "2":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "3":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "4":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "5":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "6":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "7":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "8":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "9":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "10":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "12":
+                            MessageBox.Show("The Payment Has Been Declined");
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "14":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "15":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "19":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "20":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "100":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cVX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        case "101":
+                            MessageBox.Show("Error Has Occured" + Environment.NewLine + cRX.RESULTMSG);
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+
+                        default:
+                            MessageBox.Show("Payment Not Completed, An Undefined Error Occured, Please Try Again");
+                            GeneralFunctions.WriteToLog(cVX.RESULTMSG);
+                            break;
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Unexpected Result.");
+                    GeneralFunctions.WriteToLog("Unexpected Result Happened");
+                    break;
+            }
+            return isSuccessful;
+        }
         #region NonTransactionBasedXMLBuilders
         public static string BuildXMLSignaturePromptForPayment(string amount)
         {
@@ -316,6 +726,13 @@ namespace EdgeExpressDemoPOS
         #endregion
 
     }
+    public enum TranType
+    {
+        Sale,
+        DebitReturn,
+        CreditReturn,
+        Void
+    };
     #region ParsingObjects
     [Serializable, XmlRoot("XLinkEMVResult")]
     public class SaleResultXML
@@ -359,7 +776,7 @@ namespace EdgeExpressDemoPOS
         public string YESORNO { get; set; }
         public string RESULT { get; set; }
     }
-    [Serializable, XmlRoot("XlinkEMVResult")]
+    [Serializable, XmlRoot("XLinkEMVResult")]
     public class DebitReturnResultXML
     {
         public string CASHBACKAMOUNT { get; set; }
@@ -375,6 +792,57 @@ namespace EdgeExpressDemoPOS
         public string CARDHOLDERNAME { get; set; }
         public string CARDTYPE { get; set; }
         public string CARDBRAND { get; set; }
+        public string ENTRYTYPE { get; set; }
+        public string RECEIPTTEXT { get; set; }
+        public string EXPMONTH { get; set; }
+        public string EXPYEAR { get; set; }
+        public string TRANSACTIONID { get; set; }
+    }
+    [Serializable, XmlRoot("XLinkEMVResult")]
+    public class CreditReturnResultXML
+    {
+        public string DUPLICATECARD { get; set; }
+        public string DATE_TIME { get; set; }
+        public string HOSTRESPONSECODE { get; set; }
+        public string HOSTRESPONSEDESCRIPTION { get; set; }
+        public string RESULT { get; set; }
+        public string RESULTMSG { get; set; }
+        public string APPROVEDAMOUNT { get; set; }
+        public string BATCHNO { get; set; }
+        public string BATCHAMOUNT { get; set; }
+        public string APPROVALCODE { get; set; }
+        public string ACCOUNT { get; set; } //Masked Account Number
+        public string CARDHOLDERNAME { get; set; }
+        public string CARDTYPE { get; set; } //CREDIT OR DEBIT
+        public string CARDBRAND { get; set; }
+        public string CARDBRANDSHORT { get; set; }
+        public string LANGUAGE { get; set; }
+        public string ALIAS { get; set; }
+        public string ENTRYTYPE { get; set; }
+        public string RECEIPTTEXT { get; set; }
+        public string EXPMONTH { get; set; }
+        public string EXPYEAR { get; set; }
+        public string TRANSACTIONID { get; set; }
+    }
+    [Serializable, XmlRoot("XLinkEMVResult")]
+    public class CreditVoidResultXML
+    {
+        public string DATE_TIME { get; set; }
+        public string HOSTRESPONSECODE { get; set; }
+        public string HOSTRESPONSEDESCRIPTION { get; set; }
+        public string RESULT { get; set; }
+        public string RESULTMSG { get; set; }
+        public string APPROVEDAMOUNT { get; set; }
+        public string BATCHNO { get; set; }
+        public string BATCHAMOUNT { get; set; }
+        public string APPROVALCODE { get; set; }
+        public string ACCOUNT { get; set; } //Masked Account Number
+        public string CARDHOLDERNAME { get; set; }
+        public string CARDTYPE { get; set; } //CREDIT OR DEBIT
+        public string CARDBRAND { get; set; }
+        public string CARDBRANDSHORT { get; set; }
+        public string LANGUAGE { get; set; }
+        public string ALIAS { get; set; }
         public string ENTRYTYPE { get; set; }
         public string RECEIPTTEXT { get; set; }
         public string EXPMONTH { get; set; }

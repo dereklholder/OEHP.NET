@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EdgeExpressDemoPOS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="EdgeExpress Point of Sale" Height="326.951" Width="314.146">
     <Grid>
         <Menu x:Name="menu" Height="20" VerticalAlignment="Top">
             <MenuItem x:Name="file" Header="_File">
@@ -15,10 +15,26 @@
                 <MenuItem x:Name="createDB" Header="_Create New Database" Click="createDB_Click"/>
                 <Separator />
                 <MenuItem x:Name="exit" Header="_Exit" Click="exit_Click"/>
-                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="tools" Header="_Tools">
+                <MenuItem x:Name="returnTransaction" Header="_Return Transaction" Click="returnTransaction_Click"/>
+                <MenuItem x:Name="voidTransaction" Header="_Void Transaction" Click="voidTransaction_Click"/>
+            </MenuItem>
         </Menu>
-        <Button x:Name="placeHolder" Content="PlaceHolder" HorizontalAlignment="Left" Margin="432,288,0,0" VerticalAlignment="Top" Width="75" Click="placeHolder_Click"/>
-        <TextBox x:Name="phText" HorizontalAlignment="Left" Height="23" Margin="387,260,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="widgetButton" Content="Widget" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" Width="83" Click="widgetButton_Click"/>
+        <Button x:Name="betterWidgetButton" Content="Better Widget" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" Width="83" Click="betterWidgetButton_Click"/>
+        <Button x:Name="bestWidgetButton" Content="Best Widget" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="83" Click="bestWidgetButton_Click"/>
+        <ListView x:Name="currentTicketList" Height="172" Margin="98,32,7,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" SizeChanged="currentTicketList_SizeChanged" SelectionChanged="currentTicketList_SelectionChanged" >
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn Header="Item:" Width="Auto" DisplayMemberBinding="{Binding Item}"/>
+                    <GridViewColumn Header="Price:" Width="Auto" DisplayMemberBinding="{Binding Price}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="clearTicketListButton" Content="Clear" HorizontalAlignment="Left" Margin="221,237,0,0" VerticalAlignment="Top" Width="75" Click="clearTicketListButton_Click"/>
+        <TextBox x:Name="totalAmountBox" HorizontalAlignment="Left" Height="23" Margin="167,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" IsReadOnly="True" Text="0"/>
+        <Button x:Name="processSaleButton" Content="Process Sale" HorizontalAlignment="Left" Margin="221,264,0,0" VerticalAlignment="Top" Width="75" Click="processSaleButton_Click"/>
 
     </Grid>
 </Window>

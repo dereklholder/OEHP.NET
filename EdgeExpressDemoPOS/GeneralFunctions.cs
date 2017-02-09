@@ -8,6 +8,9 @@ using System.Windows;
 
 namespace EdgeExpressDemoPOS
 {
+    /// <summary>
+    /// Used for Various Functions such as logging.
+    /// </summary>
     public class GeneralFunctions
     {
         public static void WriteToLog(string StringToWrite)
@@ -24,5 +27,10 @@ namespace EdgeExpressDemoPOS
                 MessageBox.Show("An Error Occured when Writing to the Log File." + Environment.NewLine + ex.GetBaseException().ToString());
             }
         }
+    }
+    public class ItemController
+    {
+        public string Item { get; set; }
+        public double Price { get; set; }
     }
 }

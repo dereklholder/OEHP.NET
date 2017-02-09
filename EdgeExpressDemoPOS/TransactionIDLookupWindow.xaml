@@ -1,0 +1,15 @@
+﻿<Window x:Class="EdgeExpressDemoPOS.TransactionIDLookupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EdgeExpressDemoPOS"
+        mc:Ignorable="d"
+        Title="TransactionIDLookupWindow" Height="105.366" Width="147.805" WindowStyle="None">
+    <Grid>
+        <TextBox x:Name="TransactionIDBox" HorizontalAlignment="Left" Height="23" Margin="10,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="TransactionIDLabel" Content="Transaction ID:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" FontWeight="Bold"/>
+        <Button x:Name="Lookup" Content="Lookup Transaction" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="120" Click="Lookup_Click"/>
+
+    </Grid>
+</Window>
