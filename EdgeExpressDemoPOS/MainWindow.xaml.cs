@@ -99,8 +99,12 @@ namespace EdgeExpressDemoPOS
             //Previously Contained the Result Logic Within these methods, THat is now contained under PaymentEngine.TransactionSuccessul
             if (PaymentEngine.TransactionSuccessful(TranType.Sale, result, null, null, null) == true)
             {
-                PromptSignatureResultXML signatureObject = SendSignatureAfterSaleTransaction(amount);
-                DBFunctions.InsertSignatureTransaction(signatureObject, result.TRANSACTIONID);
+                if (Globals.Default.SignatureCaptureEnabled == true)
+                {                 
+                    PromptSignatureResultXML signatureObject = SendSignatureAfterSaleTransaction(amount);
+                    DBFunctions.InsertSignatureTransaction(signatureObject, result.TRANSACTIONID);
+                }
+                
                 // Display Signature Maybe? Or no.
                 // Do something with UI, Return to Cleared screen for Next possible Transaction
                 return true;

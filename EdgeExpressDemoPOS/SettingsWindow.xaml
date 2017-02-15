@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EdgeExpressDemoPOS"
         mc:Ignorable="d"
-        Title="Settings" Height="160.976" Width="300" WindowStyle="ToolWindow">
+        Title="Settings" Height="194.418" Width="300" WindowStyle="ToolWindow">
     <Grid>
         <Label x:Name="XWebIDLabel" Content="XWeb ID:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="TerminalIDLabel" Content="TerminalID:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
@@ -13,8 +13,9 @@
         <TextBox x:Name="XWebIDBox" HorizontalAlignment="Left" Height="23" Margin="85,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Text="{Binding Source={x:Static local:Globals.Default}, Path=XWebID}"/>
         <TextBox x:Name="TerminalIDBox" HorizontalAlignment="Left" Height="23" Margin="85,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Text="{Binding Source={x:Static local:Globals.Default}, Path=XWebTerminalID}"/>
         <TextBox x:Name="AuthKeyBox" HorizontalAlignment="Left" Height="23" Margin="85,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Text="{Binding Source={x:Static local:Globals.Default}, Path=XWebAuthKey}"/>
-        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="72,103,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
-        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="152,103,0,0" VerticalAlignment="Top" Width="75" Click="CancelButton_Click"/>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="73,142,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="153,142,0,0" VerticalAlignment="Top" Width="75" Click="CancelButton_Click"/>
+        <CheckBox x:Name="sigCapCheckBox" HorizontalAlignment="Left" Margin="85,102,0,0" VerticalAlignment="Top" IsChecked="{Binding Source={x:Static local:Globals.Default}, Path=SignatureCaptureEnabled}" Content="Signature Capture Enabled"/>
 
     </Grid>
 </Window>
