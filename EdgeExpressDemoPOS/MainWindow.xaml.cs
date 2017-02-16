@@ -53,6 +53,7 @@ namespace EdgeExpressDemoPOS
             return returnedXmlClass;
         }
         #endregion
+        #region NonTransactionUIControls
         private void changeUser_Click(object sender, RoutedEventArgs e)
         {
             ChangeUserWindow ch = new ChangeUserWindow();
@@ -91,6 +92,8 @@ namespace EdgeExpressDemoPOS
 
         }
         #endregion
+
+        #endregion
         #region TransactionMethodsWithResultLogic
         private bool SaleTransaction(string amount)
         {
@@ -104,7 +107,7 @@ namespace EdgeExpressDemoPOS
                     PromptSignatureResultXML signatureObject = SendSignatureAfterSaleTransaction(amount);
                     DBFunctions.InsertSignatureTransaction(signatureObject, result.TRANSACTIONID);
                 }
-                
+                MessageBox.Show(result.RECEIPTTEXT);
                 // Display Signature Maybe? Or no.
                 // Do something with UI, Return to Cleared screen for Next possible Transaction
                 return true;
@@ -121,7 +124,7 @@ namespace EdgeExpressDemoPOS
             DBFunctions.InsertDebitReturnTransaction(result);
             if (PaymentEngine.TransactionSuccessful(TranType.DebitReturn, null, result, null, null) == true)
             {
-                MessageBox.Show("Return Approved!");
+                MessageBox.Show(result.RECEIPTTEXT);
             }
             else
             {
@@ -135,7 +138,7 @@ namespace EdgeExpressDemoPOS
             DBFunctions.InsertCreditReturnTransaction(result);
             if (PaymentEngine.TransactionSuccessful(TranType.CreditReturn, null, null, result, null) == true)
             {
-                MessageBox.Show("Return Approved!");
+                MessageBox.Show(result.RECEIPTTEXT);
             }
             else
             {
@@ -148,7 +151,7 @@ namespace EdgeExpressDemoPOS
             DBFunctions.InsertVoidTransaction(result);
             if (PaymentEngine.TransactionSuccessful(TranType.Void, null, null, null, result) == true)
             {
-                MessageBox.Show("Void Approved!");
+                MessageBox.Show(result.RECEIPTTEXT);
             }
             else
             {
@@ -254,14 +257,13 @@ namespace EdgeExpressDemoPOS
         {
             
         }
-
+        #region UIProcessingControls
         private void processSaleButton_Click(object sender, RoutedEventArgs e)
         {
             string amount = totalAmountBox.Text;
             bool successfulSale = SaleTransaction(amount);
             if (successfulSale == true)
             {
-                MessageBox.Show("Approved!");
                 ClearTicketList();
             }
             else
@@ -274,7 +276,7 @@ namespace EdgeExpressDemoPOS
         {
             string transactionID = GetTransactionIDForReturnVoid();
             CardTypeAndAmount cardType = DBFunctions.GetTransactionType(transactionID);
-            
+
             if (String.IsNullOrEmpty(transactionID) == false && String.IsNullOrEmpty(cardType.amount) == false)
             {
                 RunReturnWindow returnWindow = new RunReturnWindow(cardType.amount);
@@ -298,14 +300,14 @@ namespace EdgeExpressDemoPOS
                 {
                     //Did not want to Continue, Do not Proceed.
                 }
-                
+
             }
             else
             {
                 // No TransactionID sent or TransactionID was invalid
                 MessageBox.Show("Invalid Transaction ID");
             }
-           
+
         }
 
         private void voidTransaction_Click(object sender, RoutedEventArgs e)
@@ -337,6 +339,8 @@ namespace EdgeExpressDemoPOS
 
             }
         }
+        #endregion
+
     }
 
 }
