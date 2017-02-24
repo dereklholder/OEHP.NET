@@ -19,12 +19,14 @@
             <MenuItem x:Name="tools" Header="_Tools">
                 <MenuItem x:Name="returnTransaction" Header="_Return Transaction" Click="returnTransaction_Click"/>
                 <MenuItem x:Name="voidTransaction" Header="_Void Transaction" Click="voidTransaction_Click"/>
+                <Separator />
+                <MenuItem x:Name="signatureLookup" Header="_Lookup Signature" Click="signatureLookup_Click"/>
             </MenuItem>
         </Menu>
         <Button x:Name="widgetButton" Content="Widget" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" Width="83" Click="widgetButton_Click"/>
         <Button x:Name="betterWidgetButton" Content="Better Widget" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" Width="83" Click="betterWidgetButton_Click"/>
         <Button x:Name="bestWidgetButton" Content="Best Widget" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="83" Click="bestWidgetButton_Click"/>
-        <ListView x:Name="currentTicketList" Height="172" Margin="98,32,7,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" SizeChanged="currentTicketList_SizeChanged" SelectionChanged="currentTicketList_SelectionChanged" >
+        <ListView x:Name="currentTicketList" Height="172" Margin="98,32,7,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn Header="Item:" Width="Auto" DisplayMemberBinding="{Binding Item}"/>

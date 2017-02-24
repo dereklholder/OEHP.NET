@@ -206,6 +206,40 @@ namespace EdgeExpressDemoPOS
         }
         #endregion
         #region SelectTransactionQueries
+        public static string GetSignatureString(string transactionID)
+        {
+            PromptSignatureResultXML pSRX = new PromptSignatureResultXML();
+            string sql = string.Format("SELECT SIGNATUREIMAGE FROM signaturedb WHERE ID IN('{0}')", transactionID);
+            string signatureString = "";
+            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source = database.eedb;Version=3;");
+            try
+            {
+                m_dbConnection.Open();
+                SQLiteCommand command = new SQLiteCommand(m_dbConnection);
+                command.CommandText = sql;
+                SQLiteDataReader sdr = command.ExecuteReader();
+                while (sdr.Read())
+                {
+                    if (String.IsNullOrEmpty(sdr["SIGNATUREIMAGE"].ToString()) != true)
+                    {
+                        signatureString = sdr["SIGNATUREIMAGE"].ToString();
+                    }
+                    else
+                    {
+                        signatureString = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteToLog(ex.GetBaseException().ToString());
+            }
+            finally
+            {
+                m_dbConnection.Close();
+            }
+            return signatureString;
+        }
         public static CardTypeAndAmount GetTransactionType(string transactionID) //CardType Being returned is not... Reliable, Using Alias to determine Credit vs Debit on Test (CardType should be valid on Prod Gateway)
         {
             CardTypeAndAmount cTA = new CardTypeAndAmount();

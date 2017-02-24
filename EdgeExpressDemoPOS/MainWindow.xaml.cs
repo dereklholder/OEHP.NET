@@ -48,7 +48,7 @@ namespace EdgeExpressDemoPOS
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.GetBaseException().ToString());
             }
             return returnedXmlClass;
         }
@@ -95,6 +95,9 @@ namespace EdgeExpressDemoPOS
 
         #endregion
         #region TransactionMethodsWithResultLogic
+        /// <summary>
+        /// UI Controls should use these methods.
+        /// </summary>
         private bool SaleTransaction(string amount)
         {
             SaleResultXML result = SendSaleTransaction(amount);
@@ -160,6 +163,9 @@ namespace EdgeExpressDemoPOS
         }
         #endregion
         #region EdgeExpressRequestMethods
+        /// <summary>
+        /// These are not used For Interactions with UI Controls.
+        /// </summary>
         private SaleResultXML SendSaleTransaction(string amount)
         {
             string parameters = PaymentEngine.BuildXMLSale(Globals.Default.XWebID, Globals.Default.XWebTerminalID, Globals.Default.XWebAuthKey, amount, Globals.Default.ClerkID);
@@ -253,10 +259,6 @@ namespace EdgeExpressDemoPOS
             totalAmountBox.Text = "0";
         }
         #endregion
-        private void currentTicketList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
         #region UIProcessingControls
         private void processSaleButton_Click(object sender, RoutedEventArgs e)
         {
@@ -341,6 +343,12 @@ namespace EdgeExpressDemoPOS
         }
         #endregion
 
+        private void signatureLookup_Click(object sender, RoutedEventArgs e)
+        {
+            string transactionID = GetTransactionIDForReturnVoid();
+            string sigImage = DBFunctions.GetSignatureString(transactionID);
+            SignatureLookupDisplayWindow lookupDisplay = new SignatureLookupDisplayWindow(sigImage);
+            lookupDisplay.ShowDialog();
+        }
     }
-
 }

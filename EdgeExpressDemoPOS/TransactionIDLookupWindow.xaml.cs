@@ -22,6 +22,8 @@ namespace EdgeExpressDemoPOS
         public TransactionIDLookupWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            TransactionIDBox.Focus();
         }
 
         private void Lookup_Click(object sender, RoutedEventArgs e)
