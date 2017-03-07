@@ -21,6 +21,7 @@ namespace DeveloperServicesPOS
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    ///Git Test
     /// </summary>
     public partial class MainWindow : Window
     {
