@@ -144,6 +144,7 @@
     <Compile Include="MPDTransactions.xaml.cs">
       <DependentUpon>MPDTransactions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PaymentEngine.cs" />
     <Compile Include="PayPageBranding.xaml.cs">
       <DependentUpon>PayPageBranding.xaml</DependentUpon>
     </Compile>
@@ -165,6 +166,7 @@
       <DependentUpon>Receipt.xaml</DependentUpon>
     </Compile>
     <Compile Include="TransactionRequest.cs" />
+    <Compile Include="UIFunctions.cs" />
     <Page Include="About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

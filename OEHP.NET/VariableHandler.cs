@@ -8,19 +8,21 @@ namespace OEHP.NET
 {
     public class VariableHandler
     {
-        
-        
+
+        #region URLs of Requests to OEHP API
         //Test OEHP URLs
-        public string TestPayPagePostURL = "https://ws.test.paygateway.com/HostPayService/v1/hostpay/transactions";
-        public string TestDirectPostURL = "https://ws.test.paygateway.com/api/v1/transactions";
-        public string TestHtmlDocPostURL = "https://ws.test.paygateway.com/HostPayService/v1/hostpay/paypage/";
+        public static string TestPayPagePostURL = "https://ws.test.paygateway.com/HostPayService/v1/hostpay/transactions";
+        public static string TestDirectPostURL = "https://ws.test.paygateway.com/api/v1/transactions";
+        public static string TestHtmlDocPostURL = "https://ws.test.paygateway.com/HostPayService/v1/hostpay/paypage/";
         public static string TestRcmStatusURL = "https://ws.test.paygateway.com/HostPayService/v1/hostpay/transactions/status/";
 
         //Live OEHP Urls
-        public string LivePayPagePostURL = "https://ws.paygateway.com/HostPayService/v1/hostpay/transactions";
-        public string LiveDirectPostURL = "https://ws.paygateway.com/api/v1/transactions";
-        public string LiveHtmlDocPostURL = "https://ws.paygateway.com/HostPayService/v1/hostpay/paypage/";
+        public static string LivePayPagePostURL = "https://ws.paygateway.com/HostPayService/v1/hostpay/transactions";
+        public static string LiveDirectPostURL = "https://ws.paygateway.com/api/v1/transactions";
+        public static string LiveHtmlDocPostURL = "https://ws.paygateway.com/HostPayService/v1/hostpay/paypage/";
         public static string LiveRcmStatusURL = "https://ws.paygateway.com/HostPayService/v1/hostpay/transactions/status/";
+        #endregion
+        #region Object Classes for deserialization
         //Object for PayPage CSS Fields
         public struct PayPageCSS
         {
@@ -187,6 +189,8 @@ namespace OEHP.NET
             public string receipt_customer_copy_label { get; set; }
         }
     }
+#endregion
+    //Legacy Variable, to remove when no longer needed.
     public static class SSP
     {
         public static string SessionToken { get; set; }

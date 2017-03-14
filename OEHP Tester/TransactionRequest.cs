@@ -8,27 +8,26 @@ namespace OEHP_Tester
 {
     public class TransactionRequest
     {
-        //ACH ParamBuilder
-        public string ACHParamBuilder(string accountToken, string transactionType, string chargeType,
-            string entryMode, string orderID, string chargeAmount, string tcc, string customParameters) // Builds Parameters for WebPost
+        public static string ACHParamBuilder(string accountToken, string transactionType, string chargeType,
+            string entryMode, string orderID, string chargeAmount, string tcc, string customParameters) //Builds Parameters for standard ACH Post
         {
-
-            string entryModeBuilder = "entry_mode=" + entryMode;
-            string transactionTypeBuilder = "transaction_type=" + transactionType;
-            string chargeTypeBuilder = "charge_type=" + chargeType;
-            string chargeAmountBuilder = "charge_total=" + chargeAmount;
-            string orderIDBuilder = "order_id=" + orderID;
-            string accountTokenBuilder = "account_token=" + accountToken;
-            string tccBuilder = "transaction_condition_code=" + tcc;
+            //Verbose and Unneeded, Commented out
+            //string entryModeBuilder = "entry_mode=" + entryMode;
+            //string transactionTypeBuilder = "transaction_type=" + transactionType;
+            //string chargeTypeBuilder = "charge_type=" + chargeType;
+            //string chargeAmountBuilder = "charge_total=" + chargeAmount;
+            //string orderIDBuilder = "order_id=" + orderID;
+            //string accountTokenBuilder = "account_token=" + accountToken;
+            //string tccBuilder = "transaction_condition_code=" + tcc;
             
             StringBuilder parameters = new StringBuilder();
-            parameters.Append(accountTokenBuilder
-                        + "&" + transactionTypeBuilder
-                        + "&" + entryModeBuilder
-                        + "&" + chargeTypeBuilder
-                        + "&" + chargeAmountBuilder
-                        + "&" + orderIDBuilder
-                        + "&" + tccBuilder
+            parameters.Append("account_token=" + accountToken
+                        + "&transaction_type=" + transactionType
+                        + "&entry_mode=" + entryMode
+                        + "&charge_type=" + chargeType
+                        + "&charge_total=" + chargeAmount
+                        + "&order_id=" + orderID
+                        + "&transaction_condition_code=" + tcc
                         + customParameters)
                         ;
             if (Globals.Default.DuplicateOn == "TRUE")
@@ -43,29 +42,21 @@ namespace OEHP_Tester
             {
                 parameters.Append("&manage_payer_data=true");
             }
+            GeneralFunctions.WriteToLog(parameters.ToString());
             return parameters.ToString();
 
         }
-
-        //Credit_Card ParamBuilder
-        public string CreditCardParamBuilder(string accountToken, string transactionType, string chargeType,
-            string entryMode, string orderID, string chargeAmount, string customParameters) // Builds Parameters for WebPost
+        public static string CreditCardParamBuilder(string accountToken, string transactionType, string chargeType,
+            string entryMode, string orderID, string chargeAmount, string customParameters) //Builds Parameters for standard CreditCard Post
         {
 
-            string entryModeBuilder = "entry_mode=" + entryMode;
-            string transactionTypeBuilder = "transaction_type=" + transactionType;
-            string chargeTypeBuilder = "charge_type=" + chargeType;
-            string chargeAmountBuilder = "charge_total=" + chargeAmount;
-            string orderIDBuilder = "order_id=" + orderID;
-            string accountTokenBuilder = "account_token=" + accountToken;
-
             StringBuilder parameters = new StringBuilder();
-            parameters.Append(accountTokenBuilder
-                        + "&" + transactionTypeBuilder
-                        + "&" + entryModeBuilder
-                        + "&" + chargeTypeBuilder                        
-                        + "&" + chargeAmountBuilder
-                        + "&" + orderIDBuilder
+            parameters.Append("account_token=" + accountToken
+                        + "&transaction_type=" + transactionType
+                        + "&entry_mode=" + entryMode
+                        + "&charge_type=" + chargeType                        
+                        + "&charge_total=" + chargeAmount
+                        + "&order_id=" + orderID
                         + customParameters);
             if (Globals.Default.DuplicateOn == "TRUE")
             {
@@ -79,30 +70,21 @@ namespace OEHP_Tester
             {
                 parameters.Append("&manage_payer_data=true");
             }
+            GeneralFunctions.WriteToLog(parameters.ToString());
             return parameters.ToString();
 
         }
-        //Credit Force Builder
-        public string CreditForceParamBuilder(string accountToken, string transactionType, string chargeType,
-            string entryMode, string orderID, string chargeAmount, string approvalCode, string customParameters) // Builds Parameters for WebPost
+        public static string CreditForceParamBuilder(string accountToken, string transactionType, string chargeType,
+            string entryMode, string orderID, string chargeAmount, string approvalCode, string customParameters) //builds parameters for CreditForce Transaciton (Since it has Dependencies different than standard CreditCard Requests
         {
-
-            string entryModeBuilder = "entry_mode=" + entryMode;
-            string transactionTypeBuilder = "transaction_type=" + transactionType;
-            string chargeTypeBuilder = "charge_type=" + chargeType;
-            string chargeAmountBuilder = "charge_total=" + chargeAmount;
-            string orderIDBuilder = "order_id=" + orderID;
-            string accountTokenBuilder = "account_token=" + accountToken;
-            string approvalCodeBuilder = "bank_approval_code=" + approvalCode;
-
             StringBuilder parameters = new StringBuilder();
-            parameters.Append(accountTokenBuilder
-                                + "&" + transactionTypeBuilder
-                                + "&" + entryModeBuilder
-                                + "&" + chargeTypeBuilder
-                                + "&" + chargeAmountBuilder
-                                + "&" + orderIDBuilder
-                                + "&" + approvalCodeBuilder
+            parameters.Append("account_token=" + accountToken
+                                + "&transaction_type=" + transactionType
+                                + "&entry_mode=" + entryMode
+                                + "&charge_type=" + chargeType
+                                + "&charge_total=" + chargeAmount
+                                + "&order_id=" + orderID
+                                + "&bank_approval_code=" + approvalCode
                                 + customParameters)
                                 ;
             ;
@@ -114,11 +96,12 @@ namespace OEHP_Tester
             {
                 parameters.Append("&duplicate_check=NO_CHECK");
             }
+            GeneralFunctions.WriteToLog(parameters.ToString());
             return parameters.ToString();
 
         }
         //Debit Card ParamBuilder
-        public string DebitCardParamBuilder(string accountToken, string transactionType, string chargeType,
+        public static string DebitCardParamBuilder(string accountToken, string transactionType, string chargeType,
             string entryMode, string orderID, string chargeAmount, string accountType, string customParameters) // Builds Parameters for WebPost
         {
 
@@ -190,12 +173,12 @@ namespace OEHP_Tester
                     parameters.Append("&duplicate_check=NO_CHECK");
                 }
             }
-
+            GeneralFunctions.WriteToLog(parameters.ToString());
             return parameters.ToString();
 
         }
 
-        public string DirectPostBuilder(string accountToken, string orderID, string transactionType, string chargeType) //Build Direct Post
+        public static string DirectPostBuilder(string accountToken, string orderID, string transactionType, string chargeType) //Build Direct Post
         {
             string accountTokenBuilder = "account_token=" + accountToken;
             string transactionTypeBuilder = "transaction_type=" + transactionType;
@@ -209,12 +192,12 @@ namespace OEHP_Tester
                                 + "&" + orderIDBuilder
                                 + "&" + "full_detail_flag=true"); //Only Needed for Query_Payment, but causes no issues if included
 
-
+            GeneralFunctions.WriteToLog(parameters.ToString());
             return parameters.ToString();
 
         }
         //MPD Transaction ParamBuilder
-        public string MpdBuilder(string accountToken, string orderID, string transactionType, string chargeType,
+        public static string MpdBuilder(string accountToken, string orderID, string transactionType, string chargeType,
             string chargeAmount, string payer_id, string span, string transactionConditionCode, string customParameters)
         {
             string accountTokenBuilder = "account_token=" + accountToken;
@@ -245,10 +228,10 @@ namespace OEHP_Tester
                 parameters.Append("&duplicate_check=NO_CHECK");
             }
 
-
+            GeneralFunctions.WriteToLog(parameters.ToString());
             return parameters.ToString();
         }
-        public string MPDCheckBuilder(string accountToken, string orderID, string transactionType, string chargeType,
+        public static string MPDCheckBuilder(string accountToken, string orderID, string transactionType, string chargeType,
             string chargeAmount, string payer_id, string span, string transactionConditionCode, string customParameters)
         {
             string accountTokenBuilder = "account_token=" + accountToken;
@@ -279,11 +262,11 @@ namespace OEHP_Tester
                 parameters.Append("&duplicate_check=NO_CHECK");
             }
 
-
+            GeneralFunctions.WriteToLog(parameters.ToString());
             return parameters.ToString();
         }
 
-        public string OrderIDRandom(int size) //Code for creating Randomized OrderIDs
+        public static string OrderIDRandom(int size) //Code for creating Randomized OrderIDs
         {
             Random random = new Random((int)DateTime.Now.Ticks); // Use Timestamp to Seed Random Number
             StringBuilder builder = new StringBuilder();

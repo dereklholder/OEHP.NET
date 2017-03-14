@@ -12,7 +12,7 @@ namespace OEHP_Tester {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.0.1.0")]
     internal sealed partial class Globals : global::System.Configuration.ApplicationSettingsBase {
         
         private static Globals defaultInstance = ((Globals)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Globals())));
@@ -252,6 +252,18 @@ namespace OEHP_Tester {
             }
             set {
                 this["SubmitMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SessionToken {
+            get {
+                return ((string)(this["SessionToken"]));
+            }
+            set {
+                this["SessionToken"] = value;
             }
         }
     }

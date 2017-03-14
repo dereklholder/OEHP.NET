@@ -13,9 +13,9 @@ namespace OEHP.NET
 {
     public class GatewayRequest : VariableHandler
     {
-
+        #region TestPostMethods
         //Posts to TEST
-        public string TestPayPagePost(string parameters) //Returns url that will render paypage.
+        public static PayPageJson TestPayPagePost(string parameters) //returns Object that contains SealedSetupParameters, ActionURL, and ErrorMessage as properties.
         {
             try
             {
@@ -48,23 +48,14 @@ namespace OEHP.NET
                 PayPageJson jsonResponse = new PayPageJson();
                 jsonResponse = JsonConvert.DeserializeObject<PayPageJson>(responseFromOEHP);
 
-                string result = jsonResponse.actionUrl + jsonResponse.sealedSetupParameters;
-
-                SessionToken = jsonResponse.sealedSetupParameters;
-
-                //If an error Occured, change the result to the error message
-                if (jsonResponse.errorMessage != null)
-                {
-                    result = jsonResponse.errorMessage;
-                }
-                return result;
+                return jsonResponse;
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                throw ex;
             }
         }
-        public string TestDirectPost(string parameters) //Returns raw result from direct OEHP, will need to construct wrapper to handle result data.
+        public static string TestDirectPost(string parameters) //Returns raw result from direct OEHP
         {
             try
             {
@@ -104,7 +95,7 @@ namespace OEHP.NET
                 return ex.ToString();
             }
         }
-        public string TestHtmlDocPost(string parameters)  //Performs HTMLDOc Post, returns HTML doc as String
+        public static string TestHtmlDocPost(string parameters)  //Performs HTMLDOc Post, returns HTML doc as String
         {
             try
             {
@@ -142,8 +133,10 @@ namespace OEHP.NET
             }
 
         }
+        #endregion
+        #region LivePostMethods
         //Posts to PROD
-        public string LivePayPagePost(string parameters)
+        public static PayPageJson LivePayPagePost(string parameters)
         {
             try
             {
@@ -176,23 +169,14 @@ namespace OEHP.NET
                 PayPageJson jsonResponse = new PayPageJson();
                 jsonResponse = JsonConvert.DeserializeObject<PayPageJson>(responseFromOEHP);
 
-                SessionToken = jsonResponse.sealedSetupParameters;
-
-                string result = jsonResponse.actionUrl + jsonResponse.sealedSetupParameters;
-
-                //If an error Occured, change the result to the error message
-                if (jsonResponse.errorMessage != null)
-                {
-                    result = jsonResponse.errorMessage;
-                }
-                return result;
+                return jsonResponse;
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                throw ex;
             }
         }
-        public string LiveDirectPost(string parameters) //Returns raw result from direct OEHP, will need to construct wrapper to handle result data.
+        public static string LiveDirectPost(string parameters) //Returns raw result from direct OEHP, will need to construct wrapper to handle result data.
         {
             try
             {
@@ -232,7 +216,7 @@ namespace OEHP.NET
                 return ex.ToString();
             }
         }
-        public string LiveHtmlDocumentPost(string parameters)  //Not Fully IMplemented
+        public static string LiveHtmlDocumentPost(string parameters)  //Not Fully IMplemented
         {
             try
             {
@@ -270,6 +254,7 @@ namespace OEHP.NET
             }
 
         }
+#endregion
     }
 
 }

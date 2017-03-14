@@ -59,5 +59,8 @@
     <Setting Name="SubmitMode" Type="System.String" Scope="User">
       <Value Profile="(Default)">OneButton</Value>
     </Setting>
+    <Setting Name="SessionToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

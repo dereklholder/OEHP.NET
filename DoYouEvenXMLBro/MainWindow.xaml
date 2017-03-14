@@ -1,0 +1,18 @@
+﻿<Window x:Class="DoYouEvenXMLBro.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DoYouEvenXMLBro"
+        mc:Ignorable="d"
+        Title="XMLBuilder" Height="350" Width="525">
+    <Grid>
+        <TextBox x:Name="XMLStuff" HorizontalAlignment="Left" Height="257" Margin="314,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
+        <Label x:Name="xmlLabel" Content="XML:" HorizontalAlignment="Left" Margin="314,22,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="addButton" Content="Add" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="75" Click="addButton_Click"/>
+        <TextBox x:Name="fieldBox" HorizontalAlignment="Left" Height="23" Margin="10,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="valueBox" HorizontalAlignment="Left" Height="23" Margin="144,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="fieldLabel" Content="Field:" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top"/>
+        <Label Content="Value:" HorizontalAlignment="Left" Margin="144,22,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

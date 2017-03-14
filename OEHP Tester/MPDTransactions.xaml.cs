@@ -189,50 +189,42 @@ namespace OEHP_Tester
             }
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private void SubmitButton_Click(object sender, RoutedEventArgs e) /// No Test 
         {
             try
             {
-                GeneralFunctions gf = new GeneralFunctions();
-                TransactionRequest tr = new TransactionRequest();
-                OEHP.NET.DataManipulation dm  = new OEHP.NET.DataManipulation();
-                OEHP.NET.GatewayRequest gr = new OEHP.NET.GatewayRequest();
-                string parameters;
+                ResponseForWebBrowser response = new ResponseForWebBrowser();
+                OEHP.NET.DataManipulation dm = new OEHP.NET.DataManipulation();
                 string result;
                 switch (TransactionTypeBox.Text)
                 {
                     case "CREDIT_CARD":
-                        OrderIDBox.Text = tr.OrderIDRandom(8);
-                        parameters = tr.MpdBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.Text, ChargeTypeBox.Text, AmountBox.Text, PayerIDBox.Text, SpanBox.Text, TCCComboBox.SelectedValue.ToString(), CustomParametersBox.Text);
-                        PostParametersBox.Text = parameters;
-                        gf.WriteToLog(parameters);
-                        result = gr.TestDirectPost(parameters);
-                        gf.WriteToLog(result);
+                        OrderIDBox.Text = TransactionRequest.OrderIDRandom(8);
+                        PostParametersBox.Text = TransactionRequest.MpdBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.Text, ChargeTypeBox.Text, AmountBox.Text, PayerIDBox.Text, SpanBox.Text, TCCComboBox.SelectedValue.ToString(), CustomParametersBox.Text);
+                        GeneralFunctions.WriteToLog(PostParametersBox.Text);
+                        response = PaymentEngine.SendToGateway(PostParametersBox.Text, "directPost");
                         if (Globals.Default.QueryResponseMode == "Querystring")
                         {
-                            HostPayBrowser.Text = result;
+                            HostPayBrowser.Text = response.directPostResponse;
                         }
                         if (Globals.Default.QueryResponseMode == "JSON")
                         {
-                            HostPayBrowser.Text = dm.QueryStringToJson(result);
+                            HostPayBrowser.Text = dm.QueryStringToJson(response.directPostResponse);
                         }
                         GetAliasList();
                         break;
                     case "ACH":
-                        OrderIDBox.Text = tr.OrderIDRandom(8);
-                        parameters = tr.MPDCheckBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.Text, ChargeTypeBox.Text, AmountBox.Text, PayerIDBox.Text, SpanBox.Text, TCCComboBox.SelectedValue.ToString(), CustomParametersBox.Text);
-                        PostParametersBox.Text = parameters;
-                        gf.WriteToLog(parameters);
-                        HostPayBrowser.Text = gr.TestDirectPost(parameters);
-                        result = gr.TestDirectPost(parameters);
-                        gf.WriteToLog(result);
+                        OrderIDBox.Text = TransactionRequest.OrderIDRandom(8);
+                        PostParametersBox.Text = TransactionRequest.MPDCheckBuilder(AccountTokenBox.Text, OrderIDBox.Text, TransactionTypeBox.Text, ChargeTypeBox.Text, AmountBox.Text, PayerIDBox.Text, SpanBox.Text, TCCComboBox.SelectedValue.ToString(), CustomParametersBox.Text);
+                        GeneralFunctions.WriteToLog(PostParametersBox.Text);
+                        response = PaymentEngine.SendToGateway(PostParametersBox.Text, "directPost");
                         if (Globals.Default.QueryResponseMode == "Querystring")
                         {
-                            HostPayBrowser.Text = result;
+                            HostPayBrowser.Text = response.directPostResponse;
                         }
                         if (Globals.Default.QueryResponseMode == "JSON")
                         {
-                            HostPayBrowser.Text = dm.QueryStringToJson(result);
+                            HostPayBrowser.Text = dm.QueryStringToJson(response.directPostResponse);
                         }
                         GetAliasList();
                         break;

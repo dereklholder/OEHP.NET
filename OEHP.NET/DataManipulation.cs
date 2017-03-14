@@ -11,6 +11,9 @@ using System.IO;
 
 namespace OEHP.NET
 {
+    /// <summary>
+    /// Methods for manipulation of data for ease of use, mostly conversion/Deserialization
+    /// </summary>
     public class DataManipulation : VariableHandler
     {
         //Used for Converting QueryString to Json

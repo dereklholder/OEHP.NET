@@ -15,6 +15,8 @@ using System.Xml.Serialization;
 
 namespace OEHP_Tester
 {
+
+    #region Classes for Serializing XMl Results from EdgeExpress Calls
     [Serializable, XmlRoot("XLinkEMVResult")]
     public class RCMPortXML
     {
@@ -28,6 +30,7 @@ namespace OEHP_Tester
         public string RESULT { get; set; }
         public string RESULTMSG { get; set; }
     }
+#endregion
 
     public class GeneralFunctions : OEHP.NET.VariableHandler
     {
@@ -46,7 +49,7 @@ namespace OEHP_Tester
             ph.Topmost = true;
             ph.ShowDialog();
         }
-        public void WriteToLog(string logString) //Code for logging functions.
+        public static void  WriteToLog(string logString) //Code for logging functions.
         {
             try
             {
@@ -83,7 +86,7 @@ namespace OEHP_Tester
             System.Diagnostics.Process.Start("mailto:" + Globals.Default.ContactDevServices);
         }
 
-        public BitmapImage DecodeBase64Image(string base64String)
+        public static BitmapImage DecodeBase64Image(string base64String)
         {
             try
             {
@@ -104,7 +107,7 @@ namespace OEHP_Tester
                 return null;
             }
         }
-        public string GetPageContent(WebBrowser wb)
+        public static string GetPageContent(WebBrowser wb)
         {
             if (wb != null)
             {
@@ -116,7 +119,7 @@ namespace OEHP_Tester
             }
         }
 
-        public string PaymentFinishedSignal(string pageHTML)
+        public static string PaymentFinishedSignal(string pageHTML)
         {
             if (pageHTML != null)
             {
@@ -129,8 +132,7 @@ namespace OEHP_Tester
                 }
                 catch (Exception ex)
                 {
-                    GeneralFunctions gf = new GeneralFunctions();
-                    gf.WriteToLog(ex.ToString());
+                    WriteToLog(ex.ToString());
                     return null;
                 }
             }
@@ -140,7 +142,7 @@ namespace OEHP_Tester
             }
         }
 
-        public string RCMStatusFromWebPage(string pageHTML)
+        public static string RCMStatusFromWebPage(string pageHTML)
         {
             if (pageHTML != null)
             {
@@ -219,43 +221,46 @@ namespace OEHP_Tester
             
 
         }
-        public void InsertTransactionData(string sqlString)
+        public static void InsertTransactionData(string sqlString)
         {
+            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source = tran.oehp;Version=3;");
             try
             {
-                SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source = tran.oehp;Version=3;");
-
                 m_dbConnection.Open();
                 SQLiteCommand command = new SQLiteCommand(sqlString, m_dbConnection);
-                command.ExecuteNonQuery();
-
-                m_dbConnection.Close();
+                command.ExecuteNonQuery();            
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occured while writing the transaction to the database, please check the log.");
-                WriteToLog(ex.ToString());
-                
+                WriteToLog(ex.ToString());         
+            }
+            finally
+            {
+                m_dbConnection.Close();
             }
 
         }
         public static DataTable GetPayerIDAndSpan()
         {
             DataTable dt = new DataTable();
+            SQLiteConnection con = new SQLiteConnection("Data Source = tran.oehp;version=3");
             try
-            {
-                SQLiteConnection con = new SQLiteConnection("Data Source = tran.oehp;version=3");
+            {                
                 con.Open();
                 SQLiteCommand command = new SQLiteCommand(con);
                 command.CommandText = "SELECT payer_identifier, span  FROM transactiondb";
                 SQLiteDataReader sdr = command.ExecuteReader();
                 dt.Load(sdr);
-                sdr.Close();
-                con.Close();
+                sdr.Close();         
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
+            }
+            finally
+            {
+                con.Close();
             }
             return dt;
 
