@@ -221,7 +221,7 @@ namespace OEHP_Tester {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://www.xchargedeveloper.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://www.openedgedeveloper.com")]
         public string DevPortalURL {
             get {
                 return ((string)(this["DevPortalURL"]));

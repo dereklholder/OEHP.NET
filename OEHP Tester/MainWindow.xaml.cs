@@ -1036,7 +1036,7 @@ namespace OEHP_Tester
             {
                 GeneralFunctions.WriteToLog(ex.ToString());
             }
-        }+
+        }
         #endregion  
         public MainWindow()
         {

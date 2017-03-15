@@ -29,69 +29,10 @@ namespace OEHP_Tester
             dt.Columns["span"].ColumnName = "SPAN";
             dataGrid.DataContext = dt.DefaultView;
         }
-        public MPDTransactions()
-        {
-            InitializeComponent();
-
-            GetAliasList();
-
-            CreditCardChargeTypeCollection.Add("SALE");
-            CreditCardChargeTypeCollection.Add("CREDIT");
-            CreditCardChargeTypeCollection.Add("FORCE_SALE");
-            CreditCardChargeTypeCollection.Add("DELETE_CUSTOMER");
-            CreditCardChargeTypeCollection.Add("AUTH");
-
-            ACHChargeTypeCollection.Add("DEBIT");
-            ACHChargeTypeCollection.Add("CREDIT");
-            ACHChargeTypeCollection.Add("DELETE_CUSTOMER");
-
-            TransactionTypeCollection.Add("CREDIT_CARD");
-            TransactionTypeCollection.Add("ACH");
-            TransactionTypeBox.ItemsSource = TransactionTypeCollection;
-
-            if (Globals.Default.QueryResponseMode == "Querystring")
-            {
-                QueryResponseQueryString.IsChecked = true;
-                QueryResponseJSON.IsChecked = false;
-            }
-            if (Globals.Default.QueryResponseMode == "JSON")
-            {
-                QueryResponseQueryString.IsChecked = false;
-                QueryResponseJSON.IsChecked = true;
-            }
-            if (Globals.Default.ProcessingMode == "Live")
-            {
-                Live.IsChecked = true;
-            }
-            if (Globals.Default.ProcessingMode == "Test")
-            {
-                Test.IsChecked = true;
-            }
-
-        }
-        public List<TCCList> ACHorCCTCC()
-        {
-            List<TCCList> _TCCBoxItems = new List<TCCList>();
-            if (TransactionTypeBox.SelectedItem.ToString() == "ACH")
-            {
-                _TCCBoxItems.Add(new TCCList { Header = "PPD", Value = "50" });
-                _TCCBoxItems.Add(new TCCList { Header = "TEL", Value = "51" });
-                _TCCBoxItems.Add(new TCCList { Header = "WEB", Value = "52" });
-                _TCCBoxItems.Add(new TCCList { Header = "CCD", Value = "53" });
-            }
-            if (TransactionTypeBox.SelectedItem.ToString() == "CREDIT_CARD")
-            {
-                _TCCBoxItems.Add(new TCCList { Header = "Recurring", Value = "6" });
-                _TCCBoxItems.Add(new TCCList { Header = "ECommerce", Value = "5" });
-            }
-            return _TCCBoxItems;
-        }
-        // Collections:
-        public ObservableCollection<string> CreditCardChargeTypeCollection = new ObservableCollection<string>();
-        public ObservableCollection<string> ACHChargeTypeCollection = new ObservableCollection<string>();
-        public ObservableCollection<string> TransactionTypeCollection = new ObservableCollection<string>();
-        public ObservableCollection<string> TCCCollection = new ObservableCollection<string>();
-
+        #region UI - MenuBar Functions 
+        /// <summary>
+        /// May Consolidate this later by taking all shared functions into GeneralFunctions and making method calls here. No functional improvement
+        /// </summary>
         private void PresetCanadianTesting_Click(object sender, RoutedEventArgs e)
         {
             AccountTokenBox.Text = Globals.Default.CanadianAccountToken;
@@ -147,11 +88,6 @@ namespace OEHP_Tester
             this.Close();
         }
 
-        private void File_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void PresetHelp_Click(object sender, RoutedEventArgs e)
         {
             GeneralFunctions.PresetHelpWindowLauncher();
@@ -161,41 +97,100 @@ namespace OEHP_Tester
         {
             GeneralFunctions.AboutWindowLauncher();
         }
-
-        private void Tools_Click(object sender, RoutedEventArgs e)
+        private void Live_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void PayerIDBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TransactionTypeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            switch (TransactionTypeBox.SelectedItem.ToString())
+            LoginForLive login = new LoginForLive();
+            if (login.ShowDialog().Value == false)
             {
-                case "CREDIT_CARD":
-                    ChargeTypeBox.ItemsSource = CreditCardChargeTypeCollection;
-                    TCCComboBox.ItemsSource = ACHorCCTCC();
-                    break;
-                case "ACH":
-                    ChargeTypeBox.ItemsSource = ACHChargeTypeCollection;
-                    TCCComboBox.ItemsSource = ACHorCCTCC();
-                    break;
-                default:
-                    break;
+                bool CorrectLogin = login.CorrectLogin;
+                if (CorrectLogin == true)
+                {
+                    Globals.Default.ProcessingMode = "Live";
+                    if (Test.IsChecked == true)
+                    {
+                        Test.IsChecked = false;
+                    }
+                    Live.IsChecked = true;
+                }
+                else
+                {
+                    MessageBox.Show("Live processing restricted to OpenEdge. Please contact your OpenEdge Representative.");
+                }
             }
         }
+        private void Test_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.Default.ProcessingMode = "Test";
+            if (Live.IsChecked == true)
+            {
+                Live.IsChecked = false;
+            }
+            Test.IsChecked = true;
+        }
+        private void CreateNewDB_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("This will delete the current database, do you want to continue?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+            {
+                //do no stuff
+            }
+            else
+            {
+                GeneralFunctions gf = new GeneralFunctions();
+                gf.CreateDBFile();
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e) /// No Test 
+            }
+        }
+        private void GoToPortal_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralFunctions.NavToDevPortal();
+        }
+        private void EmailDevServices_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralFunctions.EmailDevServices();
+        }
+
+        private void DupCheckOn_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralFunctions.SetDupModeOn();
+        }
+        private void DupCheckOff_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralFunctions.SetDupModeOff();
+        }
+        #endregion
+        #region UI - Visibility and General UI
+        private void SetQueryResponseModeUIElements() //Sets MenuBar UI Elements for what QueryResponse mode is currently selected. Used only On application launch
+        {
+            if (Globals.Default.QueryResponseMode == "Querystring")
+            {
+                QueryResponseQueryString.IsChecked = true;
+                QueryResponseJSON.IsChecked = false;
+            }
+            if (Globals.Default.QueryResponseMode == "JSON")
+            {
+                QueryResponseQueryString.IsChecked = false;
+                QueryResponseJSON.IsChecked = true;
+            }
+        }
+        private void SetProcessingModeUIElements() // Sets UI Elements for Processing Mode (Live vs Test)
+        {
+            if (Globals.Default.ProcessingMode == "Live")
+            {
+                Live.IsChecked = true;
+            }
+            if (Globals.Default.ProcessingMode == "Test")
+            {
+                Test.IsChecked = true;
+            }
+        }
+        #endregion
+        #region UI - Button Interaction
+        private void SubmitButton_Click(object sender, RoutedEventArgs e) //Actions to submit transaction 
         {
             try
             {
                 ResponseForWebBrowser response = new ResponseForWebBrowser();
                 OEHP.NET.DataManipulation dm = new OEHP.NET.DataManipulation();
-                string result;
                 switch (TransactionTypeBox.Text)
                 {
                     case "CREDIT_CARD":
@@ -232,7 +227,7 @@ namespace OEHP_Tester
                     default:
                         HostPayBrowser.Text = "Check Transaction Request parameters";
                         break;
-                        
+
                 }
             }
             catch (Exception ex)
@@ -241,80 +236,39 @@ namespace OEHP_Tester
             }
         }
 
-        private void Live_Click(object sender, RoutedEventArgs e)
-        {
-            LoginForLive login = new LoginForLive();
-            if (login.ShowDialog().Value == false)
-            {
-                bool CorrectLogin = login.CorrectLogin;
-                if (CorrectLogin == true)
-                {
-                    Globals.Default.ProcessingMode = "Live";
-                    if (Test.IsChecked == true)
-                    {
-                        Test.IsChecked = false;
-                    }
-                    Live.IsChecked = true;
-                }
-                else
-                {
-                    MessageBox.Show("Live processing restricted to OpenEdge. Please contact your OpenEdge Representative.");
-                }
-            }
-        }
-
-        private void Test_Click(object sender, RoutedEventArgs e)
-        {
-            Globals.Default.ProcessingMode = "Test";
-            if (Live.IsChecked == true)
-            {
-                Live.IsChecked = false;
-            }
-            Test.IsChecked = true;
-        }
-
-        private void CreateNewDB_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("This will delete the current database, do you want to continue?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
-            {
-                //do no stuff
-            }
-            else
-            {
-                GeneralFunctions gf = new GeneralFunctions();
-                gf.CreateDBFile();
-
-            }
-        }
-
-        private void GoToPortal_Click(object sender, RoutedEventArgs e)
-        {
-            GeneralFunctions.NavToDevPortal();
-        }
-
-        private void EmailDevServices_Click(object sender, RoutedEventArgs e)
-        {
-            GeneralFunctions.EmailDevServices();
-        }
-
-        private void DupCheckOn_Click(object sender, RoutedEventArgs e)
-        {
-            GeneralFunctions.SetDupModeOn();
-        }
-
-        private void DupCheckOff_Click(object sender, RoutedEventArgs e)
-        {
-            GeneralFunctions.SetDupModeOff();
-        }
-
         private void RefreshAliasList_Click(object sender, RoutedEventArgs e)
         {
             GetAliasList();
         }
-    }
-    public class TCCList
-    {
-        public string Header { get; set; }
-        public string Value { get; set; }
+        #endregion
+        public MPDTransactions()
+        {
+            InitializeComponent();
+
+            GetAliasList();
+            TransactionTypeBox.ItemsSource = UICollections.MPDTransactionTypeValues();
+            SetProcessingModeUIElements();
+            SetQueryResponseModeUIElements();
+
+        }     
+        private void TransactionTypeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TCCComboBox.ItemsSource = UICollections.ACHorCCTCC(TransactionTypeBox.SelectedItem.ToString());
+            ChargeTypeBox.ItemsSource = UICollections.MPDChargeTypeValues(TransactionTypeBox.SelectedItem.ToString());
+            //switch (TransactionTypeBox.SelectedItem.ToString())
+            //{
+            //    case "CREDIT_CARD":
+            //        ChargeTypeBox.ItemsSource = CreditCardChargeTypeCollection;
+            //        TCCComboBox.ItemsSource = ACHorCCTCC();
+            //        break;
+            //    case "ACH":
+            //        ChargeTypeBox.ItemsSource = ACHChargeTypeCollection;
+            //        TCCComboBox.ItemsSource = ACHorCCTCC();
+            //        break;
+            //    default:
+            //        break;
+            //}
+        }
+        
     }
 }

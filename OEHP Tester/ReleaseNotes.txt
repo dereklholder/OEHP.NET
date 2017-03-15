@@ -2,6 +2,7 @@
 Large Refactoring on main code to be more clear and modular. This also resulted in some speed enhancements.
 Added more Commenting and separated code into Regions
 Added Comments to Source code to give general explanation of what methdos are attempting to do
+Changed URL to new Dev Portal
 1.2 
 Changed 'Mode' moniker to 'Environment'
 Added Ability to Conduct Raw posts.

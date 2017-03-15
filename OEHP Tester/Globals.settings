@@ -51,7 +51,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DevPortalURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://www.xchargedeveloper.com</Value>
+      <Value Profile="(Default)">https://www.openedgedeveloper.com</Value>
     </Setting>
     <Setting Name="ContactDevServices" Type="System.String" Scope="User">
       <Value Profile="(Default)">DeveloperServices@openedgepay.com</Value>

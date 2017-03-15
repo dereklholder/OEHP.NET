@@ -11,7 +11,7 @@ namespace OEHP.NET
 
         #region URLs of Requests to OEHP API
         //Test OEHP URLs
-        public static string TestPayPagePostURL = "https://ws.test.paygateway.com/HostPayService/v1/hostpay/transactions";
+        public static string TestPayPagePostURL = "https://ws.test.paygateway.com/HostPayService/v1/hostpay/transactions"; 
         public static string TestDirectPostURL = "https://ws.test.paygateway.com/api/v1/transactions";
         public static string TestHtmlDocPostURL = "https://ws.test.paygateway.com/HostPayService/v1/hostpay/paypage/";
         public static string TestRcmStatusURL = "https://ws.test.paygateway.com/HostPayService/v1/hostpay/transactions/status/";
@@ -22,9 +22,8 @@ namespace OEHP.NET
         public static string LiveHtmlDocPostURL = "https://ws.paygateway.com/HostPayService/v1/hostpay/paypage/";
         public static string LiveRcmStatusURL = "https://ws.paygateway.com/HostPayService/v1/hostpay/transactions/status/";
         #endregion
-        #region Object Classes for deserialization
-        //Object for PayPage CSS Fields
-        public struct PayPageCSS
+        #region Object Classes for deserialization      
+        public struct PayPageCSS //Object for PayPage CSS Fields
         {
             public string font_family { get; set; }
             public string font_size { get; set; }
@@ -46,17 +45,15 @@ namespace OEHP.NET
 
             public string exceptionData { get; set; }
 
-        }
-        //Object for deserializing the JSOn returned from PayPage POST
-        public struct PayPageJson
+        }       
+        public struct PayPageJson //Object for deserializing the JSOn returned from PayPage POST
         {
             public string sealedSetupParameters { get; set; }
             public string actionUrl { get; set; }
             public string errorMessage { get; set; }
         }
-        public static string SessionToken { get; set; }
-        //Object for deserializing result of Query transactions.
-        public struct QueryResultJson
+        public static string SessionToken { get; set; }   
+        public struct QueryResultJson//Object for deserializing result of Query transactions.
         {
             //General Transaction data
             public string response_code { get; set; }

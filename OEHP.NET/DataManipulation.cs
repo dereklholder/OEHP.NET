@@ -72,8 +72,6 @@ namespace OEHP.NET
                 return PPC;
             }
         }
-
-
         public ReceiptDataOnly ReceiptDataObject(string json)
         {
             try

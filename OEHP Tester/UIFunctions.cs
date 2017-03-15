@@ -118,6 +118,55 @@ namespace OEHP_Tester
             values.Add("KEYED");
             return values;
         }
+        public static ObservableCollection<string> MPDChargeTypeValues(string transactionType)
+        {
+            ObservableCollection<string> values = new ObservableCollection<string>();
+            if (transactionType == "CREDIT_CARD")
+            {
+                values.Add("SALE");
+                values.Add("CREDIT");
+                values.Add("FORCE_SALE");
+                values.Add("DELETE_CUSTOMER");
+                values.Add("AUTH");
+                return values;
+            }
+            if (transactionType == "ACH")
+            {
+                values.Add("DEBIT");
+                values.Add("CREDIT");
+                values.Add("DELETE_CUSTOMER");
+            }
+            return values;
+        }
+        public static ObservableCollection<string> MPDTransactionTypeValues()
+        {
+            ObservableCollection<string> values = new ObservableCollection<string>();
+            values.Add("CREDIT_CARD");
+            values.Add("ACH");
+            return values;
+        }
+        public static List<TCCList> ACHorCCTCC(string transactionType) //Formats list for MPD TransactioNCondition Code
+        {
+            List<TCCList> _TCCBoxItems = new List<TCCList>();
+            if (transactionType == "ACH")
+            {
+                _TCCBoxItems.Add(new TCCList { Header = "PPD", Value = "50" });
+                _TCCBoxItems.Add(new TCCList { Header = "TEL", Value = "51" });
+                _TCCBoxItems.Add(new TCCList { Header = "WEB", Value = "52" });
+                _TCCBoxItems.Add(new TCCList { Header = "CCD", Value = "53" });
+            }
+            if (transactionType == "CREDIT_CARD")
+            {
+                _TCCBoxItems.Add(new TCCList { Header = "Recurring", Value = "6" });
+                _TCCBoxItems.Add(new TCCList { Header = "ECommerce", Value = "5" });
+            }
+            return _TCCBoxItems;
+        }
+        public class TCCList
+        {
+            public string Header { get; set; }
+            public string Value { get; set; }
+        }
     }
 
 }

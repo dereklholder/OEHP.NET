@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media.Imaging;
-using System.Web;
-using System.Net;
-using System.Windows.Controls;
-using System.Data.SQLite;
 using System.Data;
+using System.Data.SQLite;
+using System.IO;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 
 namespace OEHP_Tester
@@ -34,7 +29,7 @@ namespace OEHP_Tester
 
     public class GeneralFunctions : OEHP.NET.VariableHandler
     {
-
+        #region Window Launchers
         public static void AboutWindowLauncher()
         {
             About window = new About();
@@ -49,44 +44,33 @@ namespace OEHP_Tester
             ph.Topmost = true;
             ph.ShowDialog();
         }
-        public static void  WriteToLog(string logString) //Code for logging functions.
-        {
-            try
-            {
-                var logPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, System.IO.Path.Combine("Log", "Log.txt")).ToString();
-                string timeStamp = DateTime.Now.ToString();
-                File.AppendAllText(logPath, timeStamp + Environment.NewLine + logString + Environment.NewLine + "--------------------------------------------------" + Environment.NewLine);
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("An Error Occured when Writing to the Log File." + Environment.NewLine + ex.GetBaseException().ToString());
-            }
-        }
-        public static void SetDupModeOff()
+        #endregion
+        #region General UI Calls
+        public static void SetDupModeOff()// Sets duplicate checking mode to OFF
         {
             Globals.Default.DuplicateOn = "FALSE";
             Globals.Default.DuplicateOff = "TRUE";
             ;
             Globals.Default.Save();
-        }
-        public static void SetDupModeOn()
+        } 
+        public static void SetDupModeOn()// Sets Duplicate Checking mode to ON 
         {
             Globals.Default.DuplicateOn = "TRUE";
             Globals.Default.DuplicateOff = "FALSE";
 
             Globals.Default.Save();
         }
-        public static void NavToDevPortal()
+        public static void NavToDevPortal()//Opens Web Browser to Developer Portal
         {
             System.Diagnostics.Process.Start(Globals.Default.DevPortalURL);
         }
-        public static void EmailDevServices()
+        public static void EmailDevServices()//Opoens e-mail client to e-mail DeveloperServices
         {
             System.Diagnostics.Process.Start("mailto:" + Globals.Default.ContactDevServices);
         }
-
-        public static BitmapImage DecodeBase64Image(string base64String)
+        #endregion
+        #region Parsers and Decoders.
+        public static BitmapImage DecodeBase64Image(string base64String) // Decodes Base64 Encoded Signature into a image to be displayed
         {
             try
             {
@@ -107,7 +91,7 @@ namespace OEHP_Tester
                 return null;
             }
         }
-        public static string GetPageContent(WebBrowser wb)
+        public static string GetPageContent(WebBrowser wb) //Parses Web Browser content from an HTMLDocument intoa  simple string
         {
             if (wb != null)
             {
@@ -118,8 +102,7 @@ namespace OEHP_Tester
                 return null;
             }
         }
-
-        public static string PaymentFinishedSignal(string pageHTML)
+        public static string PaymentFinishedSignal(string pageHTML)//Scrapes HTML for Payment Finished Signal, Used with GetPageContent method
         {
             if (pageHTML != null)
             {
@@ -141,8 +124,7 @@ namespace OEHP_Tester
                 return null;
             }
         }
-
-        public static string RCMStatusFromWebPage(string pageHTML)
+        public static string RCMStatusFromWebPage(string pageHTML) //Scrapes HTML for RCM status element, used with GetPageContent
         {
             if (pageHTML != null)
             {
@@ -168,8 +150,8 @@ namespace OEHP_Tester
                 return null;
             }
         }
-
-
+        #endregion
+        #region Database Functions.
         public void CreateDBFile()
         {
             if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "tran.oehp") != true)
@@ -265,8 +247,24 @@ namespace OEHP_Tester
             return dt;
 
         }
+        #endregion
+        public static void WriteToLog(string logString) //Code for logging.
+        {
+            try
+            {
+                var logPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, System.IO.Path.Combine("Log", "Log.txt")).ToString();
+                string timeStamp = DateTime.Now.ToString();
+                File.AppendAllText(logPath, timeStamp + Environment.NewLine + logString + Environment.NewLine + "--------------------------------------------------" + Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("An Error Occured when Writing to the Log File." + Environment.NewLine + ex.GetBaseException().ToString());
+            }
+        }
+
     }
-    //Methods for Creating Receipts from Query_Payment data
+#region Receipt Objects, may be redone at a later time.
     public class ReceiptFormatter : OEHP.NET.DataManipulation
     {
         //Go through receipt Data and Create a Tip Line
@@ -487,4 +485,6 @@ namespace OEHP_Tester
         }
 
     }
+    #endregion
+
 }
