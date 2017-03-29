@@ -7,20 +7,56 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Net;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace EdgeExpressDemoPOS
 {
-    public class PaymentEngine
+    public class PaymentEngine : VariableHandler
     {
         public static string SendToEdgeExpress(string parameters) // Sends listed Parameters to XL2, Output as string.
         {
-            string response;
-            XCharge.XpressLink2.XLEmv EdgeExpress = new XCharge.XpressLink2.XLEmv();
-            EdgeExpress.Execute(parameters, out response);
+            string response = null;
+            if (Globals.Default.IntegrationMode == "PC")
+            {
+                XCharge.XpressLink2.XLEmv EdgeExpress = new XCharge.XpressLink2.XLEmv();
+                EdgeExpress.Execute(parameters, out response);
+            }
 
             return response;
         }
+        #region EE CLoud Implementeation
+        public static jsonResponseWrapper SerializeJsonObject(string json)
+        {
+            JavaScriptSerializer ser = new JavaScriptSerializer();
+            jsonResponseWrapper wrapper = ser.Deserialize<jsonResponseWrapper>(json);
+            return wrapper;
+        }
+        public static jsonResponseWrapper SendToEdgeExpressCloud(string parameters) //Called to Send transactions to Cloud Rather than PC
+        {
+            WebRequest wr = WebRequest.Create(RCMUrl + RCMMethod + RCMQuerystring + parameters);
+            wr.Method = "GET";
 
+            Stream objStream = wr.GetResponse().GetResponseStream();
+            StreamReader sr = new StreamReader(objStream);
+
+            jsonResponseWrapper response = SerializeJsonObject(sr.ReadToEnd());
+
+            return response;
+
+        }
+        public static string GetEECloudStatus(string sessionID)
+        {
+            WebRequest wr = WebRequest.Create(RCMUrl + RCMStatusMethod + "&sessionID" + sessionID);
+            wr.Method = "GET";
+
+            Stream objstream = wr.GetResponse().GetResponseStream();
+            StreamReader sr = new StreamReader(objstream);
+
+            return sr.ReadToEnd();
+        }
+        #endregion
         #region TransactionBasedXMLBuilders
         public static string BuildXMLSale(string XWebID, string XWebTerminalID, string XWebAuthKey, string amount, string clerkid) // Builds XML for a Simple SALE (Prompt for Debit/Credit) Transaction
         {
@@ -726,13 +762,6 @@ namespace EdgeExpressDemoPOS
         #endregion
 
     }
-    public enum TranType
-    {
-        Sale,
-        DebitReturn,
-        CreditReturn,
-        Void
-    };
     #region ParsingObjects
     [Serializable, XmlRoot("XLinkEMVResult")]
     public class SaleResultXML
@@ -849,5 +878,37 @@ namespace EdgeExpressDemoPOS
         public string EXPYEAR { get; set; }
         public string TRANSACTIONID { get; set; }
     }
+    //Json Objects for Parsing Response when not using XML return format.
+    public class jsonResponseWrapper
+    {
+        public XLinkEMVResult result { get; set; }
+    }
+    public class XLinkEMVResult
+    {
+        public string DUPLICATECARD { get; set; }
+        public string DATE_TIME { get; set; }
+        public string HOSTRESPONSECODE { get; set; }
+        public string HOSTRESPONSEDESCRIPTION { get; set; }
+        public string RESULT { get; set; }
+        public string RESULTMSG { get; set; }
+        public string APPROVEDAMOUNT { get; set; }
+        public string BATCHNO { get; set; }
+        public string BATCHAMOUNT { get; set; }
+        public string APPROVALCODE { get; set; }
+        public string ACCOUNT { get; set; } //Masked Account Number
+        public string CARDHOLDERNAME { get; set; }
+        public string CARDTYPE { get; set; } //CREDIT OR DEBIT
+        public string CARDBRAND { get; set; }
+        public string CARDBRANDSHORT { get; set; }
+        public string LANGUAGE { get; set; }
+        public string ALIAS { get; set; }
+        public string ENTRYTYPE { get; set; }
+        public string RECEIPTTEXT { get; set; }
+        public string EXPMONTH { get; set; }
+        public string EXPYEAR { get; set; }
+        public string TRANSACTIONID { get; set; }
+        public string EMVTRANSACTION { get; set; }
+    }
+
     #endregion
 }

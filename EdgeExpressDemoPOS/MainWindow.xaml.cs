@@ -169,9 +169,19 @@ namespace EdgeExpressDemoPOS
         private SaleResultXML SendSaleTransaction(string amount)
         {
             string parameters = PaymentEngine.BuildXMLSale(Globals.Default.XWebID, Globals.Default.XWebTerminalID, Globals.Default.XWebAuthKey, amount, Globals.Default.ClerkID);
+            if (Globals.Default.IntegrationMode == "Cloud")
+            {
+                MessageBox.Show(PaymentEngine.SendToEdgeExpress(parameters));
+            }
             SaleResultXML result = FromXml<SaleResultXML>(PaymentEngine.SendToEdgeExpress(parameters));
 
             return result;
+        }
+        private jsonResponseWrapper SendSaleTransactionCloud(string amount)
+        {
+            string parameters = PaymentEngine.BuildXMLSale(Globals.Default.XWebID, Globals.Default.XWebTerminalID, Globals.Default.XWebAuthKey, amount, Globals.Default.ClerkID);
+            jsonResponseWrapper response = PaymentEngine.SendToEdgeExpressCloud(parameters);
+            return response;
         }
         private DebitReturnResultXML SendDebitReturnTransaction(string amount)
         {
@@ -263,6 +273,12 @@ namespace EdgeExpressDemoPOS
         private void processSaleButton_Click(object sender, RoutedEventArgs e)
         {
             string amount = totalAmountBox.Text;
+            //Initial Implementation, will work out logic
+            if (Globals.Default.IntegrationMode == "Cloud")
+            {
+                jsonResponseWrapper cloudResponse = SendSaleTransactionCloud(amount);
+                MessageBox.Show(cloudResponse.result.RESULT);
+            }
             bool successfulSale = SaleTransaction(amount);
             if (successfulSale == true)
             {
@@ -341,8 +357,6 @@ namespace EdgeExpressDemoPOS
 
             }
         }
-        #endregion
-
         private void signatureLookup_Click(object sender, RoutedEventArgs e)
         {
             string transactionID = GetTransactionIDForReturnVoid();
@@ -350,5 +364,8 @@ namespace EdgeExpressDemoPOS
             SignatureLookupDisplayWindow lookupDisplay = new SignatureLookupDisplayWindow(sigImage);
             lookupDisplay.ShowDialog();
         }
+        #endregion
+
+
     }
 }

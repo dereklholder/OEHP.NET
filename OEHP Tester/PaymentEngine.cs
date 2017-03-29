@@ -11,7 +11,7 @@ namespace OEHP_Tester
         public string directPostResponse { get; set; }
         public string submitMethodUsed { get; set; }
     }
-    public class PaymentEngine : TransactionRequest // Methods Hat are called from MainWindow to perform transactions against gateway and handle logic of Processing mode, SubmitMethod, and such.
+    public class PaymentEngine : TransactionRequest // Methods that are called from MainWindow to perform transactions against gateway and handle logic of Processing mode, SubmitMethod, and such.
     {
         /// <summary>
         /// Various Methods are virtually identical, however some have different arguments, and to make code clear and not have massive logic chains each is separated into separate method. Should provide better enhancement if future changes are needed.
@@ -19,7 +19,7 @@ namespace OEHP_Tester
         /// Also makes workflow/logic easier to work with for future enhancement.
         /// 
         /// </summary>
-        public static ResponseForWebBrowser SendToGateway(string parameters, string submitMethod) //Sends request to the gateway, Can be used without using a 'PerformXTransaction' Call if desired.
+        public static ResponseForWebBrowser SendToGateway(string parameters, string submitMethod) //Sends request to the gateway, 
         {
             ResponseForWebBrowser response = new ResponseForWebBrowser();
             Globals.Default.PostParameters = parameters;
@@ -29,7 +29,7 @@ namespace OEHP_Tester
                     if (Globals.Default.ProcessingMode == "Test")
                     {
                         VariableHandler.PayPageJson json = GatewayRequest.TestPayPagePost(parameters);
-                        Globals.Default.SessionToken = json.sealedSetupParameters; // Sets Global Session Token variable for use in RCMStatus HTTPS Get
+                        Globals.Default.SessionToken = json.sealedSetupParameters;
                         if (json.errorMessage != null)
                         {
                             response.errorMessage = json.errorMessage;
@@ -60,7 +60,15 @@ namespace OEHP_Tester
                     }
                     break;
                 case "HTML Doc Post":
-                    //NYI
+                    response.submitMethodUsed = "htmlDocPost";
+                    if (Globals.Default.ProcessingMode == "Live")
+                    {
+                        response.htmlDoc = GatewayRequest.LiveHtmlDocumentPost(parameters);                  
+                    }
+                    if (Globals.Default.ProcessingMode == "Test")
+                    {
+                        response.htmlDoc = GatewayRequest.TestHtmlDocPost(parameters);
+                    }
                     break;
                 case "directPost":
                     if (Globals.Default.ProcessingMode == "Test")
@@ -78,6 +86,7 @@ namespace OEHP_Tester
             return response;
 
         }
+        //Could just call SendToGateway directly, created these methods for future work on data validation on per transaction basis.
         #region Credit_Card Transactions
         public static ResponseForWebBrowser PerformCreditSaleTransaction(string accountToken, string transactionType, string chargeType, string entryMode, string orderID, string amount, string customParameters, string submitMethod) //Returns String of PayPage URL or String of HTML Doc
         {

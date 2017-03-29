@@ -33,4 +33,18 @@ namespace EdgeExpressDemoPOS
         public string Item { get; set; }
         public double Price { get; set; }
     }
+    public class VariableHandler
+    {
+        public static string RCMUrl = "https://localsystem.paygateway.com:21113/RcmService.svc";
+        public static string RCMMethod = "/Initialize";
+        public static string RCMQuerystring = "?xl2Parameters=";
+        public static string RCMStatusMethod = "/Status";
+    }
+    public enum TranType
+    {
+        Sale,
+        DebitReturn,
+        CreditReturn,
+        Void
+    };
 }
