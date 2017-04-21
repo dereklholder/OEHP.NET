@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EdgeExpressCloudSaaS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="XWebID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">800000001844</Value>
+    </Setting>
+    <Setting Name="XWebAuthKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WFiNd0nMIsejrWVUSycsmbtgkMN7hELK</Value>
+    </Setting>
+    <Setting Name="XWebTerminalID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">80023396</Value>
+    </Setting>
+    <Setting Name="Clerk" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Derek</Value>
+    </Setting>
+    <Setting Name="CardholderAgreement" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Buyer Agrees to Pay the Whole Amount According to the Terms of the Cardholder Agreement.</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

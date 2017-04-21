@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
+using System.Xml;
+
 
 namespace EdgeExpressDemoPOS
 {
@@ -28,6 +30,7 @@ namespace EdgeExpressDemoPOS
             DataContext = this;
         }   
         #region Parsers
+        
         public T FromXml<T>(String xml)
         {
             T returnedXmlClass = default(T);
@@ -102,7 +105,6 @@ namespace EdgeExpressDemoPOS
         {
             SaleResultXML result = SendSaleTransaction(amount);
             DBFunctions.InsertSaleTransaction(result);
-            //Previously Contained the Result Logic Within these methods, THat is now contained under PaymentEngine.TransactionSuccessul
             if (PaymentEngine.TransactionSuccessful(TranType.Sale, result, null, null, null) == true)
             {
                 if (Globals.Default.SignatureCaptureEnabled == true)
@@ -111,13 +113,10 @@ namespace EdgeExpressDemoPOS
                     DBFunctions.InsertSignatureTransaction(signatureObject, result.TRANSACTIONID);
                 }
                 MessageBox.Show(result.RECEIPTTEXT);
-                // Display Signature Maybe? Or no.
-                // Do something with UI, Return to Cleared screen for Next possible Transaction
                 return true;
             }
             else
             {
-                // TransactionSuccessful should have result in message, return to previous screen (do nothing) may change logic later.
                 return false;
             }
         }
@@ -168,20 +167,17 @@ namespace EdgeExpressDemoPOS
         /// </summary>
         private SaleResultXML SendSaleTransaction(string amount)
         {
-            string parameters = PaymentEngine.BuildXMLSale(Globals.Default.XWebID, Globals.Default.XWebTerminalID, Globals.Default.XWebAuthKey, amount, Globals.Default.ClerkID);
-            if (Globals.Default.IntegrationMode == "Cloud")
-            {
-                MessageBox.Show(PaymentEngine.SendToEdgeExpress(parameters));
-            }
+            string parameters = PaymentEngine.BuildXMLSale(Globals.Default.XWebID, Globals.Default.XWebTerminalID, 
+                Globals.Default.XWebAuthKey, amount, Globals.Default.ClerkID);
             SaleResultXML result = FromXml<SaleResultXML>(PaymentEngine.SendToEdgeExpress(parameters));
 
             return result;
         }
-        private jsonResponseWrapper SendSaleTransactionCloud(string amount)
+        private SaleResultXML SendSaleTransactionCloud(string amount)
         {
             string parameters = PaymentEngine.BuildXMLSale(Globals.Default.XWebID, Globals.Default.XWebTerminalID, Globals.Default.XWebAuthKey, amount, Globals.Default.ClerkID);
-            jsonResponseWrapper response = PaymentEngine.SendToEdgeExpressCloud(parameters);
-            return response;
+            SaleResultXML result = FromXml<SaleResultXML>(PaymentEngine.SendToEdgeExpress(parameters));
+            return result;
         }
         private DebitReturnResultXML SendDebitReturnTransaction(string amount)
         {
@@ -273,12 +269,6 @@ namespace EdgeExpressDemoPOS
         private void processSaleButton_Click(object sender, RoutedEventArgs e)
         {
             string amount = totalAmountBox.Text;
-            //Initial Implementation, will work out logic
-            if (Globals.Default.IntegrationMode == "Cloud")
-            {
-                jsonResponseWrapper cloudResponse = SendSaleTransactionCloud(amount);
-                MessageBox.Show(cloudResponse.result.RESULT);
-            }
             bool successfulSale = SaleTransaction(amount);
             if (successfulSale == true)
             {

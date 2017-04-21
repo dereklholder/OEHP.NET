@@ -44,5 +44,16 @@ namespace EdgeExpressDemoPOS
             Globals.Default.Save();
             this.Close();
         }
+
+        private void sigCapCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            string parameters = PaymentEngine.BuildXMLSupportSignature();
+            GetSignatureSupportedResultXML signatureSupported = PaymentEngine.FromXml<GetSignatureSupportedResultXML>(PaymentEngine.SendToEdgeExpress(parameters));
+            if (signatureSupported.SUPPORTED != "True")
+            {
+                MessageBox.Show("Signature not supported by your device.", "Error");
+                Globals.Default.SignatureCaptureEnabled = false;
+            }
+        }
     }
 }

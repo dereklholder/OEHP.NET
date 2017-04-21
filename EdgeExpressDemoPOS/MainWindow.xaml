@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EdgeExpressDemoPOS"
         mc:Ignorable="d"
-        Title="EdgeExpress Point of Sale" Height="326.951" Width="314.146">
+        Title="EdgeExpress Point of Sale" Height="326.951" Width="314.146" Icon="oehpwpf.ico">
     <Grid>
         <Menu x:Name="menu" Height="20" VerticalAlignment="Top">
             <MenuItem x:Name="file" Header="_File">

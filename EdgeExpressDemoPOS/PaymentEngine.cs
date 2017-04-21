@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using System.Net;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace EdgeExpressDemoPOS
 {
@@ -23,27 +24,36 @@ namespace EdgeExpressDemoPOS
                 XCharge.XpressLink2.XLEmv EdgeExpress = new XCharge.XpressLink2.XLEmv();
                 EdgeExpress.Execute(parameters, out response);
             }
+            if (Globals.Default.IntegrationMode == "Cloud")
+            {
+                response = SendToEdgeExpressCloud(parameters);
+            }
 
             return response;
         }
         #region EE CLoud Implementeation
-        public static jsonResponseWrapper SerializeJsonObject(string json)
+        /// <summary>
+        /// Separate Region for CLOUD implementation due to some of the diffrences in response, and the more verbose nature of invoking the calls. 
+        /// </summary>
+        public static string SendToEdgeExpressCloud(string parameters) //Called to Send transactions to Cloud Rather than PC
         {
-            JavaScriptSerializer ser = new JavaScriptSerializer();
-            jsonResponseWrapper wrapper = ser.Deserialize<jsonResponseWrapper>(json);
-            return wrapper;
-        }
-        public static jsonResponseWrapper SendToEdgeExpressCloud(string parameters) //Called to Send transactions to Cloud Rather than PC
-        {
-            WebRequest wr = WebRequest.Create(RCMUrl + RCMMethod + RCMQuerystring + parameters);
-            wr.Method = "GET";
+            string url = RCMUrl + RCMMethod + RCMQuerystring + parameters;
+            HttpWebRequest getRequest = (HttpWebRequest)WebRequest.Create(url);
+            getRequest.Method = "GET";
+            getRequest.ContentType = "application/xml"; //Sets the response type as XML
 
-            Stream objStream = wr.GetResponse().GetResponseStream();
-            StreamReader sr = new StreamReader(objStream);
+            WebResponse response = getRequest.GetResponse();
 
-            jsonResponseWrapper response = SerializeJsonObject(sr.ReadToEnd());
+            Stream dataStream = response.GetResponseStream();
+            StreamReader responseReader = new StreamReader(dataStream);
+            string rawResponse = responseReader.ReadToEnd();
 
-            return response;
+            responseReader.Close();
+            dataStream.Close();
+
+            string result = GetContentContentOfXmlRcmResponse(rawResponse);
+
+            return result;
 
         }
         public static string GetEECloudStatus(string sessionID)
@@ -67,7 +77,7 @@ namespace EdgeExpressDemoPOS
 
             using (XmlWriter xml = XmlWriter.Create(sb, ws))
             {
-                xml.WriteStartElement("XLINKEMVREQUEST");
+                xml.WriteStartElement("REQUEST");
 
                 xml.WriteStartElement("XWEBID");
                 xml.WriteString(XWebID);
@@ -111,7 +121,7 @@ namespace EdgeExpressDemoPOS
 
             using (XmlWriter xml = XmlWriter.Create(sb, ws))
             {
-                xml.WriteStartElement("XLINKEMVREQUEST");
+                xml.WriteStartElement("REQUEST");
 
                 xml.WriteStartElement("XWEBID");
                 xml.WriteString(XWebID);
@@ -163,7 +173,7 @@ namespace EdgeExpressDemoPOS
 
             using (XmlWriter xml = XmlWriter.Create(sb, ws))
             {
-                xml.WriteStartElement("XLINKEMVREQUEST");
+                xml.WriteStartElement("REQUEST");
 
                 xml.WriteStartElement("XWEBID");
                 xml.WriteString(XWebID);
@@ -207,7 +217,7 @@ namespace EdgeExpressDemoPOS
 
             using (XmlWriter xml = XmlWriter.Create(sb, ws))
             {
-                xml.WriteStartElement("XLINKEMVREQUEST");
+                xml.WriteStartElement("REQUEST");
 
                 xml.WriteStartElement("XWEBID");
                 xml.WriteString(XWebID);
@@ -663,7 +673,7 @@ namespace EdgeExpressDemoPOS
 
             using (XmlWriter xml = XmlWriter.Create(sb, ws))
             {
-                xml.WriteStartElement("XLINKEMVREQUEST");
+                xml.WriteStartElement("REQUEST");
 
                 xml.WriteStartElement("TRANSACTIONTYPE");
                 xml.WriteString("PPDPROMPTSIGNATURE");
@@ -702,7 +712,7 @@ namespace EdgeExpressDemoPOS
 
             using (XmlWriter xml = XmlWriter.Create(sb, ws))
             {
-                xml.WriteStartElement("XLINKEMVREQUEST");
+                xml.WriteStartElement("REQUEST");
 
                 xml.WriteStartElement("TRANSACTIONTYPE");
                 xml.WriteString("PPDPROMPTSIGNATURE");
@@ -741,7 +751,7 @@ namespace EdgeExpressDemoPOS
 
             using (XmlWriter xml = XmlWriter.Create(sb, ws))
             {
-                xml.WriteStartElement("XLINKEMVREQUEST");
+                xml.WriteStartElement("REQUEST");
 
                 xml.WriteStartElement("TRANSACTIONTYPE");
                 xml.WriteString("PPDPROMPTYESNO");
@@ -759,11 +769,87 @@ namespace EdgeExpressDemoPOS
             }
             return sb.ToString();
         }
-        #endregion
+        public static string BuildXMLSupportSignature()
+        {
+            StringBuilder sb = new StringBuilder();
+            XmlWriterSettings ws = new XmlWriterSettings();
+            ws.Indent = false;
+            ws.OmitXmlDeclaration = true;
+            using (XmlWriter xml = XmlWriter.Create(sb, ws))
+            {
+                xml.WriteStartElement("REQUEST");
 
+                xml.WriteStartElement("TRANSACTIONTYPE");
+                xml.WriteString("SUPPORTSFEATURE");
+                xml.WriteEndElement();
+
+                xml.WriteStartElement("SUPPORTED");
+                xml.WriteString("Signature");
+                xml.WriteEndElement();
+
+                xml.WriteEndElement();
+            }
+
+            return sb.ToString();
+        }
+        #endregion
+        #region Parsers
+        public static string GetContentContentOfXmlRcmResponse(string cloudTransactionResponseString) // Reads the XML to get only the Parent/Child Nodes I care about (RESPONSE and all Childs)
+        {
+            string parsedData = null;
+            using (XmlTextReader xr = new XmlTextReader(new StringReader(cloudTransactionResponseString)))
+            {
+                while (xr.Read())
+                {
+                    while (xr.ReadToFollowing("XmlRcmResponse"))
+                    {
+
+                        parsedData = Regex.Replace(xr.ReadInnerXml(), @"\t|\n|\r", ""); //Get rid of escape characters, because they are lame.
+                    }
+                }
+                xr.Close();
+
+
+                return parsedData;
+            }
+
+        }
+        public static T FromXml<T>(String xml) //Deserializes Result into one of the defined result object classes.
+        {
+            T returnedXmlClass = default(T);
+            try
+            {
+                using (TextReader reader = new StringReader(xml))
+                {
+                    try
+                    {
+                        returnedXmlClass = (T)new XmlSerializer(typeof(T)).Deserialize(reader);
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        //String Passed is not XML, simply return defaultXMlClass
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetBaseException().ToString());
+            }
+            return returnedXmlClass;
+        }
+        #endregion
     }
-    #region ParsingObjects
-    [Serializable, XmlRoot("XLinkEMVResult")]
+    #region EdgeExpress ParsingObjects
+
+    [Serializable, XmlRoot("RESPONSE")]
+    public class GetSignatureSupportedResultXML
+    {
+        public string SUPPORTED { get; set; }
+        public string RESULT { get; set; }
+        public string RESULTMSG { get; set; }
+    }
+    [Serializable, XmlRoot("RESPONSE")]
     public class SaleResultXML
     {
         public string DUPLICATECARD { get; set; }
@@ -791,7 +877,7 @@ namespace EdgeExpressDemoPOS
         public string EMVTRANSACTION { get; set; }
 
     }
-    [Serializable, XmlRoot("XLinkEMVResult")]
+    [Serializable, XmlRoot("RESPONSE")]
     public class PromptSignatureResultXML
     {
         public string SIGNATUREFORMAT { get; set; }
@@ -799,13 +885,13 @@ namespace EdgeExpressDemoPOS
         public string RESULT { get; set; }
         public string RESULTMSG { get; set; }
     }
-    [Serializable, XmlRoot("XLinkEMVResult")]
+    [Serializable, XmlRoot("RESPONSE")]
     public class PromptYesNoResultXML
     {
         public string YESORNO { get; set; }
         public string RESULT { get; set; }
     }
-    [Serializable, XmlRoot("XLinkEMVResult")]
+    [Serializable, XmlRoot("RESPONSE")]
     public class DebitReturnResultXML
     {
         public string CASHBACKAMOUNT { get; set; }
@@ -827,7 +913,7 @@ namespace EdgeExpressDemoPOS
         public string EXPYEAR { get; set; }
         public string TRANSACTIONID { get; set; }
     }
-    [Serializable, XmlRoot("XLinkEMVResult")]
+    [Serializable, XmlRoot("RESPONSE")]
     public class CreditReturnResultXML
     {
         public string DUPLICATECARD { get; set; }
@@ -853,7 +939,7 @@ namespace EdgeExpressDemoPOS
         public string EXPYEAR { get; set; }
         public string TRANSACTIONID { get; set; }
     }
-    [Serializable, XmlRoot("XLinkEMVResult")]
+    [Serializable, XmlRoot("RESPONSE")]
     public class CreditVoidResultXML
     {
         public string DATE_TIME { get; set; }
@@ -878,37 +964,12 @@ namespace EdgeExpressDemoPOS
         public string EXPYEAR { get; set; }
         public string TRANSACTIONID { get; set; }
     }
-    //Json Objects for Parsing Response when not using XML return format.
-    public class jsonResponseWrapper
-    {
-        public XLinkEMVResult result { get; set; }
-    }
-    public class XLinkEMVResult
-    {
-        public string DUPLICATECARD { get; set; }
-        public string DATE_TIME { get; set; }
-        public string HOSTRESPONSECODE { get; set; }
-        public string HOSTRESPONSEDESCRIPTION { get; set; }
-        public string RESULT { get; set; }
-        public string RESULTMSG { get; set; }
-        public string APPROVEDAMOUNT { get; set; }
-        public string BATCHNO { get; set; }
-        public string BATCHAMOUNT { get; set; }
-        public string APPROVALCODE { get; set; }
-        public string ACCOUNT { get; set; } //Masked Account Number
-        public string CARDHOLDERNAME { get; set; }
-        public string CARDTYPE { get; set; } //CREDIT OR DEBIT
-        public string CARDBRAND { get; set; }
-        public string CARDBRANDSHORT { get; set; }
-        public string LANGUAGE { get; set; }
-        public string ALIAS { get; set; }
-        public string ENTRYTYPE { get; set; }
-        public string RECEIPTTEXT { get; set; }
-        public string EXPMONTH { get; set; }
-        public string EXPYEAR { get; set; }
-        public string TRANSACTIONID { get; set; }
-        public string EMVTRANSACTION { get; set; }
-    }
 
     #endregion
+    interface IEdgeExpress
+    {
+        string SendToEdgeExpress();
+        bool TransactionSuccessful();
+
+    }
 }
